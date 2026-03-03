@@ -1,11 +1,11 @@
 import { useTheme } from '../design-system/context/ThemeProvider'
 
 const TABS = [
-  { id: 'matches',  image: 'tab_bar_icon_2.png' },
-  { id: 'likes',    image: 'tab_bar_icon_3.png' },
-  { id: 'messages', image: 'tab_bar_icon_5.png', badge: 6 },
+  { id: 'matches',  image: 'tab_bar_icon_1.png' },
+  { id: 'likes',    image: 'tab_bar_icon_2.png' },
+  { id: 'messages', image: 'tab_bar_icon_3.png', badge: 6 },
   { id: 'connect',  Icon: ConnectIcon },
-  { id: 'profile',  image: 'tab_bar_icon_1.png' },
+  { id: 'profile',  image: 'tab_bar_icon_5.png' },
 ]
 
 export function TabBar({ activeTab = 'connect' }) {
