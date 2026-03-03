@@ -1,11 +1,11 @@
 import { useTheme } from '../design-system/context/ThemeProvider'
 
 const TABS = [
-  { id: 'matches',  Icon: MutualLogoIcon },
-  { id: 'likes',    Icon: HeartIcon      },
-  { id: 'messages', Icon: MessagesIcon, badge: 6 },
-  { id: 'connect',  Icon: ConnectIcon    },
-  { id: 'profile',  Icon: ProfileIcon    },
+  { id: 'matches',  image: 'tab_bar_icon_2.png' },
+  { id: 'likes',    image: 'tab_bar_icon_3.png' },
+  { id: 'messages', image: 'tab_bar_icon_5.png', badge: 6 },
+  { id: 'connect',  Icon: ConnectIcon },
+  { id: 'profile',  image: 'tab_bar_icon_1.png' },
 ]
 
 export function TabBar({ activeTab = 'connect' }) {
@@ -20,7 +20,7 @@ export function TabBar({ activeTab = 'connect' }) {
       paddingBottom: 28,
       flexShrink: 0,
     }}>
-      {TABS.map(({ id, Icon, badge }) => {
+      {TABS.map(({ id, Icon, image, badge }) => {
         const isActive = id === activeTab
         const iconColor = isActive ? '#FFFFFF' : 'rgba(255,255,255,0.4)'
 
@@ -47,7 +47,20 @@ export function TabBar({ activeTab = 'connect' }) {
               }} />
             )}
             <div style={{ position: 'relative' }}>
-              <Icon color={iconColor} size={26} />
+              {image ? (
+                <img
+                  src={import.meta.env.BASE_URL + image}
+                  alt={id}
+                  style={{
+                    width: 26,
+                    height: 26,
+                    objectFit: 'contain',
+                    opacity: isActive ? 1 : 0.4,
+                  }}
+                />
+              ) : (
+                <Icon color={iconColor} size={26} />
+              )}
               {badge && (
                 <div style={{
                   position: 'absolute',
@@ -80,38 +93,7 @@ export function TabBar({ activeTab = 'connect' }) {
 
 // ─── Tab Icons ──────────────────────────────────────────────────────
 
-// Open box / container icon — events tab
-function MutualLogoIcon({ color, size }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 8h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z" />
-      <path d="M2 8l3-5h14l3 5" />
-    </svg>
-  )
-}
-
-function HeartIcon({ color, size }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-    </svg>
-  )
-}
-
-// Two overlapping speech bubbles
-function MessagesIcon({ color, size }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H9l-4 4V9a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z" />
-      <path d="M3 15V5a2 2 0 0 1 2-2h12" />
-    </svg>
-  )
-}
-
-// Two people side by side — represents connecting with others in person
+// Two people side by side — Connect tab (our new tab, no exported asset)
 function ConnectIcon({ color, size }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
@@ -120,17 +102,6 @@ function ConnectIcon({ color, size }) {
       <circle cx="16" cy="7" r="3" />
       <path d="M1 21c0-3 3.1-5.5 7-5.5s7 2.5 7 5.5" />
       <path d="M16 15.5c3.9 0 7 2.5 7 5.5" />
-    </svg>
-  )
-}
-
-// Single person silhouette
-function ProfileIcon({ color, size }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="8" r="4" />
-      <path d="M4 20v-1a8 8 0 0 1 16 0v1" />
     </svg>
   )
 }
