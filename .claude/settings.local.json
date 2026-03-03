@@ -21,7 +21,11 @@
       "Bash(find \"/Users/tyleraston/Projects/events-groups/Design System - Web \\(React\\)\" -type f)",
       "Bash(PATH=\"/opt/homebrew/opt/node@20/bin:$PATH\" npm install -D typescript @types/react @types/react-dom)",
       "Bash(git add -A)",
-      "Bash(git commit -m \"Integrate design system: TypeScript, tokens, components, Goldman Sans fonts \\(Mutual Light\\)\")"
+      "Bash(git commit -m \"Integrate design system: TypeScript, tokens, components, Goldman Sans fonts \\(Mutual Light\\)\")",
+      "Bash(git push)",
+      "Bash(git add WORK_STATUS.md)",
+      "Bash(git commit -m \"Update WORK_STATUS with design system integration details\")",
+      "Bash(git commit -m \"Add StatusBar, TabBar, and Connect screen header with Beta badge and filter pills\")"
     ]
   }
 }

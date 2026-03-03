@@ -3,7 +3,7 @@ import Home from './screens/Home.jsx'
 
 function App() {
   return (
-    <div className="min-h-screen bg-white max-w-sm mx-auto">
+    <div className="max-w-sm mx-auto" style={{ height: '100dvh', overflow: 'hidden' }}>
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
