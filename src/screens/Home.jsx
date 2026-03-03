@@ -9,6 +9,7 @@ const FILTERS = ['For You', 'Joined']
 
 const SORT_OPTIONS = [
   { id: 'featured', label: 'Featured First' },
+  { id: 'soonest', label: 'Soonest (Events Only)' },
   { id: 'newest', label: 'Newest' },
   { id: 'popular', label: 'Most Popular' },
   { id: 'nearest', label: 'Nearest' },
@@ -128,6 +129,10 @@ function sortItems(items, sortId) {
   switch (sortId) {
     case 'featured':
       return sorted.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
+    case 'soonest':
+      return sorted
+        .filter(item => item.type !== 'group' && item.date)
+        .sort((a, b) => new Date(a.date.replace(/ - /, ' ')) - new Date(b.date.replace(/ - /, ' ')))
     case 'newest':
       return sorted.sort((a, b) => b.id - a.id)
     case 'popular':
