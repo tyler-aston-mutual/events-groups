@@ -23,12 +23,13 @@ export function EventCard({
       boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
       position: 'relative',
     }}>
-      {/* Featured chip — top-left corner */}
+      {/* Featured chip — bottom-left, above photo */}
       {featured && (
         <div style={{
           position: 'absolute',
-          top: 12,
+          bottom: 12,
           left: 12,
+          zIndex: 1,
         }}>
           <Chip text="Featured" variant="accent5" size="compact" />
         </div>
