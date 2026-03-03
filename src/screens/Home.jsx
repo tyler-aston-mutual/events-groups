@@ -11,7 +11,7 @@ const FEATURED_EVENTS = [
   {
     id: 1,
     title: 'Blind Speed Dating',
-    image: 'https://images.unsplash.com/photo-1529543544282-ea61407b3569?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1543807535-eceef0bc6599?w=400&h=400&fit=crop',
     date: 'February 20, 2026 - 19:00',
     location: 'Virtual Speed Dating Session',
     going: 1032,
@@ -61,7 +61,7 @@ const UPCOMING_EVENTS = [
   {
     id: 6,
     title: "Trivia Night at Guru's",
-    image: 'https://images.unsplash.com/photo-1577702112390-17c1987bd5ac?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=400&fit=crop',
     date: 'February 28, 2026 - 19:00',
     location: "Guru's Cafe",
     going: 10,

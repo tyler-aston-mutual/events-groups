@@ -42,7 +42,7 @@ export function EventCard({
 
         {/* Details */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-          {/* Top row: Featured badge + calendar icon */}
+          {/* Top row: badges + calendar icon */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -50,32 +50,25 @@ export function EventCard({
             gap: 8,
             marginBottom: 6,
           }}>
+            {tag && (
+              <Chip text={tag} variant="constantPrimary" size="compact" />
+            )}
             {featured && (
               <Chip text="Featured" variant="accent5" size="compact" />
             )}
             <CalendarIcon color={colors.grey400} />
           </div>
 
-          {/* Title + tag */}
+          {/* Title */}
           <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
+            fontSize: 17,
+            fontWeight: 700,
+            color: colors.grey1000,
+            lineHeight: '21px',
             marginBottom: 8,
-            flexWrap: 'wrap',
+            fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
           }}>
-            <span style={{
-              fontSize: 17,
-              fontWeight: 700,
-              color: colors.grey1000,
-              lineHeight: '21px',
-              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-            }}>
-              {title}
-            </span>
-            {tag && (
-              <Chip text={tag} variant="dark" size="compact" />
-            )}
+            {title}
           </div>
 
           {/* Date */}
