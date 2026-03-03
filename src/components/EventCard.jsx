@@ -23,6 +23,17 @@ export function EventCard({
       boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
       position: 'relative',
     }}>
+      {/* Featured chip — top-left corner */}
+      {featured && (
+        <div style={{
+          position: 'absolute',
+          top: 12,
+          left: 12,
+        }}>
+          <Chip text="Featured" variant="accent5" size="compact" />
+        </div>
+      )}
+
       {/* Type icon — top-right corner */}
       <div style={{
         position: 'absolute',
@@ -64,25 +75,12 @@ export function EventCard({
 
         {/* Details */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-          {/* Top row: Featured left, tag right */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 8,
-            marginBottom: 6,
-          }}>
-            <div>
-              {featured && (
-                <Chip text="Featured" variant="accent5" size="compact" />
-              )}
+          {/* Top row: tag chip */}
+          {tag && (
+            <div style={{ marginBottom: 6 }}>
+              <Chip text={tag} variant="constantPrimary" size="compact" />
             </div>
-            <div style={{ display: 'flex', gap: 8, paddingRight: 20 }}>
-              {tag && (
-                <Chip text={tag} variant="constantPrimary" size="compact" />
-              )}
-            </div>
-          </div>
+          )}
 
           {/* Title */}
           <div style={{
