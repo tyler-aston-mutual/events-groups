@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create vite@latest . -- --template react --yes)",
+      "Bash(node --version)",
+      "Bash(nvm ls)",
+      "Bash(brew list)",
+      "Bash(brew install node@20)",
+      "Bash(PATH=\"/opt/homebrew/opt/node@20/bin:$PATH\" npm create vite@latest /Users/tyleraston/Projects/events-groups -- --template react)",
+      "Bash(PATH=\"/opt/homebrew/opt/node@20/bin:$PATH\" npm create vite@latest . -- --template react 2)",
+      "Bash(1:*)",
+      "Bash(PATH=\"/opt/homebrew/opt/node@20/bin:$PATH\" npm install)",
+      "Bash(PATH=\"/opt/homebrew/opt/node@20/bin:$PATH\" npm run build)",
+      "Bash(git init)",
+      "Bash(git add .)",
+      "Bash(git commit -m \"Initial scaffold: Vite + React + Tailwind + GitHub Pages deploy\")"
+    ]
+  }
+}
