@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { StatusBar } from '../components/StatusBar'
 import { TabBar } from '../components/TabBar'
 import { EventCard } from '../components/EventCard'
+import { SpeedDatingBanner } from '../components/SpeedDatingBanner'
 import { Heading3, Chip } from '../design-system'
 import { useTheme } from '../design-system/context/ThemeProvider'
 
@@ -16,17 +17,6 @@ const SORT_OPTIONS = [
 ]
 
 const ALL_ITEMS = [
-  {
-    id: 1,
-    title: 'Blind Speed Dating',
-    image: import.meta.env.BASE_URL + 'speed-dating.png',
-    imageBg: '#000080',
-    date: 'February 20, 2026 - 19:00',
-    location: 'Virtual Speed Dating Session',
-    going: 1032,
-    tag: 'Mutual Event',
-    featured: true,
-  },
   {
     id: 2,
     type: 'group',
@@ -148,6 +138,7 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState('For You')
   const [activeSort, setActiveSort] = useState('featured')
   const [sortOpen, setSortOpen] = useState(false)
+  const [bannerDismissed, setBannerDismissed] = useState(false)
   const { colors } = useTheme()
 
   const items = sortItems(ALL_ITEMS, activeSort)
@@ -281,6 +272,9 @@ export default function Home() {
         onClick={() => sortOpen && setSortOpen(false)}
       >
         <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {!bannerDismissed && (
+            <SpeedDatingBanner onDismiss={() => setBannerDismissed(true)} />
+          )}
           {items.map(item => (
             <EventCard key={item.id} {...item} />
           ))}
