@@ -10,6 +10,7 @@ export function EventCard({
   group,
   featured = false,
   tag,
+  imageBg,
 }) {
   const { colors } = useTheme()
 
@@ -28,14 +29,21 @@ export function EventCard({
           borderRadius: 12,
           overflow: 'hidden',
           flexShrink: 0,
-          backgroundColor: colors.grey100,
+          backgroundColor: imageBg || colors.grey100,
           marginTop: 26,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}>
           {image && (
             <img
               src={image}
               alt={title}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{
+                width: imageBg ? '60%' : '100%',
+                height: imageBg ? '60%' : '100%',
+                objectFit: imageBg ? 'contain' : 'cover',
+              }}
             />
           )}
         </div>
