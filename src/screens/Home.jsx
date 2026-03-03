@@ -7,7 +7,14 @@ import { useTheme } from '../design-system/context/ThemeProvider'
 
 const FILTERS = ['For You', 'Joined']
 
-const FEATURED_ITEMS = [
+const SORT_OPTIONS = [
+  { id: 'featured', label: 'Featured First' },
+  { id: 'newest', label: 'Newest' },
+  { id: 'popular', label: 'Most Popular' },
+  { id: 'nearest', label: 'Nearest' },
+]
+
+const ALL_ITEMS = [
   {
     id: 1,
     title: 'Blind Speed Dating',
@@ -66,9 +73,6 @@ const FEATURED_ITEMS = [
     group: { name: 'SLC Singles', membersOnly: false },
     featured: true,
   },
-]
-
-const UPCOMING_ITEMS = [
   {
     id: 7,
     type: 'group',
@@ -119,9 +123,30 @@ const UPCOMING_ITEMS = [
   },
 ]
 
+function sortItems(items, sortId) {
+  const sorted = [...items]
+  switch (sortId) {
+    case 'featured':
+      return sorted.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
+    case 'newest':
+      return sorted.sort((a, b) => b.id - a.id)
+    case 'popular':
+      return sorted.sort((a, b) => b.going - a.going)
+    case 'nearest':
+      return sorted.reverse()
+    default:
+      return sorted
+  }
+}
+
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState('For You')
+  const [activeSort, setActiveSort] = useState('featured')
+  const [sortOpen, setSortOpen] = useState(false)
   const { colors } = useTheme()
+
+  const items = sortItems(ALL_ITEMS, activeSort)
+  const activeSortLabel = SORT_OPTIONS.find(o => o.id === activeSort)?.label
 
   return (
     <div style={{
@@ -158,17 +183,83 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Filter pills */}
-        <div style={{ display: 'flex', gap: 8, paddingBottom: 14 }}>
-          {FILTERS.map(filter => (
-            <Chip
-              key={filter}
-              text={filter}
-              variant={activeFilter === filter ? 'primary' : 'light'}
-              size="regular"
-              onClick={() => setActiveFilter(filter)}
-            />
-          ))}
+        {/* Filter pills + sort */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          paddingBottom: 14,
+        }}>
+          <div style={{ display: 'flex', gap: 8 }}>
+            {FILTERS.map(filter => (
+              <Chip
+                key={filter}
+                text={filter}
+                variant={activeFilter === filter ? 'primary' : 'light'}
+                size="regular"
+                onClick={() => setActiveFilter(filter)}
+              />
+            ))}
+          </div>
+          <div style={{ position: 'relative' }}>
+            <button
+              onClick={() => setSortOpen(!sortOpen)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4,
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: 0,
+                fontSize: 13,
+                fontWeight: 500,
+                color: colors.grey600,
+                fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+              }}
+            >
+              {activeSortLabel}
+              <SortChevron color={colors.grey600} open={sortOpen} />
+            </button>
+            {sortOpen && (
+              <div style={{
+                position: 'absolute',
+                top: '100%',
+                right: 0,
+                marginTop: 6,
+                backgroundColor: colors.grey0,
+                borderRadius: 12,
+                boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+                padding: '4px 0',
+                zIndex: 10,
+                minWidth: 160,
+              }}>
+                {SORT_OPTIONS.map(option => (
+                  <button
+                    key={option.id}
+                    onClick={() => { setActiveSort(option.id); setSortOpen(false) }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      width: '100%',
+                      padding: '10px 16px',
+                      background: option.id === activeSort ? colors.grey50 : 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontSize: 14,
+                      fontWeight: option.id === activeSort ? 600 : 400,
+                      color: option.id === activeSort ? colors.grey1000 : colors.grey600,
+                      fontFamily: "'Goldman Sans', sans-serif",
+                      textAlign: 'left',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -176,49 +267,18 @@ export default function Home() {
       <div style={{ height: 1, backgroundColor: colors.grey100, flexShrink: 0 }} />
 
       {/* Content area */}
-      <div style={{
-        flex: 1,
-        overflowY: 'auto',
-        backgroundColor: colors.grey50,
-      }}>
-        {/* Featured section */}
-        <div style={{ padding: '16px 16px 8px' }}>
-          <div style={{
-            fontSize: 14,
-            fontWeight: 500,
-            color: colors.grey400,
-            marginBottom: 10,
-            fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-          }}>
-            Featured
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {FEATURED_ITEMS.map(event => (
-              <EventCard key={event.id} {...event} />
-            ))}
-          </div>
-        </div>
-
-        {/* Upcoming section */}
-        <div style={{ padding: '8px 16px 16px' }}>
-          <div style={{
-            fontSize: 14,
-            fontWeight: 500,
-            color: colors.grey400,
-            marginBottom: 10,
-            fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-          }}>
-            Upcoming
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {UPCOMING_ITEMS.map(event => (
-              <EventCard key={event.id} {...event} />
-            ))}
-          </div>
+      <div
+        style={{
+          flex: 1,
+          overflowY: 'auto',
+          backgroundColor: colors.grey50,
+        }}
+        onClick={() => sortOpen && setSortOpen(false)}
+      >
+        <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {items.map(item => (
+            <EventCard key={item.id} {...item} />
+          ))}
         </div>
       </div>
 
@@ -264,6 +324,16 @@ function FilterIcon() {
       <line x1="0"  y1="1.5"  x2="16" y2="1.5"  />
       <line x1="3"  y1="6.5"  x2="13" y2="6.5"  />
       <line x1="6"  y1="11.5" x2="10" y2="11.5" />
+    </svg>
+  )
+}
+
+function SortChevron({ color, open }) {
+  return (
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+      style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
+      <path d="M2 4l3 3 3-3" />
     </svg>
   )
 }
