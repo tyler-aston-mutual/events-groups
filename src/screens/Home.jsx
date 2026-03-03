@@ -15,8 +15,6 @@ const FEATURED_EVENTS = [
     date: 'February 23, 2026 - 10:00',
     location: 'Y Mountain Trailhead',
     going: 18,
-    interested: 25,
-    group: { name: 'Mutual Speed Dating', membersOnly: true },
     featured: true,
   },
   {

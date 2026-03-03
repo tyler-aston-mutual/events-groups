@@ -20,15 +20,16 @@ export function EventCard({
       overflow: 'hidden',
       boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
     }}>
-      <div style={{ display: 'flex', padding: 12, gap: 12 }}>
+      <div style={{ display: 'flex', padding: 12, gap: 12, alignItems: 'flex-start' }}>
         {/* Image */}
         <div style={{
-          width: 140,
-          height: 140,
+          width: 100,
+          height: 100,
           borderRadius: 12,
           overflow: 'hidden',
           flexShrink: 0,
           backgroundColor: colors.grey100,
+          marginTop: 26,
         }}>
           {image && (
             <img
@@ -79,7 +80,7 @@ export function EventCard({
 
           {/* Attendance */}
           <InfoRow icon={<PeopleIcon color={colors.grey400} />} color={colors.grey600}>
-            {going} going{interested ? ` · ${interested} interested` : ''}
+            {going} going
           </InfoRow>
 
           {/* Group tag */}
