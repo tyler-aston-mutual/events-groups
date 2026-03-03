@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { StatusBar } from '../components/StatusBar'
 import { TabBar } from '../components/TabBar'
 import { EventCard } from '../components/EventCard'
@@ -136,15 +137,53 @@ function sortItems(items, sortId) {
   }
 }
 
+const FILTER_DEFAULTS = {
+  showEvents: true,
+  showGroups: true,
+  distance: 100,
+  minParticipants: '',
+  maxParticipants: '',
+}
+
+function applyFilters(items, filters) {
+  return items.filter(item => {
+    // Type filter
+    if (!filters.showEvents && item.type !== 'group') return false
+    if (!filters.showGroups && item.type === 'group') return false
+    // Participants filter
+    const min = filters.minParticipants ? Number(filters.minParticipants) : 0
+    const max = filters.maxParticipants ? Number(filters.maxParticipants) : Infinity
+    if (item.going < min || item.going > max) return false
+    return true
+  })
+}
+
+function hasActiveFilters(filters) {
+  return (
+    filters.showEvents !== FILTER_DEFAULTS.showEvents ||
+    filters.showGroups !== FILTER_DEFAULTS.showGroups ||
+    filters.distance !== FILTER_DEFAULTS.distance ||
+    filters.minParticipants !== FILTER_DEFAULTS.minParticipants ||
+    filters.maxParticipants !== FILTER_DEFAULTS.maxParticipants
+  )
+}
+
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState('For You')
   const [activeSort, setActiveSort] = useState('featured')
   const [sortOpen, setSortOpen] = useState(false)
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const { colors } = useTheme()
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  // Read filters from route state (set by FilterScreen on Apply)
+  const filters = location.state?.filters || FILTER_DEFAULTS
+  const filtersActive = hasActiveFilters(filters)
 
   const isJoined = activeFilter === 'Joined'
-  const baseItems = isJoined ? ALL_ITEMS.filter(i => JOINED_IDS.includes(i.id)) : ALL_ITEMS
+  const tabItems = isJoined ? ALL_ITEMS.filter(i => JOINED_IDS.includes(i.id)) : ALL_ITEMS
+  const baseItems = applyFilters(tabItems, filters)
   const items = sortItems(baseItems, activeSort)
   const activeSortLabel = SORT_OPTIONS.find(o => o.id === activeSort)?.label
 
@@ -179,7 +218,12 @@ export default function Home() {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <IconButton colors={colors} icon={<PlusIcon />} />
-            <IconButton colors={colors} icon={<FilterIcon />} />
+            <IconButton
+              colors={colors}
+              icon={<FilterIcon />}
+              onClick={() => navigate('/filters', { state: { filters } })}
+              badge={filtersActive}
+            />
           </div>
         </div>
 
@@ -290,9 +334,9 @@ export default function Home() {
   )
 }
 
-function IconButton({ colors, icon }) {
+function IconButton({ colors, icon, onClick, badge }) {
   return (
-    <button style={{
+    <button onClick={onClick} style={{
       width: 36,
       height: 36,
       borderRadius: 10,
@@ -304,8 +348,21 @@ function IconButton({ colors, icon }) {
       cursor: 'pointer',
       padding: 0,
       flexShrink: 0,
+      position: 'relative',
     }}>
       {icon}
+      {badge && (
+        <div style={{
+          position: 'absolute',
+          top: -3,
+          right: -3,
+          width: 10,
+          height: 10,
+          borderRadius: 5,
+          backgroundColor: colors.brandAccent5,
+          border: `2px solid ${colors.grey0}`,
+        }} />
+      )}
     </button>
   )
 }

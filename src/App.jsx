@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './screens/Home.jsx'
 import SpeedDating from './screens/SpeedDating.jsx'
+import FilterScreen from './screens/FilterScreen.jsx'
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/speed-dating" element={<SpeedDating />} />
+        <Route path="/filters" element={<FilterScreen />} />
       </Routes>
     </div>
   )
