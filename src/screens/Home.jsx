@@ -16,6 +16,8 @@ const SORT_OPTIONS = [
   { id: 'nearest', label: 'Nearest' },
 ]
 
+const JOINED_IDS = [3, 4, 5]
+
 const ALL_ITEMS = [
   {
     id: 2,
@@ -141,7 +143,9 @@ export default function Home() {
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const { colors } = useTheme()
 
-  const items = sortItems(ALL_ITEMS, activeSort)
+  const isJoined = activeFilter === 'Joined'
+  const baseItems = isJoined ? ALL_ITEMS.filter(i => JOINED_IDS.includes(i.id)) : ALL_ITEMS
+  const items = sortItems(baseItems, activeSort)
   const activeSortLabel = SORT_OPTIONS.find(o => o.id === activeSort)?.label
 
   return (
@@ -272,7 +276,7 @@ export default function Home() {
         onClick={() => sortOpen && setSortOpen(false)}
       >
         <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {!bannerDismissed && (
+          {!bannerDismissed && !isJoined && (
             <SpeedDatingBanner onDismiss={() => setBannerDismissed(true)} />
           )}
           {items.map(item => (
