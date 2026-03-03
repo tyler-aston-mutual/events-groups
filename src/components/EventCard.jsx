@@ -21,7 +21,20 @@ export function EventCard({
       borderRadius: 16,
       overflow: 'hidden',
       boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+      position: 'relative',
     }}>
+      {/* Type icon — top-right corner */}
+      <div style={{
+        position: 'absolute',
+        top: 12,
+        right: 12,
+      }}>
+        {type === 'group'
+          ? <GroupBadgeIcon color={colors.grey400} />
+          : <CalendarIcon color={colors.grey400} />
+        }
+      </div>
+
       <div style={{ display: 'flex', padding: 12, gap: 12, alignItems: 'flex-start' }}>
         {/* Image */}
         <div style={{
@@ -65,10 +78,6 @@ export function EventCard({
             {featured && (
               <Chip text="Featured" variant="accent5" size="compact" />
             )}
-            {type === 'group'
-              ? <GroupBadgeIcon color={colors.grey400} />
-              : <CalendarIcon color={colors.grey400} />
-            }
           </div>
 
           {/* Title */}
