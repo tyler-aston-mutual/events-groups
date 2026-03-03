@@ -1,10 +1,36 @@
 import { useState } from 'react'
 import { StatusBar } from '../components/StatusBar'
 import { TabBar } from '../components/TabBar'
+import { EventCard } from '../components/EventCard'
 import { Heading3, Chip } from '../design-system'
 import { useTheme } from '../design-system/context/ThemeProvider'
 
 const FILTERS = ['For You', 'Joined']
+
+const FEATURED_EVENTS = [
+  {
+    id: 1,
+    title: 'Y Mountain Group Hike',
+    image: 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=400&h=400&fit=crop',
+    date: 'February 23, 2026 - 10:00',
+    location: 'Y Mountain Trailhead',
+    going: 18,
+    interested: 25,
+    group: { name: 'Mutual Speed Dating', membersOnly: true },
+    featured: true,
+  },
+  {
+    id: 2,
+    title: 'Temple Square Lights Walk',
+    image: 'https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=400&h=400&fit=crop',
+    date: 'March 8, 2026 - 19:30',
+    location: 'Temple Square, SLC',
+    going: 32,
+    interested: 41,
+    group: { name: 'SLC Singles', membersOnly: false },
+    featured: true,
+  },
+]
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState('For You')
@@ -62,12 +88,32 @@ export default function Home() {
       {/* Divider */}
       <div style={{ height: 1, backgroundColor: colors.grey100, flexShrink: 0 }} />
 
-      {/* Content area — cards will go here */}
+      {/* Content area */}
       <div style={{
         flex: 1,
         overflowY: 'auto',
         backgroundColor: colors.grey50,
-      }} />
+      }}>
+        {/* Featured section */}
+        <div style={{ padding: '16px 16px 8px' }}>
+          <div style={{
+            fontSize: 14,
+            fontWeight: 500,
+            color: colors.grey400,
+            marginBottom: 10,
+            fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px',
+          }}>
+            Featured
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {FEATURED_EVENTS.map(event => (
+              <EventCard key={event.id} {...event} />
+            ))}
+          </div>
+        </div>
+      </div>
 
       <TabBar activeTab="connect" />
     </div>
