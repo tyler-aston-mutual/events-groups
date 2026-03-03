@@ -30,7 +30,8 @@
       "Bash(/opt/homebrew/opt/node@20/bin/npm run build)",
       "Bash(export PATH=\"/opt/homebrew/opt/node@20/bin:$PATH\")",
       "Bash(npm run build)",
-      "Bash(git commit -m \"Update tab icons to match Mutual app style, Beta badge to primary red\")"
+      "Bash(git commit -m \"Update tab icons to match Mutual app style, Beta badge to primary red\")",
+      "Bash(git commit -m \"Mutual M logo for first tab, two-people icon for Connect, red bar active indicator\")"
     ]
   }
 }

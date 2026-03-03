@@ -1,11 +1,11 @@
 import { useTheme } from '../design-system/context/ThemeProvider'
 
 const TABS = [
-  { id: 'matches',  Icon: MatchesIcon  },
-  { id: 'likes',    Icon: HeartIcon    },
+  { id: 'matches',  Icon: MutualLogoIcon },
+  { id: 'likes',    Icon: HeartIcon      },
   { id: 'messages', Icon: MessagesIcon, badge: 6 },
-  { id: 'connect',  Icon: ConnectIcon  },
-  { id: 'profile',  Icon: ProfileIcon  },
+  { id: 'connect',  Icon: ConnectIcon    },
+  { id: 'profile',  Icon: ProfileIcon    },
 ]
 
 export function TabBar({ activeTab = 'connect' }) {
@@ -30,9 +30,22 @@ export function TabBar({ activeTab = 'connect' }) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: 5,
             cursor: 'pointer',
+            position: 'relative',
           }}>
+            {/* Active indicator — red bar at top */}
+            {isActive && (
+              <div style={{
+                position: 'absolute',
+                top: -12,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: 24,
+                height: 3,
+                borderRadius: 1.5,
+                backgroundColor: colors.brandAccent5,
+              }} />
+            )}
             <div style={{ position: 'relative' }}>
               <Icon color={iconColor} size={26} />
               {badge && (
@@ -58,15 +71,6 @@ export function TabBar({ activeTab = 'connect' }) {
                 </div>
               )}
             </div>
-            {/* Active indicator dot */}
-            {isActive && (
-              <div style={{
-                width: 4,
-                height: 4,
-                borderRadius: 2,
-                backgroundColor: '#FFFFFF',
-              }} />
-            )}
           </div>
         )
       })}
@@ -76,15 +80,13 @@ export function TabBar({ activeTab = 'connect' }) {
 
 // ─── Tab Icons ──────────────────────────────────────────────────────
 
-// Two side-by-side people — matches the Mutual logo style
-function MatchesIcon({ color, size }) {
+// Mutual "M" logo — two overlapping figures forming the brand mark (filled)
+function MutualLogoIcon({ color, size }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="8"  cy="7" r="3" />
-      <circle cx="16" cy="7" r="3" />
-      <path d="M1 21c0-3 3.1-5.5 7-5.5s7 2.5 7 5.5" />
-      <path d="M16 15.5c3.9 0 7 2.5 7 5.5" />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke="none">
+      <circle cx="7.5" cy="5.5" r="3" />
+      <circle cx="16.5" cy="5.5" r="3" />
+      <path d="M1 22 C1 15 3.5 10 7.5 10 C9.5 10 10.5 13 12 16.5 C13.5 13 14.5 10 16.5 10 C20.5 10 23 15 23 22 Z" />
     </svg>
   )
 }
@@ -98,7 +100,7 @@ function HeartIcon({ color, size }) {
   )
 }
 
-// Two overlapping speech bubbles — matches Mutual messages icon
+// Two overlapping speech bubbles
 function MessagesIcon({ color, size }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
@@ -109,22 +111,20 @@ function MessagesIcon({ color, size }) {
   )
 }
 
-// Calendar with two person dots — represents in-person meetups/events
+// Two people side by side — represents connecting with others in person
 function ConnectIcon({ color, size }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
       stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="4" width="18" height="18" rx="3" />
-      <path d="M3 10h18" />
-      <path d="M8 2v4" />
-      <path d="M16 2v4" />
-      <circle cx="9"  cy="15" r="1.2" fill={color} stroke="none" />
-      <circle cx="15" cy="15" r="1.2" fill={color} stroke="none" />
+      <circle cx="8"  cy="7" r="3" />
+      <circle cx="16" cy="7" r="3" />
+      <path d="M1 21c0-3 3.1-5.5 7-5.5s7 2.5 7 5.5" />
+      <path d="M16 15.5c3.9 0 7 2.5 7 5.5" />
     </svg>
   )
 }
 
-// Single person silhouette — matches Mutual profile icon
+// Single person silhouette
 function ProfileIcon({ color, size }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
