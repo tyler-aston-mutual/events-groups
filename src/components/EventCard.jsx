@@ -23,18 +23,6 @@ export function EventCard({
       boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
       position: 'relative',
     }}>
-      {/* Featured chip — bottom-left, above photo */}
-      {featured && (
-        <div style={{
-          position: 'absolute',
-          bottom: 12,
-          left: 12,
-          zIndex: 1,
-        }}>
-          <Chip text="Featured" variant="accent5" size="compact" />
-        </div>
-      )}
-
       {/* Type icon — top-right corner */}
       <div style={{
         position: 'absolute',
@@ -48,8 +36,9 @@ export function EventCard({
       </div>
 
       <div style={{ display: 'flex', padding: 12, gap: 12, alignItems: 'center' }}>
-        {/* Image */}
+        {/* Image — anchors the Featured chip */}
         <div style={{
+          position: 'relative',
           width: 100,
           height: 100,
           borderRadius: 12,
@@ -70,6 +59,16 @@ export function EventCard({
                 objectFit: imageBg ? 'contain' : 'cover',
               }}
             />
+          )}
+          {featured && (
+            <div style={{
+              position: 'absolute',
+              bottom: 6,
+              left: 6,
+              zIndex: 1,
+            }}>
+              <Chip text="Featured" variant="accent5" size="compact" />
+            </div>
           )}
         </div>
 
