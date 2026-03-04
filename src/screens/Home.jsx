@@ -41,7 +41,7 @@ const ALL_ITEMS = [
     featured: true,
     description: 'Join us for a group hike up Y Mountain! We\'ll meet at the trailhead and take the main trail to the Y. All fitness levels welcome — we go at a comfortable pace and take plenty of breaks.',
     createdDate: 'February 10, 2026  8:30AM',
-    creator: { name: 'Jordan', age: 28, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop' },
+    creator: { name: 'Tyler', age: 30, image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop' },
   },
   {
     id: 4,
