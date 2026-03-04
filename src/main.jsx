@@ -4,13 +4,16 @@ import { HashRouter } from 'react-router-dom'
 import './index.css'
 import './design-system/tokens/fonts.css'
 import { ThemeProvider } from './design-system/context/ThemeProvider'
+import { JoinedProvider } from './context/JoinedContext'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider defaultBrand="mutual" defaultColorMode="light">
       <HashRouter>
-        <App />
+        <JoinedProvider>
+          <App />
+        </JoinedProvider>
       </HashRouter>
     </ThemeProvider>
   </StrictMode>,

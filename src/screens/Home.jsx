@@ -6,6 +6,7 @@ import { EventCard } from '../components/EventCard'
 import { SpeedDatingBanner } from '../components/SpeedDatingBanner'
 import { Heading3, Chip } from '../design-system'
 import { useTheme } from '../design-system/context/ThemeProvider'
+import { useJoined } from '../context/JoinedContext'
 
 const FILTERS = ['For You', 'Yours']
 
@@ -16,8 +17,6 @@ const SORT_OPTIONS = [
   { id: 'popular', label: 'Most Popular' },
   { id: 'nearest', label: 'Nearest' },
 ]
-
-const JOINED_IDS = [3, 4, 5]
 
 const ALL_ITEMS = [
   {
@@ -208,6 +207,23 @@ export default function Home() {
   const { colors } = useTheme()
   const navigate = useNavigate()
   const location = useLocation()
+  const { joinedIds, newlyJoinedId, clearNewlyJoined } = useJoined()
+
+  // Auto-switch to Yours tab when returning from a join action
+  useEffect(() => {
+    if (location.state?.switchToYours) {
+      setActiveFilter('Yours')
+      window.history.replaceState({}, '')
+    }
+  }, [location.state?.switchToYours])
+
+  // Clear animation flag after it plays
+  useEffect(() => {
+    if (newlyJoinedId && activeFilter === 'Yours') {
+      const timer = setTimeout(() => clearNewlyJoined(), 600)
+      return () => clearTimeout(timer)
+    }
+  }, [newlyJoinedId, activeFilter, clearNewlyJoined])
 
   // Read filters from route state (set by FilterScreen on Apply)
   const filters = location.state?.filters || FILTER_DEFAULTS
@@ -223,10 +239,10 @@ export default function Home() {
     setTimeout(() => setCreateOpen(false), 300)
   }, [])
 
-  const isJoined = activeFilter === 'Yours'
-  const tabItems = isJoined
-    ? ALL_ITEMS.filter(i => JOINED_IDS.includes(i.id))
-    : ALL_ITEMS.filter(i => !JOINED_IDS.includes(i.id))
+  const isYoursTab = activeFilter === 'Yours'
+  const tabItems = isYoursTab
+    ? ALL_ITEMS.filter(i => joinedIds.has(i.id))
+    : ALL_ITEMS.filter(i => !joinedIds.has(i.id))
   const baseItems = applyFilters(tabItems, filters, typeFilter)
   const items = sortItems(baseItems, activeSort)
   const activeSortLabel = SORT_OPTIONS.find(o => o.id === activeSort)?.label
@@ -383,14 +399,19 @@ export default function Home() {
         onClick={() => sortOpen && setSortOpen(false)}
       >
         <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {!bannerDismissed && !isJoined && (
+          {!bannerDismissed && !isYoursTab && (
             <SpeedDatingBanner onDismiss={() => setBannerDismissed(true)} />
           )}
           {items.map(item => (
             <div
               key={item.id}
-              onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: isJoined } })}
-              style={{ cursor: 'pointer' }}
+              onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
+              style={{
+                cursor: 'pointer',
+                ...(item.id === newlyJoinedId ? {
+                  animation: 'cardSlideIn 0.4s ease-out both',
+                } : {}),
+              }}
             >
               <EventCard {...item} />
             </div>

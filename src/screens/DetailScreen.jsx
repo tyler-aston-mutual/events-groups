@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { StatusBar } from '../components/StatusBar'
 import { Chip, PrimaryButton, ThemedDialog } from '../design-system'
 import { useTheme } from '../design-system/context/ThemeProvider'
+import { useJoined } from '../context/JoinedContext'
 
 const GATED_TABS = ['Participants', 'Events', 'Chat']
 
@@ -41,7 +42,9 @@ export default function DetailScreen() {
   const { colors } = useTheme()
   const navigate = useNavigate()
   const location = useLocation()
-  const { item, joined } = location.state || {}
+  const { isJoined: checkJoined, addJoinedId } = useJoined()
+  const { item } = location.state || {}
+  const joined = item ? checkJoined(item.id) : false
   const [activeTab, setActiveTab] = useState('About')
   const [dialogOpen, setDialogOpen] = useState(false)
   const [blockedSection, setBlockedSection] = useState('')
@@ -475,6 +478,12 @@ export default function DetailScreen() {
             title={isGroup ? 'Join Group' : 'Interested'}
             size="medium"
             isFullWidth
+            onClick={() => {
+              addJoinedId(item.id)
+              setTimeout(() => {
+                navigate('/', { state: { switchToYours: true } })
+              }, 300)
+            }}
           />
         </div>
       )}
