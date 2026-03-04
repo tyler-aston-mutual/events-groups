@@ -1,7 +1,11 @@
 import { useTheme } from '../design-system/context/ThemeProvider'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 export function StatusBar() {
   const { colors } = useTheme()
+  const isMobile = useIsMobile()
+
+  if (isMobile) return null
 
   return (
     <div style={{

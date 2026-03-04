@@ -1,4 +1,5 @@
 import { useTheme } from '../design-system/context/ThemeProvider'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 const TABS = [
   { id: 'matches',  image: 'tab_bar_icon_1.png' },
@@ -10,6 +11,9 @@ const TABS = [
 
 export function TabBar({ activeTab = 'connect' }) {
   const { colors } = useTheme()
+  const isMobile = useIsMobile()
+
+  if (isMobile) return null
 
   return (
     <div style={{
