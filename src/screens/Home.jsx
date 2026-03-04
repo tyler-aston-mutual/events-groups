@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { StatusBar } from '../components/StatusBar'
 import { TabBar } from '../components/TabBar'
@@ -173,6 +173,8 @@ export default function Home() {
   const [activeSort, setActiveSort] = useState('featured')
   const [sortOpen, setSortOpen] = useState(false)
   const [bannerDismissed, setBannerDismissed] = useState(false)
+  const [createOpen, setCreateOpen] = useState(false)
+  const [createVisible, setCreateVisible] = useState(false)
   const { colors } = useTheme()
   const navigate = useNavigate()
   const location = useLocation()
@@ -180,6 +182,16 @@ export default function Home() {
   // Read filters from route state (set by FilterScreen on Apply)
   const filters = location.state?.filters || FILTER_DEFAULTS
   const filtersActive = hasActiveFilters(filters)
+
+  const openCreate = useCallback(() => {
+    setCreateOpen(true)
+    requestAnimationFrame(() => requestAnimationFrame(() => setCreateVisible(true)))
+  }, [])
+
+  const closeCreate = useCallback(() => {
+    setCreateVisible(false)
+    setTimeout(() => setCreateOpen(false), 300)
+  }, [])
 
   const isJoined = activeFilter === 'Joined'
   const tabItems = isJoined
@@ -219,7 +231,7 @@ export default function Home() {
             <Chip text="Beta" variant="accent5" size="compact" />
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <IconButton colors={colors} icon={<PlusIcon />} />
+            <IconButton colors={colors} icon={<PlusIcon />} onClick={openCreate} />
             <IconButton
               colors={colors}
               icon={<FilterIcon />}
@@ -332,6 +344,85 @@ export default function Home() {
       </div>
 
       <TabBar activeTab="connect" />
+
+      {/* Create bottom sheet */}
+      {createOpen && (
+        <>
+          {/* Scrim */}
+          <div
+            onClick={closeCreate}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0,0,0,0.5)',
+              zIndex: 100,
+              opacity: createVisible ? 1 : 0,
+              transition: 'opacity 0.3s ease',
+            }}
+          />
+          {/* Sheet */}
+          <div style={{
+            position: 'fixed',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            backgroundColor: colors.grey50,
+            borderRadius: '20px 20px 0 0',
+            padding: '24px 20px 40px',
+            zIndex: 101,
+            transform: createVisible ? 'translateY(0)' : 'translateY(100%)',
+            transition: 'transform 0.3s ease',
+          }}>
+            {/* Drag handle */}
+            <div style={{
+              width: 36,
+              height: 4,
+              borderRadius: 2,
+              backgroundColor: colors.grey200,
+              margin: '0 auto 20px',
+            }} />
+
+            <div style={{
+              fontSize: 22,
+              fontWeight: 700,
+              color: colors.grey1000,
+              textAlign: 'center',
+              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+              marginBottom: 4,
+            }}>
+              Create
+            </div>
+            <div style={{
+              fontSize: 15,
+              fontWeight: 400,
+              color: colors.grey400,
+              textAlign: 'center',
+              fontFamily: "'Goldman Sans', sans-serif",
+              marginBottom: 24,
+            }}>
+              What would you like to create?
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <CreateOption
+                colors={colors}
+                icon={<CalendarCreateIcon color={colors.brandPrimary} />}
+                title="Create an Event"
+                description="Plan a one-time activity for people to RSVP to."
+              />
+              <CreateOption
+                colors={colors}
+                icon={<GroupCreateIcon color={colors.brandPrimary} />}
+                title="Create a Group"
+                description="Start an ongoing community around a shared interest."
+              />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   )
 }
@@ -386,6 +477,94 @@ function FilterIcon() {
       <line x1="0"  y1="1.5"  x2="16" y2="1.5"  />
       <line x1="3"  y1="6.5"  x2="13" y2="6.5"  />
       <line x1="6"  y1="11.5" x2="10" y2="11.5" />
+    </svg>
+  )
+}
+
+function CreateOption({ colors, icon, title, description }) {
+  return (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 14,
+      padding: 16,
+      backgroundColor: colors.grey0,
+      borderRadius: 14,
+      cursor: 'pointer',
+      boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
+    }}>
+      <div style={{
+        width: 44,
+        height: 44,
+        borderRadius: 12,
+        backgroundColor: colors.grey50,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+      }}>
+        {icon}
+      </div>
+      <div style={{ flex: 1 }}>
+        <div style={{
+          fontSize: 16,
+          fontWeight: 700,
+          color: colors.grey1000,
+          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+          marginBottom: 2,
+        }}>
+          {title}
+        </div>
+        <div style={{
+          fontSize: 13,
+          fontWeight: 400,
+          color: colors.grey400,
+          fontFamily: "'Goldman Sans', sans-serif",
+          lineHeight: '17px',
+        }}>
+          {description}
+        </div>
+      </div>
+      <CreateChevron color={colors.grey300} />
+    </div>
+  )
+}
+
+function CreateChevron({ color }) {
+  return (
+    <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M1 1l6 6-6 6" />
+    </svg>
+  )
+}
+
+function CalendarCreateIcon({ color }) {
+  return (
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="5" width="16" height="14.5" rx="2" />
+      <line x1="3" y1="10" x2="19" y2="10" />
+      <line x1="8" y1="3" x2="8" y2="6.5" />
+      <line x1="14" y1="3" x2="14" y2="6.5" />
+      <circle cx="20" cy="20" r="5" fill={color} stroke={color} />
+      <line x1="20" y1="17.5" x2="20" y2="22.5" stroke="white" strokeWidth="1.75" />
+      <line x1="17.5" y1="20" x2="22.5" y2="20" stroke="white" strokeWidth="1.75" />
+    </svg>
+  )
+}
+
+function GroupCreateIcon({ color }) {
+  return (
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="8" cy="8" r="3" />
+      <circle cx="16" cy="8" r="3" />
+      <path d="M2 21c0-3 3-5.5 6-5.5 1.5 0 2.8.5 3.7 1.3" />
+      <path d="M16 15.5c3 0 5.5 2.5 5.5 5.5" />
+      <circle cx="20" cy="20" r="5" fill={color} stroke={color} />
+      <line x1="20" y1="17.5" x2="20" y2="22.5" stroke="white" strokeWidth="1.75" />
+      <line x1="17.5" y1="20" x2="22.5" y2="20" stroke="white" strokeWidth="1.75" />
     </svg>
   )
 }
