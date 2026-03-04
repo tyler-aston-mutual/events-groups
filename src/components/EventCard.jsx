@@ -47,7 +47,7 @@ export function EventCard({
         }
       </div>
 
-      <div style={{ display: 'flex', padding: 12, gap: 12, alignItems: 'flex-start' }}>
+      <div style={{ display: 'flex', padding: 12, gap: 12, alignItems: 'center' }}>
         {/* Image */}
         <div style={{
           width: 100,
@@ -56,7 +56,6 @@ export function EventCard({
           overflow: 'hidden',
           flexShrink: 0,
           backgroundColor: imageBg || colors.grey100,
-          marginTop: 26,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
