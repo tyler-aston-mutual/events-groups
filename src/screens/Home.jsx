@@ -450,13 +450,13 @@ export default function Home() {
                 colors={colors}
                 icon={<CalendarCreateIcon color={colors.brandPrimary} />}
                 title="Create an Event"
-                description="Plan a one-time activity for people to RSVP to."
+                description="Connect with people interested in a specific activity"
               />
               <CreateOption
                 colors={colors}
                 icon={<GroupCreateIcon color={colors.brandPrimary} />}
                 title="Create a Group"
-                description="Start an ongoing community around a shared interest."
+                description="Connect with people who share something in common with you"
               />
             </div>
           </div>
