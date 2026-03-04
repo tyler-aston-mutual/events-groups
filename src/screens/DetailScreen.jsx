@@ -6,6 +6,37 @@ import { useTheme } from '../design-system/context/ThemeProvider'
 
 const GATED_TABS = ['Participants', 'Events', 'Chat']
 
+const FAKE_PARTICIPANTS = [
+  {
+    id: 1,
+    name: 'Marcus',
+    age: 28,
+    location: 'Salt Lake City, UT',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=530&fit=crop&crop=face',
+  },
+  {
+    id: 2,
+    name: 'Jordan',
+    age: 25,
+    location: 'Provo, UT',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=530&fit=crop&crop=face',
+  },
+  {
+    id: 3,
+    name: 'Ethan',
+    age: 31,
+    location: 'Draper, UT',
+    image: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400&h=530&fit=crop&crop=face',
+  },
+  {
+    id: 4,
+    name: 'Ryan',
+    age: 27,
+    location: 'Lehi, UT',
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=530&fit=crop&crop=face',
+  },
+]
+
 export default function DetailScreen() {
   const { colors } = useTheme()
   const navigate = useNavigate()
@@ -288,6 +319,165 @@ export default function DetailScreen() {
             )}
           </div>
         )}
+
+        {/* Participants content */}
+        {activeTab === 'Participants' && (
+          <div style={{ padding: '20px 20px 0' }}>
+            {/* Search bar */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+              height: 40,
+              borderRadius: 12,
+              backgroundColor: colors.grey50,
+              padding: '0 14px',
+              marginBottom: 20,
+            }}>
+              <SearchIcon color={colors.grey400} />
+              <input
+                type="text"
+                placeholder="Search"
+                style={{
+                  flex: 1,
+                  border: 'none',
+                  background: 'none',
+                  outline: 'none',
+                  fontSize: 15,
+                  fontWeight: 400,
+                  color: colors.grey1000,
+                  fontFamily: "'Goldman Sans', sans-serif",
+                }}
+              />
+            </div>
+
+            {/* Header row */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: 16,
+            }}>
+              <div style={{
+                fontSize: 16,
+                fontWeight: 700,
+                color: colors.grey1000,
+                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+              }}>
+                {isGroup ? 'Group Members (Men)' : 'Event Attendees (Men)'}
+              </div>
+              <div style={{
+                fontSize: 13,
+                fontWeight: 500,
+                color: colors.grey400,
+                fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+                cursor: 'pointer',
+              }}>
+                Recently Active First ›
+              </div>
+            </div>
+
+            {/* 2-column photo grid */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: 12,
+              marginBottom: 20,
+            }}>
+              {FAKE_PARTICIPANTS.map(p => (
+                <div key={p.id} style={{
+                  position: 'relative',
+                  borderRadius: 14,
+                  overflow: 'hidden',
+                  aspectRatio: '3 / 4',
+                }}>
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                    }}
+                  />
+                  {/* Dark gradient overlay */}
+                  <div style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: '50%',
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)',
+                  }} />
+                  {/* Name + info */}
+                  <div style={{
+                    position: 'absolute',
+                    bottom: 12,
+                    left: 12,
+                    right: 12,
+                  }}>
+                    <div style={{
+                      fontSize: 16,
+                      fontWeight: 700,
+                      color: '#FFFFFF',
+                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                      lineHeight: '20px',
+                    }}>
+                      {p.name}, {p.age}
+                    </div>
+                    <div style={{
+                      fontSize: 13,
+                      fontWeight: 400,
+                      color: 'rgba(255,255,255,0.75)',
+                      fontFamily: "'Goldman Sans', sans-serif",
+                      marginTop: 2,
+                    }}>
+                      {p.location}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Footer banner */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              backgroundColor: colors.grey50,
+              borderRadius: 14,
+              padding: '14px 16px',
+              marginBottom: 24,
+            }}>
+              <InfoCircleIcon color={colors.grey400} />
+              <div style={{
+                flex: 1,
+                fontSize: 13,
+                fontWeight: 400,
+                color: colors.grey600,
+                fontFamily: "'Goldman Sans', sans-serif",
+                lineHeight: '18px',
+              }}>
+                Recently Active List limited to 50 profiles.
+              </div>
+              <button style={{
+                background: colors.brandPrimary,
+                color: '#FFFFFF',
+                border: 'none',
+                borderRadius: 8,
+                padding: '8px 14px',
+                fontSize: 13,
+                fontWeight: 700,
+                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+              }}>
+                View Full List
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Bottom join button — only for non-joined items */}
@@ -432,6 +622,27 @@ function GroupTypeIcon({ color }) {
       <circle cx="13" cy="6.5" r="2.5" />
       <path d="M1.5 18c0-2.5 2.5-4.5 5.5-4.5 1.5 0 2.8.5 3.7 1.3" />
       <path d="M13 13.5c3 0 5.5 2 5.5 4.5" />
+    </svg>
+  )
+}
+
+function SearchIcon({ color }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="7.5" cy="7.5" r="5.5" />
+      <line x1="12" y1="12" x2="16" y2="16" />
+    </svg>
+  )
+}
+
+function InfoCircleIcon({ color }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="10" cy="10" r="8" />
+      <line x1="10" y1="9" x2="10" y2="14" />
+      <circle cx="10" cy="6.5" r="0.75" fill={color} stroke="none" />
     </svg>
   )
 }
