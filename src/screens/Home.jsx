@@ -487,12 +487,14 @@ export default function Home() {
                 icon={<CalendarCreateIcon color={colors.brandPrimary} />}
                 title="Create an Event"
                 description="Connect with people interested in a specific activity"
+                onClick={() => { closeCreate(); navigate('/create/event') }}
               />
               <CreateOption
                 colors={colors}
                 icon={<GroupCreateIcon color={colors.brandPrimary} />}
                 title="Create a Group"
                 description="Connect with people who share something in common with you"
+                onClick={() => { closeCreate(); navigate('/create/group') }}
               />
             </div>
           </div>
@@ -561,9 +563,9 @@ function FilterIcon() {
   )
 }
 
-function CreateOption({ colors, icon, title, description }) {
+function CreateOption({ colors, icon, title, description, onClick }) {
   return (
-    <div style={{
+    <div onClick={onClick} style={{
       display: 'flex',
       alignItems: 'center',
       gap: 14,
