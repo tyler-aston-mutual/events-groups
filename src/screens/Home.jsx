@@ -7,7 +7,7 @@ import { SpeedDatingBanner } from '../components/SpeedDatingBanner'
 import { Heading3, Chip } from '../design-system'
 import { useTheme } from '../design-system/context/ThemeProvider'
 
-const FILTERS = ['For You', 'Joined']
+const FILTERS = ['For You', 'Yours']
 
 const SORT_OPTIONS = [
   { id: 'featured', label: 'Featured First' },
@@ -223,7 +223,7 @@ export default function Home() {
     setTimeout(() => setCreateOpen(false), 300)
   }, [])
 
-  const isJoined = activeFilter === 'Joined'
+  const isJoined = activeFilter === 'Yours'
   const tabItems = isJoined
     ? ALL_ITEMS.filter(i => JOINED_IDS.includes(i.id))
     : ALL_ITEMS.filter(i => !JOINED_IDS.includes(i.id))
