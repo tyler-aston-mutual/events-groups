@@ -4,7 +4,7 @@ import { StatusBar } from '../components/StatusBar'
 import { Chip, PrimaryButton, ThemedDialog } from '../design-system'
 import { useTheme } from '../design-system/context/ThemeProvider'
 
-const GATED_TABS = ['Participants', 'Events', 'Board', 'Chat']
+const GATED_TABS = ['Participants', 'Events', 'Chat']
 
 export default function DetailScreen() {
   const { colors } = useTheme()
@@ -19,8 +19,8 @@ export default function DetailScreen() {
 
   const isGroup = item.type === 'group'
   const tabs = isGroup
-    ? ['About', 'Participants', 'Events', 'Board', 'Chat']
-    : ['About', 'Participants', 'Board', 'Chat']
+    ? ['About', 'Participants', 'Events', 'Chat']
+    : ['About', 'Participants', 'Chat']
 
   function handleTabTap(tab) {
     if (tab === 'About') {
