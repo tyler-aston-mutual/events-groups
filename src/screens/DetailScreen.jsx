@@ -293,13 +293,13 @@ export default function DetailScreen() {
       {/* Bottom join button — only for non-joined items */}
       {!joined && (
         <div style={{
-          padding: '16px 20px 36px',
+          padding: '12px 20px 28px',
           flexShrink: 0,
           backgroundColor: colors.grey0,
         }}>
           <PrimaryButton
             title={`Join ${isGroup ? 'Group' : 'Event'}`}
-            size="large"
+            size="medium"
             isFullWidth
           />
         </div>
