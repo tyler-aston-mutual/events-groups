@@ -356,8 +356,8 @@ export default function Home() {
             <Chip
               key={t.id}
               text={t.label}
-              variant={typeFilter === t.id ? 'primary' : 'light'}
-              size="regular"
+              variant={typeFilter === t.id ? 'dark' : 'light'}
+              size="compact"
               onClick={() => setTypeFilter(t.id)}
             />
           ))}
