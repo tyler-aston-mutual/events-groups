@@ -48,6 +48,7 @@ export default function DetailScreen() {
   const [activeTab, setActiveTab] = useState('About')
   const [dialogOpen, setDialogOpen] = useState(false)
   const [blockedSection, setBlockedSection] = useState('')
+  const [menuOpen, setMenuOpen] = useState(false)
 
   if (!item) return null
 
@@ -123,16 +124,114 @@ export default function DetailScreen() {
         }}>
           <ShareIcon color={colors.grey1000} />
         </button>
-        <button style={{
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          padding: 8,
-          display: 'flex',
-          alignItems: 'center',
-        }}>
-          <MoreIcon color={colors.grey1000} />
-        </button>
+        <div style={{ position: 'relative' }}>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: 8,
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <MoreIcon color={colors.grey1000} />
+          </button>
+          {menuOpen && (
+            <>
+              {/* Invisible overlay to close menu on outside tap */}
+              <div
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  position: 'fixed',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  zIndex: 9,
+                }}
+              />
+              <div style={{
+                position: 'absolute',
+                top: '100%',
+                right: 0,
+                marginTop: 6,
+                backgroundColor: colors.grey0,
+                borderRadius: 12,
+                boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+                padding: '4px 0',
+                zIndex: 10,
+                minWidth: 180,
+              }}>
+                {joined && (
+                  <button
+                    onClick={() => setMenuOpen(false)}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      width: '100%',
+                      padding: '10px 16px',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontSize: 14,
+                      fontWeight: 400,
+                      color: colors.grey600,
+                      fontFamily: "'Goldman Sans', sans-serif",
+                      textAlign: 'left',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    Leave
+                  </button>
+                )}
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    width: '100%',
+                    padding: '10px 16px',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontSize: 14,
+                    fontWeight: 400,
+                    color: colors.brandAccent5,
+                    fontFamily: "'Goldman Sans', sans-serif",
+                    textAlign: 'left',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  Report
+                </button>
+                {item.creator?.name === 'Tyler' && (
+                  <button
+                    onClick={() => setMenuOpen(false)}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      width: '100%',
+                      padding: '10px 16px',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontSize: 14,
+                      fontWeight: 400,
+                      color: colors.grey600,
+                      fontFamily: "'Goldman Sans', sans-serif",
+                      textAlign: 'left',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    Edit {isGroup ? 'Group' : 'Event'}
+                  </button>
+                )}
+              </div>
+            </>
+          )}
+        </div>
       </div>
 
       {/* Scrollable content */}
