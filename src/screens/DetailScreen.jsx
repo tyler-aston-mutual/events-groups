@@ -232,7 +232,7 @@ export default function DetailScreen() {
                 icon={<PeopleInfoIcon color={colors.grey600} />}
                 colors={colors}
               >
-                {item.going} {isGroup ? 'Members' : 'Going'}
+                {item.going} {isGroup ? 'Members' : 'Interested'}
               </InfoRow>
             </div>
 
@@ -298,7 +298,7 @@ export default function DetailScreen() {
           backgroundColor: colors.grey0,
         }}>
           <PrimaryButton
-            title={`Join ${isGroup ? 'Group' : 'Event'}`}
+            title={isGroup ? 'Join Group' : 'Interested'}
             size="medium"
             isFullWidth
           />
@@ -309,8 +309,11 @@ export default function DetailScreen() {
       <ThemedDialog
         open={dialogOpen}
         onClose={() => setDialogOpen(false)}
-        title={`Join ${isGroup ? 'Group' : 'Event'} First`}
-        message={`You need to join this ${isGroup ? 'group' : 'event'} before you can view ${blockedSection}.`}
+        title={isGroup ? 'Join Group First' : 'Mark Interest First'}
+        message={isGroup
+          ? `You need to join this group before you can view ${blockedSection}.`
+          : `You need to mark interest in this event before you can view ${blockedSection}.`
+        }
         buttons={[{ title: 'OK', variant: 'primary', onClick: () => setDialogOpen(false) }]}
       />
     </div>
