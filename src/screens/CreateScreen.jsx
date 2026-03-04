@@ -14,6 +14,9 @@ export default function CreateScreen({ type }) {
   const [description, setDescription] = useState('')
   const [link, setLink] = useState('')
   const [displayCreator, setDisplayCreator] = useState(true)
+  const [ageRangeEnabled, setAgeRangeEnabled] = useState(true)
+  const [minAge, setMinAge] = useState(18)
+  const [maxAge, setMaxAge] = useState(85)
   const [expirationDate, setExpirationDate] = useState('')
 
   // Event-only state
@@ -258,7 +261,138 @@ export default function CreateScreen({ type }) {
         {/* Divider before toggles */}
         <div style={{ height: 1, backgroundColor: colors.grey100, marginTop: 24 }} />
 
-        {/* 8. Display Creator */}
+        {/* 8. Age Range */}
+        <div style={{ padding: '14px 0', borderBottom: `1px solid ${colors.grey100}` }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}>
+            <div style={{
+              fontSize: 15,
+              fontWeight: 700,
+              color: colors.grey1000,
+              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+            }}>
+              Age Range
+            </div>
+            <ToggleSwitch value={ageRangeEnabled} onChange={setAgeRangeEnabled} colors={colors} />
+          </div>
+          <div style={{
+            fontSize: 13,
+            color: colors.grey400,
+            fontFamily: "'Goldman Sans', sans-serif",
+            marginTop: 2,
+            lineHeight: '17px',
+          }}>
+            Optional — set a soft age preference for new members
+          </div>
+
+          {ageRangeEnabled && (
+            <div style={{
+              marginTop: 14,
+              backgroundColor: colors.grey50,
+              borderRadius: 14,
+              padding: '18px 16px 14px',
+            }}>
+              {/* Minimum Age */}
+              <div style={{ marginBottom: 16 }}>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: 10,
+                }}>
+                  <span style={{
+                    fontSize: 14,
+                    fontWeight: 500,
+                    color: colors.grey1000,
+                    fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+                  }}>
+                    Minimum Age
+                  </span>
+                  <span style={{
+                    fontSize: 16,
+                    fontWeight: 700,
+                    color: colors.grey1000,
+                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                  }}>
+                    {minAge}
+                  </span>
+                </div>
+                <AgeSlider
+                  value={minAge}
+                  min={18}
+                  max={85}
+                  onChange={(v) => {
+                    setMinAge(v)
+                    if (v > maxAge) setMaxAge(v)
+                  }}
+                  colors={colors}
+                />
+              </div>
+
+              {/* Maximum Age */}
+              <div style={{ marginBottom: 14 }}>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: 10,
+                }}>
+                  <span style={{
+                    fontSize: 14,
+                    fontWeight: 500,
+                    color: colors.grey1000,
+                    fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+                  }}>
+                    Maximum Age
+                  </span>
+                  <span style={{
+                    fontSize: 16,
+                    fontWeight: 700,
+                    color: colors.grey1000,
+                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                  }}>
+                    {maxAge === 85 ? '85+' : maxAge}
+                  </span>
+                </div>
+                <AgeSlider
+                  value={maxAge}
+                  min={18}
+                  max={85}
+                  onChange={(v) => {
+                    setMaxAge(v)
+                    if (v < minAge) setMinAge(v)
+                  }}
+                  colors={colors}
+                />
+              </div>
+
+              {/* Disclaimer */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: 8,
+                marginTop: 4,
+              }}>
+                <InfoIcon color={colors.grey400} />
+                <span style={{
+                  fontSize: 12,
+                  fontWeight: 400,
+                  color: colors.grey400,
+                  fontFamily: "'Goldman Sans', sans-serif",
+                  lineHeight: '16px',
+                  flex: 1,
+                }}>
+                  This is a soft limit. Existing members are never removed if the range changes.
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* 9. Display Creator */}
         <ToggleRow
           label="Display Creator"
           description="Show who created this on the detail page"
@@ -528,6 +662,76 @@ function GroupLinkIcon({ color }) {
       <circle cx="16" cy="7" r="2.5" />
       <path d="M2 19c0-2.8 2.7-5 6-5s6 2.2 6 5" />
       <path d="M16 14c2.5 0 4.5 2 4.5 5" />
+    </svg>
+  )
+}
+
+function AgeSlider({ value, min, max, onChange, colors }) {
+  const pct = ((value - min) / (max - min)) * 100
+  return (
+    <div style={{ position: 'relative', height: 30, display: 'flex', alignItems: 'center' }}>
+      {/* Track background */}
+      <div style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        height: 6,
+        borderRadius: 3,
+        backgroundColor: colors.grey200,
+      }} />
+      {/* Filled track */}
+      <div style={{
+        position: 'absolute',
+        left: 0,
+        width: `${pct}%`,
+        height: 6,
+        borderRadius: 3,
+        backgroundColor: colors.brandPrimary,
+      }} />
+      {/* Native range input — styled transparent, sits on top */}
+      <input
+        type="range"
+        min={min}
+        max={max}
+        value={value}
+        onChange={e => onChange(Number(e.target.value))}
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          width: '100%',
+          height: 30,
+          margin: 0,
+          opacity: 0,
+          cursor: 'pointer',
+          zIndex: 2,
+        }}
+      />
+      {/* Thumb */}
+      <div style={{
+        position: 'absolute',
+        left: `calc(${pct}% - 14px)`,
+        width: 28,
+        height: 28,
+        borderRadius: 14,
+        backgroundColor: colors.grey0,
+        boxShadow: '0 1px 4px rgba(0,0,0,0.18)',
+        border: `2px solid ${colors.brandPrimary}`,
+        pointerEvents: 'none',
+        boxSizing: 'border-box',
+      }} />
+    </div>
+  )
+}
+
+function InfoIcon({ color }) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+      stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"
+      style={{ flexShrink: 0, marginTop: 1 }}>
+      <circle cx="8" cy="8" r="6.5" />
+      <line x1="8" y1="7" x2="8" y2="11" />
+      <circle cx="8" cy="5" r="0.5" fill={color} stroke="none" />
     </svg>
   )
 }
