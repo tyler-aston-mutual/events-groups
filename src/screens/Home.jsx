@@ -271,11 +271,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Tab pills + sort */}
+        {/* Tab pills */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
           paddingBottom: 8,
         }}>
           <div style={{ display: 'flex', gap: 8 }}>
@@ -286,6 +285,21 @@ export default function Home() {
                 variant={activeFilter === filter ? 'primary' : 'light'}
                 size="regular"
                 onClick={() => setActiveFilter(filter)}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Type filter pills + sort */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 14 }}>
+          <div style={{ display: 'flex', gap: 8 }}>
+            {[{ id: 'all', label: 'All' }, { id: 'events', label: 'Events' }, { id: 'groups', label: 'Groups' }].map(t => (
+              <Chip
+                key={t.id}
+                text={t.label}
+                variant={typeFilter === t.id ? 'dark' : 'light'}
+                size="compact"
+                onClick={() => setTypeFilter(t.id)}
               />
             ))}
           </div>
@@ -348,19 +362,6 @@ export default function Home() {
               </div>
             )}
           </div>
-        </div>
-
-        {/* Type filter pills */}
-        <div style={{ display: 'flex', gap: 8, paddingBottom: 14 }}>
-          {[{ id: 'all', label: 'All' }, { id: 'events', label: 'Events' }, { id: 'groups', label: 'Groups' }].map(t => (
-            <Chip
-              key={t.id}
-              text={t.label}
-              variant={typeFilter === t.id ? 'dark' : 'light'}
-              size="compact"
-              onClick={() => setTypeFilter(t.id)}
-            />
-          ))}
         </div>
       </div>
 
