@@ -63,8 +63,8 @@ export function EventCard({
           {featured && (
             <div style={{
               position: 'absolute',
-              bottom: 6,
-              left: 6,
+              bottom: 0,
+              left: 0,
               zIndex: 1,
             }}>
               <Chip text="Featured" variant="accent5" size="compact" />
