@@ -18,12 +18,14 @@ const SORT_OPTIONS = [
   { id: 'nearest', label: 'Nearest' },
 ]
 
+const BASE = import.meta.env.BASE_URL
+
 const ALL_ITEMS = [
   {
     id: 2,
     type: 'group',
     title: 'Solo Saints',
-    image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=400&fit=crop',
+    image: BASE + 'solo-saints-logo.png',
     location: 'Provo, UT',
     going: 320,
     featured: true,
@@ -146,6 +148,30 @@ const ALL_ITEMS = [
     description: 'Connect with members of the Eagle Mountain YSA Ward! Stay updated on ward activities, FHE groups, and service opportunities. A great way to stay in the loop.',
     createdDate: 'January 8, 2026  10:00AM',
     creator: { name: 'Rachel', age: 24, image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop' },
+  },
+  {
+    id: 13,
+    title: 'Splash Summit',
+    image: BASE + 'splash_summit_logo.png',
+    date: 'June 14, 2026 - 11:00',
+    location: 'Splash Summit Waterpark, Provo',
+    going: 64,
+    featured: true,
+    description: 'A full-day YSA waterpark event at Splash Summit! Enjoy water slides, wave pools, and lazy rivers with other single adults from across the valley. Group rates and lunch included.',
+    createdDate: 'March 1, 2026  9:00AM',
+    creator: { name: 'Tanner', age: 24, image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop' },
+  },
+  {
+    id: 14,
+    title: 'Utah Area YSA Conference',
+    image: BASE + 'ysa_conference_logo.png',
+    date: 'April 25, 2026 - 09:00',
+    location: 'Utah Valley Convention Center',
+    going: 340,
+    featured: true,
+    description: 'Together in Christ — the 2026 Utah Area YSA Conference. A day of speakers, workshops, music, and connection. Meet young adults from stakes across Utah in an uplifting, faith-centered setting.',
+    createdDate: 'February 28, 2026  2:00PM',
+    creator: { name: 'Emily', age: 25, image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop' },
   },
 ]
 
