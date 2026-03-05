@@ -10,7 +10,7 @@ export default function CreateScreen({ type }) {
 
   // Form state
   const [name, setName] = useState('')
-  const [location, setLocation] = useState('')
+  const [location, setLocation] = useState(isEvent ? '' : 'Anywhere')
   const [description, setDescription] = useState('')
   const [link, setLink] = useState('')
   const [displayCreator, setDisplayCreator] = useState(true)
