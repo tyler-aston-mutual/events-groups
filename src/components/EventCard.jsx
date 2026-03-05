@@ -69,7 +69,7 @@ export function EventCard({
               zIndex: 1,
             }}>
               {official
-                ? <Chip text="Mutual Official" variant="dark" size="compact" leadingIcon={<VerifiedIcon />} />
+                ? <Chip text="Mutual" variant="dark" size="compact" leadingIcon={<VerifiedIcon />} />
                 : <Chip text="Featured" variant="accent5" size="compact" />
               }
             </div>

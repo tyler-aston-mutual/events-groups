@@ -273,7 +273,7 @@ export default function DetailScreen() {
                 left: 0,
               }}>
                 {item.official
-                  ? <Chip text="Mutual Official" variant="dark" size="compact" leadingIcon={<VerifiedBadgeIcon />} />
+                  ? <Chip text="Mutual" variant="dark" size="compact" leadingIcon={<VerifiedBadgeIcon />} />
                   : <Chip text="Featured" variant="accent5" size="compact" />
                 }
               </div>
