@@ -159,6 +159,7 @@ const ALL_ITEMS = [
     location: 'Splash Summit Waterpark, Provo',
     going: 64,
     featured: true,
+    official: true,
     description: 'A full-day YSA waterpark event at Splash Summit! Enjoy water slides, wave pools, and lazy rivers with other single adults from across the valley. Group rates and lunch included.',
     createdDate: 'March 1, 2026  9:00AM',
     creator: { name: 'Tanner', age: 24, image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop' },

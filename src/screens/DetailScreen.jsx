@@ -266,13 +266,16 @@ export default function DetailScreen() {
                 objectFit: item.imageBg ? 'contain' : 'cover',
               }}
             />
-            {item.featured && (
+            {(item.featured || item.official) && (
               <div style={{
                 position: 'absolute',
                 bottom: 0,
                 left: 0,
               }}>
-                <Chip text="Featured" variant="accent5" size="compact" />
+                {item.official
+                  ? <Chip text="Mutual Official" variant="dark" size="compact" leadingIcon={<VerifiedBadgeIcon />} />
+                  : <Chip text="Featured" variant="accent5" size="compact" />
+                }
               </div>
             )}
           </div>
@@ -765,6 +768,15 @@ function SearchIcon({ color }) {
       stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="7.5" cy="7.5" r="5.5" />
       <line x1="12" y1="12" x2="16" y2="16" />
+    </svg>
+  )
+}
+
+function VerifiedBadgeIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M8 1l1.8 1.2 2.1-.3.7 2 1.7 1.3-.3 2.1L15.2 8 14 9.8l.3 2.1-2 .7-1.3 1.7-2.1-.3L8 15.2 6.2 14l-2.1.3-.7-2-1.7-1.3.3-2.1L.8 8 2 6.2l-.3-2.1 2-.7L5 1.7l2.1.3L8 1z" fill="white" />
+      <path d="M5.5 8.2l1.7 1.7 3.3-3.4" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
