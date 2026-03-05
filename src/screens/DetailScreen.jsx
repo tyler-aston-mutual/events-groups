@@ -261,8 +261,8 @@ export default function DetailScreen() {
               src={item.image}
               alt={item.title}
               style={{
-                width: item.imageBg ? '60%' : '100%',
-                height: item.imageBg ? '60%' : '100%',
+                width: item.imageBg ? '90%' : '100%',
+                height: item.imageBg ? '90%' : '100%',
                 objectFit: item.imageBg ? 'contain' : 'cover',
               }}
             />
