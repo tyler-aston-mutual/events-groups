@@ -739,12 +739,18 @@ function MoreIcon({ color }) {
 
 function CalendarInfoIcon({ color }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+    <svg width="22" height="22" viewBox="0 0 20 20" fill="none"
       stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="4" width="16" height="14.5" rx="2" />
-      <line x1="3" y1="9" x2="19" y2="9" />
-      <line x1="7.5" y1="2" x2="7.5" y2="5.5" />
-      <line x1="14.5" y1="2" x2="14.5" y2="5.5" />
+      <path d="M4.5,3 H13.5 Q17.5,3 17.5,6.5 V14.5 L13.5,19 H4.5 Q2.5,19 2.5,15.5 V6.5 Q2.5,3 4.5,3Z"/>
+      <path d="M13.5,19 L13.5,15.5 L17.5,14.5" fill="none"/>
+      <rect x="5.5" y="1.5" width="2" height="3.5" rx="1"/>
+      <rect x="11.5" y="1.5" width="2" height="3.5" rx="1"/>
+      <line x1="2.5" y1="8" x2="17.5" y2="8"/>
+      <rect x="3.5" y="9.5" width="2.5" height="2" rx="0.5"/>
+      <rect x="7.5" y="9.5" width="2.5" height="2" rx="0.5"/>
+      <rect x="11.5" y="9.5" width="2" height="2" rx="0.5"/>
+      <rect x="3.5" y="13" width="2.5" height="2" rx="0.5"/>
+      <path d="M10,12.6 L10.32,13.55 L11.33,13.57 L10.52,14.17 L10.82,15.13 L10,14.55 L9.18,15.13 L9.48,14.17 L8.67,13.57 L9.68,13.55 Z"/>
     </svg>
   )
 }
@@ -786,10 +792,16 @@ function CalendarTypeIcon({ color }) {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
       stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2.5" y="4" width="15" height="13.5" rx="2" />
-      <line x1="2.5" y1="8.5" x2="17.5" y2="8.5" />
-      <line x1="6.5" y1="2" x2="6.5" y2="5.5" />
-      <line x1="13.5" y1="2" x2="13.5" y2="5.5" />
+      <path d="M4.5,3 H13.5 Q17.5,3 17.5,6.5 V14.5 L13.5,19 H4.5 Q2.5,19 2.5,15.5 V6.5 Q2.5,3 4.5,3Z"/>
+      <path d="M13.5,19 L13.5,15.5 L17.5,14.5" fill="none"/>
+      <rect x="5.5" y="1.5" width="2" height="3.5" rx="1"/>
+      <rect x="11.5" y="1.5" width="2" height="3.5" rx="1"/>
+      <line x1="2.5" y1="8" x2="17.5" y2="8"/>
+      <rect x="3.5" y="9.5" width="2.5" height="2" rx="0.5"/>
+      <rect x="7.5" y="9.5" width="2.5" height="2" rx="0.5"/>
+      <rect x="11.5" y="9.5" width="2" height="2" rx="0.5"/>
+      <rect x="3.5" y="13" width="2.5" height="2" rx="0.5"/>
+      <path d="M10,12.6 L10.32,13.55 L11.33,13.57 L10.52,14.17 L10.82,15.13 L10,14.55 L9.18,15.13 L9.48,14.17 L8.67,13.57 L9.68,13.55 Z"/>
     </svg>
   )
 }

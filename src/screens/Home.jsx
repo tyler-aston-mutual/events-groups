@@ -819,11 +819,13 @@ function YourConnectionsIcon({ color }) {
 
 function CalendarToggleIcon({ color }) {
   return (
-    <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="1" y="2.5" width="12" height="10.5" rx="1.5" />
-      <line x1="1" y1="6" x2="13" y2="6" />
-      <line x1="4.5" y1="1" x2="4.5" y2="3.5" />
-      <line x1="9.5" y1="1" x2="9.5" y2="3.5" />
+    <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      {/* Simplified: body + rings + divider only (cells too small at 13px) */}
+      <path d="M4.5,3 H13.5 Q17.5,3 17.5,6.5 V14.5 L13.5,19 H4.5 Q2.5,19 2.5,15.5 V6.5 Q2.5,3 4.5,3Z"/>
+      <path d="M13.5,19 L13.5,15.5 L17.5,14.5" fill="none"/>
+      <rect x="5.5" y="1.5" width="2" height="3.5" rx="1"/>
+      <rect x="11.5" y="1.5" width="2" height="3.5" rx="1"/>
+      <line x1="2.5" y1="8" x2="17.5" y2="8"/>
     </svg>
   )
 }
@@ -927,13 +929,25 @@ function CalendarCreateIcon({ color }) {
   return (
     <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
       stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="5" width="16" height="14.5" rx="2" />
-      <line x1="3" y1="10" x2="19" y2="10" />
-      <line x1="8" y1="3" x2="8" y2="6.5" />
-      <line x1="14" y1="3" x2="14" y2="6.5" />
-      <circle cx="20" cy="20" r="5" fill={color} stroke={color} />
-      <line x1="20" y1="17.5" x2="20" y2="22.5" stroke="white" strokeWidth="1.75" />
-      <line x1="17.5" y1="20" x2="22.5" y2="20" stroke="white" strokeWidth="1.75" />
+      {/* Body with page curl */}
+      <path d="M5,3.5 H16 Q20,3.5 20,7 V15.5 L16,20 H5 Q3,20 3,17 V7 Q3,3.5 5,3.5Z"/>
+      <path d="M16,20 L16,16.5 L20,15.5" fill="none"/>
+      {/* Binding rings */}
+      <rect x="7" y="1.5" width="2.5" height="4" rx="1.25"/>
+      <rect x="13" y="1.5" width="2.5" height="4" rx="1.25"/>
+      {/* Divider */}
+      <line x1="3" y1="9" x2="20" y2="9"/>
+      {/* Top row: 3 cells */}
+      <rect x="4.5" y="10.5" width="3" height="2.5" rx="0.5"/>
+      <rect x="9" y="10.5" width="3" height="2.5" rx="0.5"/>
+      <rect x="13.5" y="10.5" width="2.5" height="2.5" rx="0.5"/>
+      {/* Bottom row: 1 cell + star */}
+      <rect x="4.5" y="14.5" width="3" height="2.5" rx="0.5"/>
+      <path d="M11.5,13.2 L11.87,14.3 L13.1,14.32 L12.14,15.08 L12.5,16.2 L11.5,15.55 L10.5,16.2 L10.86,15.08 L9.9,14.32 L11.13,14.3 Z"/>
+      {/* Plus badge */}
+      <circle cx="21" cy="21" r="4.5" fill={color} stroke={color}/>
+      <line x1="21" y1="18.8" x2="21" y2="23.2" stroke="white" strokeWidth="1.75"/>
+      <line x1="18.8" y1="21" x2="23.2" y2="21" stroke="white" strokeWidth="1.75"/>
     </svg>
   )
 }
