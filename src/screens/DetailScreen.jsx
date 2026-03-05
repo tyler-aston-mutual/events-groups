@@ -265,8 +265,8 @@ export default function DetailScreen() {
             {item.featured && (
               <div style={{
                 position: 'absolute',
-                bottom: 8,
-                left: 8,
+                bottom: 0,
+                left: 0,
               }}>
                 <Chip text="Featured" variant="accent5" size="compact" />
               </div>
