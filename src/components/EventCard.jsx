@@ -54,10 +54,18 @@ export function EventCard({
             <img
               src={image}
               alt={title}
-              style={{
-                width: imageBg ? '90%' : '100%',
-                height: imageBg ? '90%' : '100%',
-                objectFit: imageBg ? 'contain' : 'cover',
+              style={imageBg ? {
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                maxWidth: '90%',
+                maxHeight: '90%',
+                objectFit: 'contain',
+              } : {
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
               }}
             />
           )}

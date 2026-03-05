@@ -260,10 +260,18 @@ export default function DetailScreen() {
             <img
               src={item.image}
               alt={item.title}
-              style={{
-                width: item.imageBg ? '90%' : '100%',
-                height: item.imageBg ? '90%' : '100%',
-                objectFit: item.imageBg ? 'contain' : 'cover',
+              style={item.imageBg ? {
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                maxWidth: '90%',
+                maxHeight: '90%',
+                objectFit: 'contain',
+              } : {
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
               }}
             />
             {(item.featured || item.official) && (
