@@ -340,15 +340,14 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Primary tabs — text with underline */}
+        {/* Primary tabs — text with underline, 50/50 width */}
         <div style={{
           display: 'flex',
-          gap: 24,
           borderBottom: `1.5px solid ${colors.grey100}`,
         }}>
           {[
-            { id: 'For You', label: 'Explore', Icon: StartConnectingIcon },
-            { id: 'Yours', label: 'Your Connections', Icon: YourConnectionsIcon },
+            { id: 'For You', label: 'Explore', Icon: ExploreIcon },
+            { id: 'Yours', label: 'Your Connections', Icon: StartConnectingIcon },
           ].map(tab => {
             const active = activeFilter === tab.id
             return (
@@ -356,8 +355,10 @@ export default function Home() {
                 key={tab.id}
                 onClick={() => setActiveFilter(tab.id)}
                 style={{
+                  flex: 1,
                   display: 'flex',
                   alignItems: 'center',
+                  justifyContent: 'center',
                   gap: 6,
                   paddingBottom: 10,
                   background: 'none',
@@ -837,6 +838,16 @@ function IconButton({ colors, icon, onClick, badge, variant }) {
 }
 
 // ─── Primary tab icons ───────────────────────────────────────────
+
+function ExploreIcon({ color }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+      stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="7.5" cy="7.5" r="5.5" />
+      <line x1="12" y1="12" x2="16" y2="16" />
+    </svg>
+  )
+}
 
 function StartConnectingIcon({ color }) {
   // 5-person pyramid: 2 top, 2 sides, 1 bottom-center
