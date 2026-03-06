@@ -516,6 +516,90 @@ export default function Home() {
           {!bannerDismissed && !isYoursTab && (
             <SpeedDatingBanner onDismiss={() => setBannerDismissed(true)} />
           )}
+
+          {/* "You Created" section — Yours tab only */}
+          {isYoursTab && (
+            <>
+              <div style={{
+                fontSize: 14,
+                fontWeight: 700,
+                color: colors.grey600,
+                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                backgroundColor: colors.grey100,
+                borderRadius: 10,
+                padding: '10px 14px',
+              }}>
+                You Created
+              </div>
+              {/* Placeholder — Create Your Own banner until user creates something */}
+              <div
+                onClick={openCreate}
+                style={{
+                  position: 'relative',
+                  backgroundColor: colors.brandAccent5,
+                  borderRadius: 16,
+                  padding: 16,
+                  cursor: 'pointer',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: 14, paddingTop: 4 }}>
+                  <div style={{
+                    width: 48,
+                    height: 48,
+                    borderRadius: 24,
+                    backgroundColor: 'rgba(255,255,255,0.2)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}>
+                    <span style={{
+                      fontSize: 28,
+                      fontWeight: 300,
+                      color: '#FFFFFF',
+                      lineHeight: 1,
+                      marginTop: -1,
+                    }}>+</span>
+                  </div>
+                  <div>
+                    <div style={{
+                      fontSize: 22,
+                      fontWeight: 700,
+                      color: '#FFFFFF',
+                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                      lineHeight: '26px',
+                    }}>
+                      Create Your Own
+                    </div>
+                    <div style={{
+                      fontSize: 14,
+                      fontWeight: 400,
+                      color: 'rgba(255,255,255,0.8)',
+                      fontFamily: "'Goldman Sans', sans-serif",
+                      marginTop: 4,
+                    }}>
+                      Create an event or group to connect with your community
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* "Created by Others" section header */}
+              <div style={{
+                fontSize: 14,
+                fontWeight: 700,
+                color: colors.grey600,
+                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                backgroundColor: colors.grey100,
+                borderRadius: 10,
+                padding: '10px 14px',
+                marginTop: 8,
+              }}>
+                Created by Others
+              </div>
+            </>
+          )}
+
           {topLevelItems.map((item, index) => {
             const childEvents = groupChildrenMap[item.id]
             const isExpanded = expandedGroups.has(item.id)
