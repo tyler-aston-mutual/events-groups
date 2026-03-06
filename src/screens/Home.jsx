@@ -518,6 +518,11 @@ export default function Home() {
                   ...(item.id === newlyJoinedId ? {
                     animation: 'cardSlideIn 0.4s ease-out both',
                   } : {}),
+                  ...(childEvents && childEvents.length > 0 ? {
+                    border: `1.5px solid ${colors.grey200}`,
+                    borderRadius: 16,
+                    overflow: 'hidden',
+                  } : {}),
                 }}
               >
                 <div
@@ -529,10 +534,7 @@ export default function Home() {
 
                 {/* Expandable child events section */}
                 {childEvents && childEvents.length > 0 && (
-                  <div style={{
-                    marginLeft: 20,
-                    marginTop: 4,
-                  }}>
+                  <div>
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
@@ -546,10 +548,13 @@ export default function Home() {
                       style={{
                         display: 'flex',
                         alignItems: 'center',
+                        justifyContent: 'center',
                         gap: 6,
-                        padding: '6px 0',
+                        width: '100%',
+                        padding: '8px 16px',
                         background: 'none',
                         border: 'none',
+                        borderTop: `1.5px solid ${colors.grey200}`,
                         cursor: 'pointer',
                       }}
                     >
@@ -565,7 +570,7 @@ export default function Home() {
                     </button>
 
                     {isExpanded && (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 4 }}>
+                      <div style={{ padding: '0 12px 12px', display: 'flex', flexDirection: 'column', gap: 8 }}>
                         {childEvents.map(child => (
                           <div
                             key={child.id}
@@ -575,10 +580,9 @@ export default function Home() {
                               alignItems: 'center',
                               gap: 10,
                               padding: 10,
-                              backgroundColor: colors.grey0,
+                              backgroundColor: colors.grey50,
                               borderRadius: 12,
                               cursor: 'pointer',
-                              boxShadow: '0 1px 6px rgba(0,0,0,0.1)',
                             }}
                           >
                             <ChildEventIcon color={colors.brandPrimary} />
