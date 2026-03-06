@@ -11,9 +11,8 @@ import { useJoined } from '../context/JoinedContext'
 const FILTERS = ['For You', 'Yours']
 
 const SORT_OPTIONS = [
-  { id: 'featured', label: 'Featured First' },
-  { id: 'soonest', label: 'Soonest (Events)' },
   { id: 'newest', label: 'Newest' },
+  { id: 'soonest', label: 'Soonest (Events)' },
   { id: 'popular', label: 'Most Popular' },
   { id: 'nearest', label: 'Nearest' },
 ]

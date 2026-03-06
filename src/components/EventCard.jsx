@@ -22,6 +22,7 @@ export function EventCard({
       borderRadius: 16,
       overflow: 'hidden',
       boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+      border: `1px solid ${type === 'group' ? `${colors.brandPrimary}20` : `${colors.brandAccent5}20`}`,
       position: 'relative',
     }}>
       {/* Type pill — top-right corner (icon only) */}
