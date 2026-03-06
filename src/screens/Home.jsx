@@ -80,7 +80,6 @@ export const ALL_ITEMS = [
     location: 'Temple Square, SLC',
     going: 32,
     group: { name: 'SLC Singles', membersOnly: false },
-    featured: true,
     description: 'Evening stroll around Temple Square to enjoy the lights and good company. We\'ll grab hot chocolate afterward at a nearby cafe. Great way to meet people in a relaxed setting.',
     createdDate: 'February 20, 2026  3:00PM',
     creator: { name: 'Emily', age: 25, image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop' },
