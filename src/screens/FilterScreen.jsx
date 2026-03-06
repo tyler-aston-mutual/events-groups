@@ -8,6 +8,8 @@ const DEFAULTS = {
   distance: 100,
   minParticipants: '',
   maxParticipants: '',
+  minAge: '18',
+  maxAge: '85+',
 }
 
 export default function FilterScreen() {
@@ -19,27 +21,34 @@ export default function FilterScreen() {
   const [distance, setDistance] = useState(incoming.distance)
   const [minParticipants, setMinParticipants] = useState(incoming.minParticipants)
   const [maxParticipants, setMaxParticipants] = useState(incoming.maxParticipants)
+  const [minAge, setMinAge] = useState(incoming.minAge || DEFAULTS.minAge)
+  const [maxAge, setMaxAge] = useState(incoming.maxAge || DEFAULTS.maxAge)
 
   const isDefault =
     distance === DEFAULTS.distance &&
     minParticipants === DEFAULTS.minParticipants &&
-    maxParticipants === DEFAULTS.maxParticipants
+    maxParticipants === DEFAULTS.maxParticipants &&
+    minAge === DEFAULTS.minAge &&
+    maxAge === DEFAULTS.maxAge
 
   const activeCount = [
     distance !== DEFAULTS.distance,
     minParticipants !== DEFAULTS.minParticipants || maxParticipants !== DEFAULTS.maxParticipants,
+    minAge !== DEFAULTS.minAge || maxAge !== DEFAULTS.maxAge,
   ].filter(Boolean).length
 
   function handleReset() {
     setDistance(DEFAULTS.distance)
     setMinParticipants(DEFAULTS.minParticipants)
     setMaxParticipants(DEFAULTS.maxParticipants)
+    setMinAge(DEFAULTS.minAge)
+    setMaxAge(DEFAULTS.maxAge)
   }
 
   function handleApply() {
     navigate('/', {
       state: {
-        filters: { distance, minParticipants, maxParticipants },
+        filters: { distance, minParticipants, maxParticipants, minAge, maxAge },
       },
     })
   }
@@ -177,6 +186,47 @@ export default function FilterScreen() {
         </FilterSection>
 
         <Divider color={colors.grey100} />
+
+        {/* ── Age Range ── */}
+        <FilterSection
+          icon={<AgeRangeIcon color={colors.grey400} />}
+          label="Age Range"
+          subtitle="How old do you want people to be in the events and groups that you see?"
+          value={
+            minAge !== DEFAULTS.minAge || maxAge !== DEFAULTS.maxAge
+              ? `${minAge} – ${maxAge}`
+              : 'All'
+          }
+          isActive={minAge !== DEFAULTS.minAge || maxAge !== DEFAULTS.maxAge}
+          colors={colors}
+        >
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 12,
+            marginTop: 12,
+          }}>
+            <NumberInput
+              placeholder="18"
+              value={minAge}
+              onChange={setMinAge}
+              colors={colors}
+            />
+            <span style={{
+              fontSize: 14,
+              color: colors.grey400,
+              fontFamily: "'Goldman Sans', sans-serif",
+            }}>to</span>
+            <NumberInput
+              placeholder="85+"
+              value={maxAge}
+              onChange={setMaxAge}
+              colors={colors}
+            />
+          </div>
+        </FilterSection>
+
+        <Divider color={colors.grey100} />
       </div>
 
       {/* Bottom buttons */}
@@ -213,7 +263,7 @@ export default function FilterScreen() {
 
 // ─── Reusable pieces ───────────────────────────────────────────────
 
-function FilterSection({ icon, label, value, isActive, colors, children }) {
+function FilterSection({ icon, label, subtitle, value, isActive, colors, children }) {
   return (
     <div style={{ padding: '16px 0' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
@@ -240,6 +290,18 @@ function FilterSection({ icon, label, value, isActive, colors, children }) {
           </div>
         </div>
       </div>
+      {subtitle && (
+        <div style={{
+          fontSize: 13,
+          fontWeight: 400,
+          color: colors.grey400,
+          fontFamily: "'Goldman Sans', sans-serif",
+          marginTop: 8,
+          lineHeight: '18px',
+        }}>
+          {subtitle}
+        </div>
+      )}
       {children}
     </div>
   )
@@ -307,6 +369,16 @@ function DistanceIcon({ color }) {
       stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="11" cy="9" r="3" />
       <path d="M11 20S4.5 14 4.5 9a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z" />
+    </svg>
+  )
+}
+
+function AgeRangeIcon({ color }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+      stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="7" r="4" />
+      <path d="M4 20c0-3.5 3.1-6 7-6s7 2.5 7 6" />
     </svg>
   )
 }
