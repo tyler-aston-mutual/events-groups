@@ -360,7 +360,7 @@ export default function Home() {
         }}>
           {[
             { id: 'For You', label: 'Explore', Icon: ExploreIcon },
-            { id: 'Yours', label: 'Joined or Interested', Icon: StartConnectingIcon },
+            { id: 'Yours', label: 'Joined or Interested', Icon: HeartTabIcon },
           ].map(tab => {
             const active = activeFilter === tab.id
             return (
@@ -964,18 +964,11 @@ function ExploreIcon({ color }) {
   )
 }
 
-function StartConnectingIcon({ color }) {
-  // 5-person pyramid: 2 top, 2 sides, 1 bottom-center
+function HeartTabIcon({ color }) {
   return (
-    <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-      {/* Top row: 2 people */}
-      <circle cx="8" cy="3.5" r="2" />
-      <path d="M4 10c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5" />
-      <circle cx="18" cy="3.5" r="2" />
-      <path d="M14 10c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5" />
-      {/* Bottom-center: 1 person */}
-      <circle cx="13" cy="14" r="2" />
-      <path d="M9 21c0-2 1.8-3.5 4-3.5s4 1.5 4 3.5" />
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
     </svg>
   )
 }
