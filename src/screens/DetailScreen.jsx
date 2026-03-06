@@ -368,6 +368,16 @@ export default function DetailScreen() {
 
             {/* Info rows */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 24 }}>
+              {item.date && (
+                <InfoRow
+                  icon={<CalendarInfoIcon color={colors.brandPrimary} />}
+                  colors={colors}
+                  tappable
+                  onTap={() => {}}
+                >
+                  {item.date}
+                </InfoRow>
+              )}
               {item.createdDate && (
                 <InfoRow
                   icon={<CalendarInfoIcon color={colors.grey600} />}
@@ -377,20 +387,26 @@ export default function DetailScreen() {
                 </InfoRow>
               )}
               <InfoRow
-                icon={<LocationInfoIcon color={colors.grey600} />}
+                icon={<LocationInfoIcon color={colors.brandPrimary} />}
                 colors={colors}
+                tappable
+                onTap={() => {}}
               >
                 {item.location}
               </InfoRow>
               <InfoRow
-                icon={<LinkInfoIcon color={colors.grey600} />}
+                icon={<LinkInfoIcon color={colors.brandPrimary} />}
                 colors={colors}
+                tappable
+                onTap={() => {}}
               >
                 More Info
               </InfoRow>
               <InfoRow
-                icon={<PeopleInfoIcon color={colors.grey600} />}
+                icon={<PeopleInfoIcon color={colors.brandPrimary} />}
                 colors={colors}
+                tappable
+                onTap={() => handleTabTap('Participants')}
               >
                 {item.going} {isGroup ? 'Members' : 'Interested'}
               </InfoRow>
@@ -681,9 +697,25 @@ export default function DetailScreen() {
 
 // ─── Helper ──────────────────────────────────────────────────────
 
-function InfoRow({ icon, colors, children }) {
+function InfoRow({ icon, colors, children, tappable, onTap }) {
+  const Wrapper = tappable ? 'button' : 'div'
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+    <Wrapper
+      onClick={tappable ? onTap : undefined}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 14,
+        ...(tappable ? {
+          background: 'none',
+          border: 'none',
+          padding: 0,
+          cursor: 'pointer',
+          width: '100%',
+          textAlign: 'left',
+        } : {}),
+      }}
+    >
       <div style={{
         width: 28,
         display: 'flex',
@@ -694,14 +726,25 @@ function InfoRow({ icon, colors, children }) {
         {icon}
       </div>
       <div style={{
+        flex: 1,
         fontSize: 15,
         fontWeight: 500,
-        color: colors.grey1000,
+        color: tappable ? colors.brandPrimary : colors.grey1000,
         fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
       }}>
         {children}
       </div>
-    </div>
+      {tappable && <ChevronRight color={colors.brandPrimary} />}
+    </Wrapper>
+  )
+}
+
+function ChevronRight({ color }) {
+  return (
+    <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
+      stroke={color} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M1 1l6 6-6 6" />
+    </svg>
   )
 }
 
