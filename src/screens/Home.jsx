@@ -357,7 +357,7 @@ export default function Home() {
         }}>
           {[
             { id: 'For You', label: 'Explore', Icon: ExploreIcon },
-            { id: 'Yours', label: 'Your Events/Groups', Icon: StartConnectingIcon },
+            { id: 'Yours', label: 'Joined or Interested', Icon: StartConnectingIcon },
           ].map(tab => {
             const active = activeFilter === tab.id
             return (
