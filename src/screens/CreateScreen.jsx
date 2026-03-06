@@ -140,8 +140,11 @@ export default function CreateScreen({ type }) {
             <div style={{ display: 'flex', gap: 10 }}>
               <div style={{ flex: 1.2 }}>
                 <input
-                  type="date"
+                  type={eventDate ? 'date' : 'text'}
+                  placeholder="MM/DD/YYYY"
                   value={eventDate}
+                  onFocus={e => { e.target.type = 'date' }}
+                  onBlur={e => { if (!eventDate) e.target.type = 'text' }}
                   onChange={e => setEventDate(e.target.value)}
                   style={{
                     width: '100%',
@@ -161,8 +164,11 @@ export default function CreateScreen({ type }) {
               </div>
               <div style={{ flex: 0.8 }}>
                 <input
-                  type="time"
+                  type={eventTime ? 'time' : 'text'}
+                  placeholder="HH:MM"
                   value={eventTime}
+                  onFocus={e => { e.target.type = 'time' }}
+                  onBlur={e => { if (!eventTime) e.target.type = 'text' }}
                   onChange={e => setEventTime(e.target.value)}
                   style={{
                     width: '100%',
