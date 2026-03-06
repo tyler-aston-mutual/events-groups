@@ -346,7 +346,7 @@ export default function Home() {
           gap: 10,
         }}>
           {[
-            { id: 'For You', label: 'Start Connecting', Icon: StartConnectingIcon },
+            { id: 'For You', label: 'Find Connections', Icon: StartConnectingIcon },
             { id: 'Yours', label: 'Your Connections', Icon: YourConnectionsIcon },
           ].map(tab => {
             const active = activeFilter === tab.id
@@ -361,14 +361,14 @@ export default function Home() {
                   alignItems: 'center',
                   gap: 5,
                   padding: '12px 0 10px',
-                  backgroundColor: active ? colors.brandPrimary : 'transparent',
+                  backgroundColor: active ? `${colors.brandPrimary}14` : 'transparent',
                   border: `1.5px solid ${colors.brandPrimary}`,
                   borderRadius: 14,
                   cursor: 'pointer',
-                  color: active ? '#FFFFFF' : colors.brandPrimary,
+                  color: colors.brandPrimary,
                 }}
               >
-                <tab.Icon color={active ? '#FFFFFF' : colors.brandPrimary} />
+                <tab.Icon color={colors.brandPrimary} />
                 <span style={{
                   fontSize: 11,
                   fontWeight: 700,
