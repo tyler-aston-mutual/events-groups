@@ -23,7 +23,7 @@ export default function CreateScreen({ type }) {
   // Event-only state
   const [eventDate, setEventDate] = useState('')
   const [eventTime, setEventTime] = useState('')
-  const [visibilityRadius, setVisibilityRadius] = useState('Global')
+  const [visibilityRadius, setVisibilityRadius] = useState('50 mi')
 
   // Tab visibility
   const [showParticipants, setShowParticipants] = useState(true)
@@ -244,7 +244,7 @@ export default function CreateScreen({ type }) {
               Who can discover this event
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
-              {['Global', '100 mi', '50 mi', '10 mi'].map(option => (
+              {['Global', '100 mi', '50 mi'].map(option => (
                 <div
                   key={option}
                   onClick={() => setVisibilityRadius(option)}
