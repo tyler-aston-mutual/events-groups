@@ -31,7 +31,7 @@ export const ALL_ITEMS = [
     going: 320,
     featured: true,
     description: 'A community for single Latter-day Saints in Utah Valley. We plan weekly activities, service projects, and social events to help you meet new people and build lasting friendships.',
-    createdDate: 'September 5, 2025  6:00PM',
+    createdDate: 'January 14, 2026  6:00PM',
     creator: { name: 'McKenna', age: 26, image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' },
   },
   {
@@ -43,7 +43,7 @@ export const ALL_ITEMS = [
     going: 18,
     featured: true,
     description: 'Join us for a group hike up Y Mountain! We\'ll meet at the trailhead and take the main trail to the Y. All fitness levels welcome — we go at a comfortable pace and take plenty of breaks.',
-    createdDate: 'February 10, 2026  8:30AM',
+    createdDate: 'February 27, 2026  8:30AM',
     creator: { name: 'Tyler', age: 30, image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop' },
   },
   {
@@ -55,7 +55,7 @@ export const ALL_ITEMS = [
     going: 85,
     featured: true,
     description: 'Weekly pickleball meetups around Utah County. All skill levels welcome! We play at various courts and host tournaments monthly.',
-    createdDate: 'October 12, 2025  7:30PM',
+    createdDate: 'February 5, 2026  7:30PM',
     creator: { name: 'Jordan', age: 28, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop' },
   },
   {
@@ -68,7 +68,7 @@ export const ALL_ITEMS = [
     group: { name: 'Provo Pickleball', membersOnly: false },
     featured: true,
     description: 'Casual doubles tournament for singles! We\'ll mix up partners each round so you get to meet everyone. Beginners and experienced players alike — come have fun and maybe find a doubles partner for life.',
-    createdDate: 'February 15, 2026  12:00PM',
+    createdDate: 'March 1, 2026  12:00PM',
     creator: { name: 'Tanner', age: 24, image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop' },
   },
   {
@@ -81,7 +81,7 @@ export const ALL_ITEMS = [
     going: 32,
     group: { name: 'SLC Singles', membersOnly: false },
     description: 'Evening stroll around Temple Square to enjoy the lights and good company. We\'ll grab hot chocolate afterward at a nearby cafe. Great way to meet people in a relaxed setting.',
-    createdDate: 'February 20, 2026  3:00PM',
+    createdDate: 'January 30, 2026  3:00PM',
     creator: { name: 'Emily', age: 25, image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop' },
   },
   {
@@ -92,7 +92,7 @@ export const ALL_ITEMS = [
     location: 'Provo, UT',
     going: 210,
     description: 'Exploring the best trails in Utah Valley together. We organize group hikes every weekend ranging from easy canyon walks to challenging summit scrambles. New members always welcome!',
-    createdDate: 'August 15, 2025  9:00AM',
+    createdDate: 'March 3, 2026  9:00AM',
     creator: { name: 'Dallin', age: 27, image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop' },
   },
   {
@@ -103,7 +103,7 @@ export const ALL_ITEMS = [
     location: 'Velour Music Gallery',
     going: 8,
     description: 'Looking for a fun Friday night out? Come join us at Velour for a laid-back evening of good music, great people, and the perfect chance to meet someone new.',
-    createdDate: 'February 18, 2026  5:00PM',
+    createdDate: 'February 12, 2026  5:00PM',
     creator: { name: 'Bri', age: 23, image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop' },
   },
   {
@@ -114,7 +114,7 @@ export const ALL_ITEMS = [
     location: 'Salt Lake City, UT',
     going: 150,
     description: 'For people who love trying new restaurants and cooking together. We do group dinners at local spots, potlucks, and cooking classes. Come hungry, leave with new friends.',
-    createdDate: 'July 22, 2025  6:30PM',
+    createdDate: 'February 20, 2026  6:30PM',
     creator: { name: 'Sophie', age: 26, image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop' },
   },
   {
@@ -125,7 +125,7 @@ export const ALL_ITEMS = [
     location: "Guru's Cafe",
     going: 10,
     description: "Team trivia at Guru's Cafe! We'll form teams of 4-5 and compete for bragging rights. Topics range from pop culture to church history. No trivia experience required — just bring your brain.",
-    createdDate: 'February 19, 2026  11:00AM',
+    createdDate: 'February 8, 2026  11:00AM',
     creator: { name: 'Ethan', age: 29, image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop' },
   },
   {
@@ -136,7 +136,7 @@ export const ALL_ITEMS = [
     location: 'Utah County, UT',
     going: 95,
     description: 'A group for politically engaged young adults who lean conservative. We host watch parties, discussion nights, and volunteer for local campaigns together.',
-    createdDate: 'November 1, 2025  4:00PM',
+    createdDate: 'December 18, 2025  4:00PM',
     creator: { name: 'Tyler', age: 30, image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop' },
   },
   {
@@ -147,7 +147,7 @@ export const ALL_ITEMS = [
     location: 'Eagle Mountain, UT',
     going: 45,
     description: 'Connect with members of the Eagle Mountain YSA Ward! Stay updated on ward activities, FHE groups, and service opportunities. A great way to stay in the loop.',
-    createdDate: 'January 8, 2026  10:00AM',
+    createdDate: 'February 25, 2026  10:00AM',
     creator: { name: 'Rachel', age: 24, image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop' },
   },
   {
@@ -161,7 +161,7 @@ export const ALL_ITEMS = [
     featured: true,
     official: true,
     description: 'A full-day YSA waterpark event at Splash Summit! Enjoy water slides, wave pools, and lazy rivers with other single adults from across the valley. Group rates and lunch included.',
-    createdDate: 'March 1, 2026  9:00AM',
+    createdDate: 'January 22, 2026  9:00AM',
     creator: { name: 'Tanner', age: 24, image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop' },
   },
   {
@@ -174,7 +174,7 @@ export const ALL_ITEMS = [
     going: 340,
     featured: true,
     description: 'Together in Christ — the 2026 Utah Area YSA Conference. A day of speakers, workshops, music, and connection. Meet young adults from stakes across Utah in an uplifting, faith-centered setting.',
-    createdDate: 'February 28, 2026  2:00PM',
+    createdDate: 'February 15, 2026  2:00PM',
     creator: { name: 'Emily', age: 25, image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop' },
   },
 ]
@@ -192,7 +192,7 @@ function sortItems(items, sortId) {
       return [...events, ...groups]
     }
     case 'newest':
-      return sorted.sort((a, b) => b.id - a.id)
+      return sorted.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate))
     case 'popular':
       return sorted.sort((a, b) => b.going - a.going)
     case 'nearest':
@@ -232,8 +232,8 @@ function hasActiveFilters(filters) {
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState('For You')
   const [showEvents, setShowEvents] = useState(true)
-  const [showGroups, setShowGroups] = useState(false)
-  const [activeSort, setActiveSort] = useState('soonest')
+  const [showGroups, setShowGroups] = useState(true)
+  const [activeSort, setActiveSort] = useState('newest')
   const [sortOpen, setSortOpen] = useState(false)
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [createBannerDismissed, setCreateBannerDismissed] = useState(false)
