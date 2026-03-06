@@ -12,7 +12,7 @@ const FILTERS = ['For You', 'Yours']
 
 const SORT_OPTIONS = [
   { id: 'featured', label: 'Featured First' },
-  { id: 'soonest', label: 'Soonest (Events Only)' },
+  { id: 'soonest', label: 'Soonest (Events)' },
   { id: 'newest', label: 'Newest' },
   { id: 'popular', label: 'Most Popular' },
   { id: 'nearest', label: 'Nearest' },
@@ -230,7 +230,7 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState('For You')
   const [showEvents, setShowEvents] = useState(true)
   const [showGroups, setShowGroups] = useState(true)
-  const [activeSort, setActiveSort] = useState('featured')
+  const [activeSort, setActiveSort] = useState('soonest')
   const [sortOpen, setSortOpen] = useState(false)
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [createBannerDismissed, setCreateBannerDismissed] = useState(false)

@@ -254,6 +254,7 @@ export default function DetailScreen() {
                 objectFit: 'cover',
               }}
             />
+            {/* Featured/Official chips hidden for now
             {(item.featured || item.official) && (
               <div style={{
                 position: 'absolute',
@@ -266,6 +267,7 @@ export default function DetailScreen() {
                 }
               </div>
             )}
+            */}
           </div>
 
           {/* Title */}

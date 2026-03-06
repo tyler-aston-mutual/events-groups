@@ -69,6 +69,7 @@ export function EventCard({
               }}
             />
           )}
+          {/* Featured/Official chips hidden for now
           {(featured || official) && (
             <div style={{
               position: 'absolute',
@@ -82,6 +83,7 @@ export function EventCard({
               }
             </div>
           )}
+          */}
         </div>
 
         {/* Details */}
