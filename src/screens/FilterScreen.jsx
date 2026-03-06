@@ -157,7 +157,7 @@ export default function FilterScreen() {
             marginTop: 12,
           }}>
             <NumberInput
-              placeholder="Min"
+              placeholder="No Min"
               value={minParticipants}
               onChange={setMinParticipants}
               colors={colors}
@@ -168,7 +168,7 @@ export default function FilterScreen() {
               fontFamily: "'Goldman Sans', sans-serif",
             }}>to</span>
             <NumberInput
-              placeholder="Max"
+              placeholder="No Max"
               value={maxParticipants}
               onChange={setMaxParticipants}
               colors={colors}
