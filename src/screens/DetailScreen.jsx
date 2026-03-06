@@ -12,31 +12,31 @@ const GATED_TABS = ['Participants', 'Events', 'Chat']
 const FAKE_PARTICIPANTS = [
   {
     id: 1,
-    name: 'Marcus',
-    age: 28,
+    name: 'McKenna',
+    age: 26,
     location: 'Salt Lake City, UT',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=530&fit=crop&crop=face',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=530&fit=crop&crop=face',
   },
   {
     id: 2,
-    name: 'Jordan',
-    age: 25,
+    name: 'Sophie',
+    age: 24,
     location: 'Provo, UT',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=530&fit=crop&crop=face',
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=530&fit=crop&crop=face',
   },
   {
     id: 3,
-    name: 'Ethan',
-    age: 31,
+    name: 'Emily',
+    age: 25,
     location: 'Draper, UT',
-    image: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400&h=530&fit=crop&crop=face',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=530&fit=crop&crop=face',
   },
   {
     id: 4,
-    name: 'Ryan',
-    age: 27,
+    name: 'Rachel',
+    age: 23,
     location: 'Lehi, UT',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=530&fit=crop&crop=face',
+    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=530&fit=crop&crop=face',
   },
 ]
 
