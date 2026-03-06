@@ -530,6 +530,15 @@ export default function Home() {
                 {/* Expandable child events section */}
                 {childEvents && childEvents.length > 0 && (
                   <div style={{ position: 'relative' }}>
+                    {/* Shadow line between parent and child */}
+                    <div style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 16,
+                      right: 16,
+                      height: 0,
+                      boxShadow: '0 -1px 3px rgba(0,0,0,0.12)',
+                    }} />
                     {/* Chevron toggle on the boundary between cards */}
                     <button
                       onClick={(e) => {
