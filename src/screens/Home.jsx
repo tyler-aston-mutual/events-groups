@@ -331,7 +331,7 @@ export default function Home() {
           marginBottom: 14,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Heading3>Connect</Heading3>
+            <Heading3>Social</Heading3>
             <span style={{
               fontSize: 13,
               fontWeight: 700,
@@ -357,7 +357,7 @@ export default function Home() {
         }}>
           {[
             { id: 'For You', label: 'Explore', Icon: ExploreIcon },
-            { id: 'Yours', label: 'Yours', Icon: StartConnectingIcon },
+            { id: 'Yours', label: 'Your People', Icon: StartConnectingIcon },
           ].map(tab => {
             const active = activeFilter === tab.id
             return (
