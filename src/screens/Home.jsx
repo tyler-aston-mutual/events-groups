@@ -798,14 +798,14 @@ export default function Home() {
                 colors={colors}
                 icon={<CalendarCreateIcon color={colors.brandPrimary} />}
                 title="Create an Event"
-                description="Connect with people interested in a specific activity"
+                description="Got plans? Make it an event and invite people to join."
                 onClick={() => { closeCreate(); navigate('/create/event') }}
               />
               <CreateOption
                 colors={colors}
                 icon={<GroupCreateIcon color={colors.brandPrimary} />}
                 title="Create a Group"
-                description="Connect with people who share something in common with you"
+                description="Start a group around an interest and meet new people."
                 onClick={() => { closeCreate(); navigate('/create/group') }}
               />
             </div>
