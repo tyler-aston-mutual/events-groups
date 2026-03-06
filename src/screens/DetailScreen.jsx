@@ -396,7 +396,7 @@ export default function DetailScreen() {
                 tappable
                 onTap={() => handleTabTap('Participants')}
               >
-                {item.going} {isGroup ? 'Members' : 'Interested'}
+                <GenderBreakdown total={item.going} itemId={item.id} colors={colors} />
               </InfoRow>
             </div>
 
@@ -693,6 +693,27 @@ export default function DetailScreen() {
   )
 }
 
+// ─── Gender Breakdown ────────────────────────────────────────────
+
+function GenderBreakdown({ total, itemId, colors }) {
+  // Deterministic split based on item id for consistent fake data
+  const ratio = 0.4 + ((itemId * 7) % 20) / 100 // 0.40–0.59
+  const guys = Math.round(total * ratio)
+  const girls = total - guys
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+        <MaleIcon color={colors.brandPrimary} />
+        <span style={{ color: colors.brandPrimary, fontWeight: 600 }}>{guys}</span>
+      </span>
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+        <FemaleIcon color={colors.brandAccent5} />
+        <span style={{ color: colors.brandAccent5, fontWeight: 600 }}>{girls}</span>
+      </span>
+    </span>
+  )
+}
+
 // ─── Helper ──────────────────────────────────────────────────────
 
 function InfoRow({ icon, colors, children, tappable, onTap }) {
@@ -949,6 +970,28 @@ function InfoCircleIcon({ color }) {
       <circle cx="10" cy="10" r="8" />
       <line x1="10" y1="9" x2="10" y2="14" />
       <circle cx="10" cy="6.5" r="0.75" fill={color} stroke="none" />
+    </svg>
+  )
+}
+
+function MaleIcon({ color }) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="6.5" cy="9.5" r="4" />
+      <line x1="9.5" y1="6.5" x2="14" y2="2" />
+      <polyline points="10,2 14,2 14,6" />
+    </svg>
+  )
+}
+
+function FemaleIcon({ color }) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="8" cy="6" r="4" />
+      <line x1="8" y1="10" x2="8" y2="15" />
+      <line x1="6" y1="13" x2="10" y2="13" />
     </svg>
   )
 }
