@@ -370,7 +370,7 @@ export default function DetailScreen() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 24 }}>
               {item.date && (
                 <InfoRow
-                  icon={<CalendarInfoIcon color={colors.brandPrimary} />}
+                  icon={<CalendarClockIcon color={colors.brandPrimary} />}
                   colors={colors}
                   tappable
                   onTap={() => {}}
@@ -380,7 +380,7 @@ export default function DetailScreen() {
               )}
               {item.createdDate && (
                 <InfoRow
-                  icon={<CalendarInfoIcon color={colors.grey600} />}
+                  icon={<StopwatchIcon color={colors.grey600} />}
                   colors={colors}
                 >
                   Created - {item.createdDate}
@@ -403,7 +403,7 @@ export default function DetailScreen() {
                 More Info
               </InfoRow>
               <InfoRow
-                icon={<PeopleInfoIcon color={colors.brandPrimary} />}
+                icon={<HeartInfoIcon color={colors.brandPrimary} />}
                 colors={colors}
                 tappable
                 onTap={() => handleTabTap('Participants')}
@@ -789,6 +789,53 @@ function CalendarInfoIcon({ color }) {
       <rect x="5.5" y="1.5" width="2" height="3.5" rx="1"/>
       <rect x="11.5" y="1.5" width="2" height="3.5" rx="1"/>
       <line x1="2.5" y1="8" x2="17.5" y2="8"/>
+    </svg>
+  )
+}
+
+function CalendarClockIcon({ color }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 20 20" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      {/* Calendar body — same as our event icon but no curl */}
+      <rect x="2.5" y="3" width="15" height="14" rx="2.5"/>
+      {/* Binding rings */}
+      <rect x="5.5" y="1.5" width="2" height="3.5" rx="1"/>
+      <rect x="11.5" y="1.5" width="2" height="3.5" rx="1"/>
+      {/* Divider */}
+      <line x1="2.5" y1="8" x2="17.5" y2="8"/>
+      {/* Clock circle in body */}
+      <circle cx="10" cy="13" r="3.5"/>
+      {/* Clock hands — hour pointing to ~10 o'clock, minute to 12 */}
+      <line x1="10" y1="13" x2="10" y2="11" strokeWidth="1.5"/>
+      <line x1="10" y1="13" x2="8.5" y2="12" strokeWidth="1.5"/>
+    </svg>
+  )
+}
+
+function StopwatchIcon({ color }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      {/* Main circle */}
+      <circle cx="11" cy="12.5" r="7.5"/>
+      {/* Top button */}
+      <line x1="11" y1="2" x2="11" y2="5"/>
+      <line x1="9" y1="2" x2="13" y2="2"/>
+      {/* Side button */}
+      <line x1="17" y1="7" x2="18.5" y2="5.5"/>
+      {/* Clock hands */}
+      <line x1="11" y1="12.5" x2="11" y2="9"/>
+      <line x1="11" y1="12.5" x2="14" y2="12.5"/>
+    </svg>
+  )
+}
+
+function HeartInfoIcon({ color }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M11 19s-7-4.5-7-9.5C4 6.5 6 4.5 8.5 4.5c1.5 0 2.5 1 2.5 1s1-1 2.5-1C16 4.5 18 6.5 18 9.5c0 5-7 9.5-7 9.5z"/>
     </svg>
   )
 }
