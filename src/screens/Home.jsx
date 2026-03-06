@@ -340,14 +340,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Primary tab bar — icon above, label below */}
+        {/* Primary tab bar — filled active, outlined inactive */}
         <div style={{
           display: 'flex',
-          borderBottom: `2px solid ${colors.grey100}`,
-          marginLeft: -20,
-          marginRight: -16,
-          paddingLeft: 20,
-          paddingRight: 16,
+          gap: 10,
         }}>
           {[
             { id: 'For You', label: 'Start Connecting', Icon: StartConnectingIcon },
@@ -365,19 +361,18 @@ export default function Home() {
                   alignItems: 'center',
                   gap: 5,
                   padding: '12px 0 10px',
-                  background: 'none',
-                  border: 'none',
-                  borderBottom: `2px solid ${active ? colors.brandPrimary : 'transparent'}`,
-                  marginBottom: -2,
+                  backgroundColor: active ? colors.brandPrimary : 'transparent',
+                  border: `1.5px solid ${colors.brandPrimary}`,
+                  borderRadius: 14,
                   cursor: 'pointer',
-                  color: active ? colors.brandPrimary : colors.grey400,
+                  color: active ? '#FFFFFF' : colors.brandPrimary,
                 }}
               >
-                <tab.Icon color={active ? colors.brandPrimary : colors.grey400} />
+                <tab.Icon color={active ? '#FFFFFF' : colors.brandPrimary} />
                 <span style={{
                   fontSize: 11,
-                  fontWeight: active ? 700 : 400,
-                  fontFamily: active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans', sans-serif",
+                  fontWeight: 700,
+                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                   whiteSpace: 'nowrap',
                 }}>
                   {tab.label}
