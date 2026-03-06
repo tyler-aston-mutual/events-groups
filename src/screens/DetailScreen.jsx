@@ -282,15 +282,23 @@ export default function DetailScreen() {
             {item.title}
           </div>
 
-          {/* Type icon — top right */}
+          {/* Type icon pill — top right */}
           <div style={{
             position: 'absolute',
             top: 0,
             right: 20,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 32,
+            height: 32,
+            borderRadius: 20,
+            border: `1.5px solid ${isGroup ? colors.brandPrimary : colors.brandAccent5}`,
+            backgroundColor: isGroup ? `${colors.brandPrimary}14` : `${colors.brandAccent5}14`,
           }}>
             {isGroup
               ? <GroupTypeIcon color={colors.brandPrimary} />
-              : <CalendarTypeIcon color={colors.brandPrimary} />
+              : <CalendarTypeIcon color={colors.brandAccent5} />
             }
           </div>
         </div>

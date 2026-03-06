@@ -409,7 +409,7 @@ export default function Home() {
               marginRight: 2,
             }}>Show:</span>
             {[
-              { id: 'events', label: 'Events', active: showEvents, Icon: CalendarToggleIcon, activeColor: colors.grey1000, toggle: () => { if (showEvents && showGroups) setShowEvents(false); else if (!showEvents) setShowEvents(true) } },
+              { id: 'events', label: 'Events', active: showEvents, Icon: CalendarToggleIcon, activeColor: colors.brandAccent5, toggle: () => { if (showEvents && showGroups) setShowEvents(false); else if (!showEvents) setShowEvents(true) } },
               { id: 'groups', label: 'Groups', active: activeSort === 'soonest' ? showGroups : showGroups, Icon: GroupToggleIcon, activeColor: colors.brandPrimary, toggle: () => { if (activeSort === 'soonest') { setShowGroups(!showGroups) } else { if (showGroups && showEvents) setShowGroups(false); else if (!showGroups) setShowGroups(true) } } },
             ].map(t => (
               <button

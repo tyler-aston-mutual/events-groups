@@ -24,31 +24,24 @@ export function EventCard({
       boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
       position: 'relative',
     }}>
-      {/* Type pill — top-right corner */}
+      {/* Type pill — top-right corner (icon only) */}
       <div style={{
         position: 'absolute',
         top: 10,
         right: 10,
         display: 'flex',
         alignItems: 'center',
-        gap: 4,
-        padding: '4px 8px',
+        justifyContent: 'center',
+        width: 28,
+        height: 28,
         borderRadius: 20,
-        border: `1.5px solid ${type === 'group' ? colors.brandPrimary : colors.grey1000}`,
-        backgroundColor: type === 'group' ? `${colors.brandPrimary}14` : `${colors.grey1000}14`,
+        border: `1.5px solid ${type === 'group' ? colors.brandPrimary : colors.brandAccent5}`,
+        backgroundColor: type === 'group' ? `${colors.brandPrimary}14` : `${colors.brandAccent5}14`,
       }}>
         {type === 'group'
           ? <GroupBadgeIcon color={colors.brandPrimary} size={14} />
-          : <CalendarIcon color={colors.grey1000} size={14} />
+          : <CalendarIcon color={colors.brandAccent5} size={14} />
         }
-        <span style={{
-          fontSize: 11,
-          fontWeight: 600,
-          color: type === 'group' ? colors.brandPrimary : colors.grey1000,
-          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-        }}>
-          {type === 'group' ? 'Group' : 'Event'}
-        </span>
       </div>
 
       <div style={{ display: 'flex', padding: 12, gap: 12, alignItems: 'center' }}>
