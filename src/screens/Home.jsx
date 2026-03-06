@@ -331,7 +331,7 @@ export default function Home() {
           marginBottom: 14,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Heading3>Connect</Heading3>
+            <Heading3>Communities</Heading3>
             <span style={{
               fontSize: 13,
               fontWeight: 700,
