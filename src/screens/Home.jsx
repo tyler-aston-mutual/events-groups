@@ -340,10 +340,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Primary tab bar — filled active, outlined inactive */}
+        {/* Primary tabs — text with underline */}
         <div style={{
           display: 'flex',
-          gap: 10,
+          gap: 24,
+          borderBottom: `1.5px solid ${colors.grey100}`,
         }}>
           {[
             { id: 'For You', label: 'Find Connections', Icon: StartConnectingIcon },
@@ -355,24 +356,23 @@ export default function Home() {
                 key={tab.id}
                 onClick={() => setActiveFilter(tab.id)}
                 style={{
-                  flex: 1,
                   display: 'flex',
-                  flexDirection: 'column',
                   alignItems: 'center',
-                  gap: 5,
-                  padding: '12px 0 10px',
-                  backgroundColor: active ? `${colors.brandPrimary}14` : 'transparent',
-                  border: `1.5px solid ${colors.brandPrimary}`,
-                  borderRadius: 14,
+                  gap: 6,
+                  paddingBottom: 10,
+                  background: 'none',
+                  border: 'none',
+                  borderBottom: `2px solid ${active ? colors.brandPrimary : 'transparent'}`,
+                  marginBottom: -1.5,
                   cursor: 'pointer',
-                  color: colors.brandPrimary,
                 }}
               >
-                <tab.Icon color={colors.brandPrimary} />
+                <tab.Icon color={active ? colors.brandPrimary : colors.grey400} />
                 <span style={{
-                  fontSize: 11,
-                  fontWeight: 700,
-                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                  fontSize: 15,
+                  fontWeight: active ? 700 : 500,
+                  color: active ? colors.brandPrimary : colors.grey400,
+                  fontFamily: active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
                   whiteSpace: 'nowrap',
                 }}>
                   {tab.label}
