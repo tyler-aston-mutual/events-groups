@@ -664,7 +664,7 @@ function GenderBreakdown({ total, itemId, colors }) {
   const guys = Math.round(total * ratio)
   const girls = total - guys
   return (
-    <span>{guys} men · {girls} women</span>
+    <span><span style={{ color: colors.brandPrimary, fontWeight: 600 }}>{guys} men</span> · <span style={{ color: colors.brandAccent5, fontWeight: 600 }}>{girls} women</span></span>
   )
 }
 
