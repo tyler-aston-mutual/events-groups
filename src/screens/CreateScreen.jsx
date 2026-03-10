@@ -23,6 +23,7 @@ export default function CreateScreen({ type }) {
   // Event-only state
   const [eventDate, setEventDate] = useState('')
   const [eventTime, setEventTime] = useState('')
+  const [isVirtual, setIsVirtual] = useState(false)
   const [visibilityRadius, setVisibilityRadius] = useState('50 mi')
 
   // Tab visibility
@@ -216,14 +217,60 @@ export default function CreateScreen({ type }) {
         {/* 4. Location */}
         <SectionLabel colors={colors} text="Location" optional />
         <FormInput
-          placeholder="Add a place"
+          placeholder={isEvent && isVirtual ? "Paste a Zoom or meeting link" : "Add a place"}
           value={location}
           onChange={setLocation}
           colors={colors}
         />
 
-        {/* Visibility Radius — events only, when location is provided */}
-        {isEvent && location.trim() && (
+        {/* Virtual Meeting checkbox — events only */}
+        {isEvent && (
+          <div
+            onClick={() => setIsVirtual(!isVirtual)}
+            style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            marginTop: 10,
+            cursor: 'pointer',
+          }}>
+            <div
+              style={{
+                width: 22,
+                height: 22,
+                borderRadius: 6,
+                borderWidth: '1.5px',
+                borderStyle: 'solid',
+                borderColor: isVirtual ? colors.brandPrimary : colors.grey300,
+                backgroundColor: isVirtual ? colors.brandPrimary : colors.grey0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+                transition: 'all 0.2s ease',
+                cursor: 'pointer',
+                boxSizing: 'border-box',
+              }}
+            >
+              {isVirtual && (
+                <svg width="13" height="10" viewBox="0 0 13 10" fill="none">
+                  <path d="M1.5 5L5 8.5L11.5 1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
+            </div>
+            <span style={{
+              fontSize: 15,
+              fontWeight: 500,
+              color: colors.grey1000,
+              fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+            }}>
+              Virtual Meeting
+            </span>
+          </div>
+        )}
+
+        {/* Visibility Radius — events only, when location is provided and not virtual */}
+        {isEvent && location.trim() && !isVirtual && (
           <div style={{ marginTop: 14 }}>
             <div style={{
               fontSize: 14,
