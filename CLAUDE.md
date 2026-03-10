@@ -18,7 +18,7 @@ This is a **research prototype** used in user interviews. The goal is to learn w
 ## Tech Stack
 | | |
 |---|---|
-| Framework | React 18 + Vite 5 |
+| Framework | React 18 |
 | Routing | React Router v6 (`HashRouter` — required for GitHub Pages) |
 | Styling | Tailwind CSS v3 |
 | Hosting | GitHub Pages |
@@ -51,6 +51,10 @@ Maintain `WORK_STATUS.md` in the project root. Update it at the start and end of
 - Key decisions made and why
 - What's fake vs real
 - Anything useful for picking up mid-stream
+
+## Git Workflow
+- Commit directly to `main` after every change — do not create pull requests or feature branches.
+- Push to `main` after committing so changes deploy immediately via GitHub Actions.
 
 ## Planning
 Use plan mode for any task that involves 3+ steps or an architectural decision. If something goes sideways mid-task, stop and re-plan rather than pushing through.
