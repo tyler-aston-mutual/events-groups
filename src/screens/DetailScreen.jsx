@@ -56,19 +56,10 @@ export default function DetailScreen() {
 
   const isGroup = item.type === 'group'
   const tabs = isGroup
-    ? ['About', 'Participants', 'Events', 'Chat']
-    : ['About', 'Participants', 'Chat']
+    ? ['About', 'Participants', 'Events']
+    : ['About', 'Participants']
 
   function handleTabTap(tab) {
-    if (tab === 'About') {
-      setActiveTab('About')
-      return
-    }
-    if (!joined && GATED_TABS.includes(tab)) {
-      setBlockedSection(tab.toLowerCase())
-      setDialogOpen(true)
-      return
-    }
     setActiveTab(tab)
   }
 

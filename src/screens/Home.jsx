@@ -333,7 +333,7 @@ export default function Home() {
           marginBottom: 14,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Heading3>Social</Heading3>
+            <Heading3>Connect</Heading3>
             <span style={{
               fontSize: 13,
               fontWeight: 700,
@@ -687,8 +687,16 @@ export default function Home() {
                               position: 'absolute',
                               top: 8,
                               right: 8,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              width: 22,
+                              height: 22,
+                              borderRadius: 14,
+                              border: `1.5px solid ${colors.brandAccent5}`,
+                              backgroundColor: `${colors.brandAccent5}14`,
                             }}>
-                              <ChildEventIcon color={colors.brandPrimary} />
+                              <ChildEventIcon color={colors.brandAccent5} size={12} />
                             </div>
                             <img
                               src={child.image}
@@ -1145,9 +1153,9 @@ function SortChevron({ color, open }) {
   )
 }
 
-function ChildEventIcon({ color }) {
+function ChildEventIcon({ color, size = 18 }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none"
       stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"
       style={{ flexShrink: 0 }}>
       <path d="M4.5,3 H13.5 Q17.5,3 17.5,6.5 V14.5 L13.5,19 H4.5 Q2.5,19 2.5,15.5 V6.5 Q2.5,3 4.5,3Z"/>
