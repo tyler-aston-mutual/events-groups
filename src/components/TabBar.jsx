@@ -13,8 +13,6 @@ export function TabBar({ activeTab = 'connect' }) {
   const { colors } = useTheme()
   const isMobile = useIsMobile()
 
-  if (isMobile) return null
-
   return (
     <div style={{
       backgroundColor: '#000000',

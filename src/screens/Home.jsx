@@ -37,7 +37,7 @@ export const ALL_ITEMS = [
     id: 3,
     title: 'Y Mountain Group Hike',
     image: 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=400&h=400&fit=crop',
-    date: 'February 23, 2026 - 10:00',
+    date: 'March 23, 2026 - 10:00',
     location: 'Y Mountain Trailhead',
     going: 18,
     featured: true,
@@ -61,7 +61,7 @@ export const ALL_ITEMS = [
     id: 5,
     title: 'Singles Pickleball Tournament',
     image: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=400&h=400&fit=crop',
-    date: 'February 27, 2026 - 14:00',
+    date: 'March 27, 2026 - 14:00',
     location: 'Lehi Pickleball Courts',
     going: 12,
     group: { name: 'Provo Pickleball', membersOnly: false },
@@ -98,7 +98,7 @@ export const ALL_ITEMS = [
     id: 8,
     title: 'Friday Date Night',
     image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=400&fit=crop',
-    date: 'February 26, 2026 - 20:00',
+    date: 'March 26, 2026 - 20:00',
     location: 'Velour Music Gallery',
     going: 8,
     description: 'Looking for a fun Friday night out? Come join us at Velour for a laid-back evening of good music, great people, and the perfect chance to meet someone new.',
@@ -120,7 +120,7 @@ export const ALL_ITEMS = [
     id: 10,
     title: "Trivia Night at Guru's",
     image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=400&fit=crop',
-    date: 'February 28, 2026 - 19:00',
+    date: 'March 28, 2026 - 19:00',
     location: "Guru's Cafe",
     going: 10,
     description: "Team trivia at Guru's Cafe! We'll form teams of 4-5 and compete for bragging rights. Topics range from pop culture to church history. No trivia experience required — just bring your brain.",
@@ -312,7 +312,7 @@ export default function Home() {
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
-      backgroundColor: colors.grey0,
+      backgroundColor: 'rgb(245, 245, 245)',
       overflow: 'hidden',
     }}>
       <StatusBar />
@@ -322,7 +322,7 @@ export default function Home() {
         paddingLeft: 20,
         paddingRight: 16,
         paddingTop: 10,
-        backgroundColor: colors.grey0,
+        backgroundColor: 'rgb(245, 245, 245)',
         flexShrink: 0,
       }}>
         {/* Title row */}
@@ -337,7 +337,7 @@ export default function Home() {
             <span style={{
               fontSize: 13,
               fontWeight: 700,
-              color: colors.brandAccent5,
+              color: 'rgb(149, 150, 153)',
               fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
             }}>Beta</span>
           </div>
@@ -530,7 +530,7 @@ export default function Home() {
                 borderRadius: 10,
                 padding: '10px 14px',
               }}>
-                You Created
+                Created by you
               </div>
               {/* Placeholder — Create Your Own banner until user creates something */}
               <div
