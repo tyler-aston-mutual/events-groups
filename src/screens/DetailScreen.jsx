@@ -246,8 +246,9 @@ export default function DetailScreen() {
             lineHeight: '26px',
             fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
             textAlign: item.image ? 'left' : 'center',
+            paddingRight: 40,
           }}>
-            {item.title} <span style={{ fontWeight: 400, fontSize: 18, color: colors.grey400 }}>{isGroup ? 'Group' : 'Event'}</span>
+            {item.title} <span style={{ fontWeight: 400, fontSize: 18, color: isGroup ? colors.brandPrimary : colors.brandAccent5 }}>{isGroup ? 'Group' : 'Event'}</span>
           </div>
 
           {/* Type icon pill — top right */}
