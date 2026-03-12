@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { StatusBar } from '../components/StatusBar'
 import { Chip, PrimaryButton, ThemedDialog } from '../design-system'
@@ -107,6 +107,11 @@ export default function DetailScreen() {
   const [dialogOpen, setDialogOpen] = useState(false)
   const [blockedSection, setBlockedSection] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
+
+  // Reset to About tab when navigating between detail pages
+  useEffect(() => {
+    setActiveTab('About')
+  }, [item?.id])
 
   if (!item) return null
 
