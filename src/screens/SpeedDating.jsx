@@ -2,12 +2,11 @@ import { useNavigate } from 'react-router-dom'
 import { StatusBar } from '../components/StatusBar'
 import { Chip, PrimaryButton } from '../design-system'
 import { useTheme } from '../design-system/context/ThemeProvider'
+import blurPhoto1 from '../assets/people/male/male-06.jpg'
+import blurPhoto2 from '../assets/people/female/female-06.jpg'
+import blurPhoto3 from '../assets/people/male/male-07.jpg'
 
-const BLURRED_PHOTOS = [
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&h=400&fit=crop',
-]
+const BLURRED_PHOTOS = [blurPhoto1, blurPhoto2, blurPhoto3]
 
 export default function SpeedDating() {
   const { colors } = useTheme()
