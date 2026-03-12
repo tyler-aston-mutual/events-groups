@@ -8,6 +8,18 @@ import { Heading3, Chip } from '../design-system'
 import { useTheme } from '../design-system/context/ThemeProvider'
 import { useJoined } from '../context/JoinedContext'
 
+// Local profile photos for creators
+import mckennaImg from '../assets/people/female/female-01.jpg'
+import sophieImg from '../assets/people/female/female-02.jpg'
+import emilyImg from '../assets/people/female/female-03.jpg'
+import rachelImg from '../assets/people/female/female-04.jpg'
+import briImg from '../assets/people/female/female-05.jpg'
+import tylerImg from '../assets/people/male/male-01.jpg'
+import jordanImg from '../assets/people/male/male-02.jpg'
+import tannerImg from '../assets/people/male/male-03.jpg'
+import dallinImg from '../assets/people/male/male-04.jpg'
+import ethanImg from '../assets/people/male/male-05.jpg'
+
 const FILTERS = ['For You', 'Yours']
 
 const SORT_OPTIONS_ALL = [
@@ -44,7 +56,7 @@ export const ALL_ITEMS = [
     featured: true,
     description: 'A community for single Latter-day Saints in Utah Valley. We plan weekly activities, service projects, and social events to help you meet new people and build lasting friendships.',
     createdDate: 'January 14, 2026  6:00PM',
-    creator: { name: 'McKenna', age: 26, image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' },
+    creator: { name: 'McKenna', age: 26, image: mckennaImg },
   },
   {
     id: 3,
@@ -55,7 +67,7 @@ export const ALL_ITEMS = [
     featured: true,
     description: 'Join us for a group hike up Y Mountain! We\'ll meet at the trailhead and take the main trail to the Y. All fitness levels welcome — we go at a comfortable pace and take plenty of breaks.',
     createdDate: 'February 27, 2026  8:30AM',
-    creator: { name: 'Tyler', age: 30, image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop' },
+    creator: { name: 'Tyler', age: 30, image: tylerImg },
   },
   {
     id: 4,
@@ -67,7 +79,7 @@ export const ALL_ITEMS = [
     featured: true,
     description: 'Weekly pickleball meetups around Utah County. All skill levels welcome! We play at various courts and host tournaments monthly.',
     createdDate: 'February 5, 2026  7:30PM',
-    creator: { name: 'Jordan', age: 28, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop' },
+    creator: { name: 'Jordan', age: 28, image: jordanImg },
   },
   {
     id: 5,
@@ -80,7 +92,7 @@ export const ALL_ITEMS = [
     featured: true,
     description: 'Casual doubles tournament for singles! We\'ll mix up partners each round so you get to meet everyone. Beginners and experienced players alike — come have fun and maybe find a doubles partner for life.',
     createdDate: 'March 1, 2026  12:00PM',
-    creator: { name: 'Tanner', age: 24, image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop' },
+    creator: { name: 'Tanner', age: 24, image: tannerImg },
   },
   {
     id: 15,
@@ -91,7 +103,7 @@ export const ALL_ITEMS = [
     going: 175,
     description: 'The go-to community for single Latter-day Saints in the Salt Lake City area. We organize weekly activities, weekend outings, and seasonal events to help you connect with other singles in the valley.',
     createdDate: 'December 1, 2025  10:00AM',
-    creator: { name: 'Emily', age: 25, image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop' },
+    creator: { name: 'Emily', age: 25, image: emilyImg },
   },
   {
     id: 6,
@@ -104,7 +116,7 @@ export const ALL_ITEMS = [
     group: { name: 'SLC Singles', membersOnly: false },
     description: 'Evening stroll around Temple Square to enjoy the lights and good company. We\'ll grab hot chocolate afterward at a nearby cafe. Great way to meet people in a relaxed setting.',
     createdDate: 'January 30, 2026  3:00PM',
-    creator: { name: 'Emily', age: 25, image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop' },
+    creator: { name: 'Emily', age: 25, image: emilyImg },
   },
   {
     id: 7,
@@ -114,7 +126,7 @@ export const ALL_ITEMS = [
     going: 210,
     description: 'Exploring the best trails in Utah Valley together. We organize group hikes every weekend ranging from easy canyon walks to challenging summit scrambles. New members always welcome!',
     createdDate: 'March 3, 2026  9:00AM',
-    creator: { name: 'Dallin', age: 27, image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop' },
+    creator: { name: 'Dallin', age: 27, image: dallinImg },
   },
   {
     id: 8,
@@ -124,7 +136,7 @@ export const ALL_ITEMS = [
     going: 8,
     description: 'Looking for a fun Friday night out? Come join us at Velour for a laid-back evening of good music, great people, and the perfect chance to meet someone new.',
     createdDate: 'February 12, 2026  5:00PM',
-    creator: { name: 'Bri', age: 23, image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop' },
+    creator: { name: 'Bri', age: 23, image: briImg },
   },
   {
     id: 9,
@@ -135,7 +147,7 @@ export const ALL_ITEMS = [
     going: 150,
     description: 'For people who love trying new restaurants and cooking together. We do group dinners at local spots, potlucks, and cooking classes. Come hungry, leave with new friends.',
     createdDate: 'February 20, 2026  6:30PM',
-    creator: { name: 'Sophie', age: 26, image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop' },
+    creator: { name: 'Sophie', age: 26, image: sophieImg },
   },
   {
     id: 10,
@@ -145,7 +157,7 @@ export const ALL_ITEMS = [
     going: 10,
     description: "Team trivia at Guru's Cafe! We'll form teams of 4-5 and compete for bragging rights. Topics range from pop culture to church history. No trivia experience required — just bring your brain.",
     createdDate: 'February 8, 2026  11:00AM',
-    creator: { name: 'Ethan', age: 29, image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop' },
+    creator: { name: 'Ethan', age: 29, image: ethanImg },
   },
   {
     id: 11,
@@ -155,7 +167,7 @@ export const ALL_ITEMS = [
     going: 95,
     description: 'A group for politically engaged young adults who lean conservative. We host watch parties, discussion nights, and volunteer for local campaigns together.',
     createdDate: 'December 18, 2025  4:00PM',
-    creator: { name: 'Tyler', age: 30, image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop' },
+    creator: { name: 'Tyler', age: 30, image: tylerImg },
   },
   {
     id: 12,
@@ -165,7 +177,7 @@ export const ALL_ITEMS = [
     going: 45,
     description: 'Connect with members of the Eagle Mountain YSA Ward! Stay updated on ward activities, FHE groups, and service opportunities. A great way to stay in the loop.',
     createdDate: 'February 25, 2026  10:00AM',
-    creator: { name: 'Rachel', age: 24, image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop' },
+    creator: { name: 'Rachel', age: 24, image: rachelImg },
   },
   {
     id: 13,
@@ -179,7 +191,7 @@ export const ALL_ITEMS = [
     official: true,
     description: 'A full-day YSA waterpark event at Splash Summit! Enjoy water slides, wave pools, and lazy rivers with other single adults from across the valley. Group rates and lunch included.',
     createdDate: 'January 22, 2026  9:00AM',
-    creator: { name: 'Tanner', age: 24, image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop' },
+    creator: { name: 'Tanner', age: 24, image: tannerImg },
   },
   {
     id: 14,
@@ -192,7 +204,7 @@ export const ALL_ITEMS = [
     featured: true,
     description: 'Together in Christ — the 2026 Utah Area YSA Conference. A day of speakers, workshops, music, and connection. Meet young adults from stakes across Utah in an uplifting, faith-centered setting.',
     createdDate: 'February 15, 2026  2:00PM',
-    creator: { name: 'Emily', age: 25, image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop' },
+    creator: { name: 'Emily', age: 25, image: emilyImg },
   },
   // ── New items added from spreadsheet ──────────────────────────
   {
@@ -206,7 +218,7 @@ export const ALL_ITEMS = [
     women: 46,
     description: 'A rotating dinner group where singles meet regularly to cook or share meals together. Each gathering may feature a theme, new cuisine, or host, encouraging conversation and friendships in a relaxed setting.',
     createdDate: 'March 10, 2026  10:00AM',
-    creator: { name: 'Sophie', age: 26, image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop' },
+    creator: { name: 'Sophie', age: 26, image: sophieImg },
   },
   {
     id: 17,
@@ -219,7 +231,7 @@ export const ALL_ITEMS = [
     women: 19,
     description: 'An evening of board games, card games, and laughter designed for singles who enjoy friendly competition and easy conversation. Games help break the ice while creating a relaxed environment to meet new neighbors.',
     createdDate: 'March 10, 2026  10:15AM',
-    creator: { name: 'Tanner', age: 24, image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop' },
+    creator: { name: 'Tanner', age: 24, image: tannerImg },
   },
   {
     id: 18,
@@ -231,7 +243,7 @@ export const ALL_ITEMS = [
     women: 15,
     description: 'A sweet social gathering where singles bring a favorite dessert or drink to share. Guests sample treats, swap recipes, and enjoy a casual evening meeting others in the neighborhood.',
     createdDate: 'March 10, 2026  10:30AM',
-    creator: { name: 'McKenna', age: 26, image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' },
+    creator: { name: 'McKenna', age: 26, image: mckennaImg },
   },
   {
     id: 19,
@@ -243,7 +255,7 @@ export const ALL_ITEMS = [
     women: 8,
     description: 'A recurring brunch meetup where singles gather on Sunday mornings to enjoy food, coffee, and conversation. The group rotates locations between homes and nearby cafes while helping neighbors connect regularly.',
     createdDate: 'March 10, 2026  10:45AM',
-    creator: { name: 'Jordan', age: 28, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop' },
+    creator: { name: 'Jordan', age: 28, image: jordanImg },
   },
   {
     id: 20,
@@ -255,7 +267,7 @@ export const ALL_ITEMS = [
     women: 12,
     description: 'A casual neighborhood walking group for singles who want to stay active while getting to know others. Walks happen regularly in the evenings or weekends and provide an easy setting for conversation.',
     createdDate: 'March 10, 2026  11:00AM',
-    creator: { name: 'Dallin', age: 27, image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop' },
+    creator: { name: 'Dallin', age: 27, image: dallinImg },
   },
   {
     id: 21,
@@ -268,7 +280,7 @@ export const ALL_ITEMS = [
     women: 26,
     description: 'A relaxed book club for singles who enjoy thoughtful conversation. Members read a selected book each month and gather with a glass of wine to share ideas, perspectives, and friendly discussion.',
     createdDate: 'March 10, 2026  11:15AM',
-    creator: { name: 'Emily', age: 25, image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop' },
+    creator: { name: 'Emily', age: 25, image: emilyImg },
   },
   {
     id: 22,
@@ -280,7 +292,7 @@ export const ALL_ITEMS = [
     women: 6,
     description: 'Singles from the neighborhood form a team to compete at a local trivia night. It\'s a lively evening of questions, teamwork, and laughs while building friendships over shared knowledge.',
     createdDate: 'March 10, 2026  11:30AM',
-    creator: { name: 'Ethan', age: 29, image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop' },
+    creator: { name: 'Ethan', age: 29, image: ethanImg },
   },
   {
     id: 23,
@@ -293,7 +305,7 @@ export const ALL_ITEMS = [
     women: 17,
     description: 'A hands-on cooking event where singles prepare a meal together and enjoy it afterward. Participants collaborate on recipes, learn new kitchen skills, and share a relaxed dinner experience.',
     createdDate: 'March 10, 2026  11:45AM',
-    creator: { name: 'Bri', age: 23, image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop' },
+    creator: { name: 'Bri', age: 23, image: briImg },
   },
   {
     id: 24,
@@ -306,7 +318,7 @@ export const ALL_ITEMS = [
     women: 7,
     description: 'A low-key morning meetup where singles gather for breakfast and easy conversation. It\'s an approachable way to meet neighbors, exchange stories, and start the day with meaningful social connection.',
     createdDate: 'March 10, 2026  12:00PM',
-    creator: { name: 'Tyler', age: 30, image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop' },
+    creator: { name: 'Tyler', age: 30, image: tylerImg },
   },
   {
     id: 25,
@@ -318,7 +330,7 @@ export const ALL_ITEMS = [
     women: 29,
     description: 'A small group of singles interested in business ideas, startups, and side projects. Members meet regularly to share progress, brainstorm solutions, and support each other\'s entrepreneurial ambitions.',
     createdDate: 'March 10, 2026  12:15PM',
-    creator: { name: 'Rachel', age: 24, image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop' },
+    creator: { name: 'Rachel', age: 24, image: rachelImg },
   },
   {
     id: 26,
@@ -330,7 +342,7 @@ export const ALL_ITEMS = [
     women: 6,
     description: 'A relaxed gathering for singles who enjoy creative expression. Members bring art, photography, writing, or other projects to work on while sharing inspiration and connecting with other creative neighbors.',
     createdDate: 'March 10, 2026  12:30PM',
-    creator: { name: 'McKenna', age: 26, image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop' },
+    creator: { name: 'McKenna', age: 26, image: mckennaImg },
   },
   {
     id: 27,
@@ -343,7 +355,7 @@ export const ALL_ITEMS = [
     women: 27,
     description: 'A social evening where singles bring favorite songs, playlists, or artists to share with the group. Guests discover new music while enjoying casual conversation and connecting over shared tastes.',
     createdDate: 'March 10, 2026  12:45PM',
-    creator: { name: 'Jordan', age: 28, image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop' },
+    creator: { name: 'Jordan', age: 28, image: jordanImg },
   },
   {
     id: 28,
@@ -356,7 +368,7 @@ export const ALL_ITEMS = [
     women: 19,
     description: 'Singles come together to give back through a local service project. Whether helping a food bank, park cleanup, or community cause, the event builds connections through meaningful shared work.',
     createdDate: 'March 10, 2026  1:00PM',
-    creator: { name: 'Dallin', age: 27, image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop' },
+    creator: { name: 'Dallin', age: 27, image: dallinImg },
   },
   {
     id: 29,
@@ -368,7 +380,7 @@ export const ALL_ITEMS = [
     women: 33,
     description: 'A collaborative gathering where singles teach short skills to one another — anything from mixology to budgeting tips or photography basics — creating a fun environment for learning and connection.',
     createdDate: 'March 10, 2026  1:15PM',
-    creator: { name: 'Tanner', age: 24, image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop' },
+    creator: { name: 'Tanner', age: 24, image: tannerImg },
   },
 ]
 

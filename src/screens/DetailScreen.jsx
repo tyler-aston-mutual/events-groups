@@ -7,6 +7,12 @@ import { useJoined } from '../context/JoinedContext'
 import { EventCard } from '../components/EventCard'
 import { ALL_ITEMS } from './Home'
 
+// Local profile photos for participants
+const fPhotoModules = import.meta.glob('../assets/people/female/*.jpg', { eager: true })
+const mPhotoModules = import.meta.glob('../assets/people/male/*.jpg', { eager: true })
+const fPhotos = Object.values(fPhotoModules).map(m => m.default)
+const mPhotos = Object.values(mPhotoModules).map(m => m.default)
+
 const GATED_TABS = ['Participants', 'Events', 'Chat']
 
 // Pool of 232 unique participants — interleaved female/male for a natural mix per item
@@ -55,28 +61,6 @@ const PARTICIPANT_POOL = (() => {
     'Quincy','Vaughn','Clyde','Ellis','Ren','Foster',
     'Irving','Calder','Boyd','Mercer','Stetson','Harlan',
   ]
-  const fPhotos = [
-    '1494790108377-be9c29b29330','1534528741775-53994a69daeb',
-    '1438761681033-6461ffad8d80','1517841905240-472988babdf9',
-    '1544005313-94ddf0286df2','1524504388940-b1c1722653e1',
-    '1488426862026-3ee34a7d66df','1531746020798-e6953c6e8e04',
-    '1502823403499-6ccfcf4fb453','1529626455594-4ff0802cfb7e',
-    '1487412720507-e7ab37603c6f','1524250502761-1ac6f2e30d43',
-    '1519699047748-de8e457a634e','1542206395-9feb3edaa68d',
-    '1580489944761-15a19d654956','1557555187-23d685287bc3',
-    '1573496359142-b8d87734a5a2','1567532939604-b6b5b0db2604',
-  ]
-  const mPhotos = [
-    '1506794778202-cad84cf45f1d','1507003211169-0a1dd7228f2d',
-    '1539571696357-5a69c17a67c6','1500648767791-00dcc994a43e',
-    '1472099645785-5658abf4ff4e','1519345182560-3f2917c472ef',
-    '1492562080023-ab3db95bfbce','1504257432389-52343af06ae3',
-    '1519085360753-af0119f7cbe7','1531891437562-4301cf35b7e4',
-    '1463453091185-61582044d556','1500048993953-d23a436266cf',
-    '1556157382-97eda2d62296','1522075469751-3a6694fb2f61',
-    '1530268729831-4b0b9e170218','1560250097-0b93528c311a',
-    '1504593811423-6dd665756598','1603415526960-f7e0328c63b1',
-  ]
   const locs = [
     'Salt Lake City, UT','Provo, UT','Lehi, UT','Draper, UT',
     'Orem, UT','Sandy, UT','American Fork, UT','Eagle Mountain, UT',
@@ -89,7 +73,7 @@ const PARTICIPANT_POOL = (() => {
         id: pool.length + 1, name: fNames[i],
         age: 20 + ((i * 3 + 2) % 13),
         location: locs[(i * 2) % locs.length],
-        image: `https://images.unsplash.com/photo-${fPhotos[i % fPhotos.length]}?w=400&h=530&fit=crop&crop=face`,
+        image: fPhotos[i % fPhotos.length],
       })
     }
     if (i < mNames.length) {
@@ -97,7 +81,7 @@ const PARTICIPANT_POOL = (() => {
         id: pool.length + 1, name: mNames[i],
         age: 21 + ((i * 3 + 5) % 12),
         location: locs[(i * 2 + 1) % locs.length],
-        image: `https://images.unsplash.com/photo-${mPhotos[i % mPhotos.length]}?w=400&h=530&fit=crop&crop=face`,
+        image: mPhotos[i % mPhotos.length],
       })
     }
   }
