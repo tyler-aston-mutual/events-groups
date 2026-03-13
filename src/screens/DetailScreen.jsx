@@ -527,12 +527,17 @@ export default function DetailScreen() {
               marginBottom: 20,
             }}>
               {getParticipantsForItem(item.id).map(p => (
-                <div key={p.id} style={{
-                  position: 'relative',
-                  borderRadius: 14,
-                  overflow: 'hidden',
-                  aspectRatio: '3 / 4',
-                }}>
+                <div
+                  key={p.id}
+                  onClick={() => navigate(`/profile/${p.id}`, { state: { participant: p } })}
+                  style={{
+                    position: 'relative',
+                    borderRadius: 14,
+                    overflow: 'hidden',
+                    aspectRatio: '3 / 4',
+                    cursor: 'pointer',
+                  }}
+                >
                   <img
                     src={p.image}
                     alt={p.name}
