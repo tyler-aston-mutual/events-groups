@@ -4,6 +4,7 @@ import SpeedDating from './screens/SpeedDating.jsx'
 import FilterScreen from './screens/FilterScreen.jsx'
 import DetailScreen from './screens/DetailScreen.jsx'
 import CreateScreen from './screens/CreateScreen.jsx'
+import ProfileScreen from './screens/ProfileScreen.jsx'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/detail/:id" element={<DetailScreen />} />
         <Route path="/create/event" element={<CreateScreen type="event" />} />
         <Route path="/create/group" element={<CreateScreen type="group" />} />
+        <Route path="/profile/:id" element={<ProfileScreen />} />
       </Routes>
     </div>
   )
