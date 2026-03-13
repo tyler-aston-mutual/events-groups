@@ -629,14 +629,15 @@ export default function CreateScreen({ type }) {
       <ThemedDialog
         open={confirmOpen}
         onClose={() => setConfirmOpen(false)}
+        showCloseButton={false}
         title={`Submit ${isEvent ? 'Event' : 'Group'}`}
         message="Confirm submission for Mutual to review. Future visibility and appropriate content is up to Mutual."
         buttons={[
-          { title: 'Cancel', variant: 'secondary', onClick: () => setConfirmOpen(false) },
           { title: 'Submit', variant: 'primary', onClick: () => {
             setConfirmOpen(false)
             navigate(-1)
           }},
+          { title: 'Cancel', variant: 'secondary', onClick: () => setConfirmOpen(false) },
         ]}
       />
     </div>
