@@ -450,7 +450,7 @@ export default function Home() {
     setActiveNavRaw(tab)
     sessionStorage.setItem('circlesActiveTab', tab)
   }, [])
-  const [activeSort, setActiveSort] = useState('soonest')
+  const [activeSort, setActiveSort] = useState('recommended')
   const [sortOpen, setSortOpen] = useState(false)
   const [bannerDismissed, setBannerDismissed] = useState(false)
   const [createBannerDismissed, setCreateBannerDismissed] = useState(false)
@@ -594,9 +594,7 @@ export default function Home() {
                 key={tab.id}
                 onClick={() => {
                   setActiveNav(tab.id)
-                  if (tab.id === 'events') setActiveSort('soonest')
-                  else if (tab.id === 'groups') setActiveSort('nearest')
-                  else setActiveSort('newest')
+                  setActiveSort('recommended')
                 }}
                 style={{
                   display: 'flex',
