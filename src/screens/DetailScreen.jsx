@@ -135,6 +135,7 @@ export default function DetailScreen() {
   const [blockedSection, setBlockedSection] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
   const [leaveDialogOpen, setLeaveDialogOpen] = useState(false)
+  const [revealDialogOpen, setRevealDialogOpen] = useState(false)
 
   // Reset to About tab when navigating between detail pages
   useEffect(() => {
@@ -142,6 +143,9 @@ export default function DetailScreen() {
   }, [item?.id])
 
   if (!item) return null
+
+  const { guys, girls } = getGenderCounts(item)
+  const shouldBlur = !joined && (guys < 10 || girls < 10)
 
   const isGroup = item.type === 'group'
   const tabs = isGroup
@@ -565,7 +569,13 @@ export default function DetailScreen() {
               {getParticipantsForItem(item.id).map(p => (
                 <div
                   key={p.id}
-                  onClick={() => navigate(`/profile/${p.id}`, { state: { participant: p } })}
+                  onClick={() => {
+                    if (shouldBlur) {
+                      setRevealDialogOpen(true)
+                    } else {
+                      navigate(`/profile/${p.id}`, { state: { participant: p } })
+                    }
+                  }}
                   style={{
                     position: 'relative',
                     borderRadius: 14,
@@ -576,49 +586,55 @@ export default function DetailScreen() {
                 >
                   <img
                     src={p.image}
-                    alt={p.name}
+                    alt={shouldBlur ? '' : p.name}
                     style={{
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
                       display: 'block',
+                      filter: shouldBlur ? 'blur(12px)' : 'none',
+                      transform: shouldBlur ? 'scale(1.05)' : 'none',
                     }}
                   />
                   {/* Dark gradient overlay */}
-                  <div style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: '50%',
-                    background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)',
-                  }} />
-                  {/* Name + info */}
-                  <div style={{
-                    position: 'absolute',
-                    bottom: 12,
-                    left: 12,
-                    right: 12,
-                  }}>
+                  {!shouldBlur && (
                     <div style={{
-                      fontSize: 16,
-                      fontWeight: 700,
-                      color: '#FFFFFF',
-                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                      lineHeight: '20px',
-                    }}>
-                      {p.name}, {p.age}
-                    </div>
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: '50%',
+                      background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)',
+                    }} />
+                  )}
+                  {/* Name + info (hidden when blurred) */}
+                  {!shouldBlur && (
                     <div style={{
-                      fontSize: 13,
-                      fontWeight: 400,
-                      color: 'rgba(255,255,255,0.75)',
-                      fontFamily: "'Goldman Sans', sans-serif",
-                      marginTop: 2,
+                      position: 'absolute',
+                      bottom: 12,
+                      left: 12,
+                      right: 12,
                     }}>
-                      {p.location}
+                      <div style={{
+                        fontSize: 16,
+                        fontWeight: 700,
+                        color: '#FFFFFF',
+                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                        lineHeight: '20px',
+                      }}>
+                        {p.name}, {p.age}
+                      </div>
+                      <div style={{
+                        fontSize: 13,
+                        fontWeight: 400,
+                        color: 'rgba(255,255,255,0.75)',
+                        fontFamily: "'Goldman Sans', sans-serif",
+                        marginTop: 2,
+                      }}>
+                        {p.location}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -1013,22 +1029,41 @@ export default function DetailScreen() {
           }},
         ]}
       />
+
+      {/* Reveal profiles dialog — shown when tapping blurred participant */}
+      <ThemedDialog
+        open={revealDialogOpen}
+        onClose={() => setRevealDialogOpen(false)}
+        title={isGroup ? 'Join to See Profiles' : 'Show Interest to See Profiles'}
+        message={isGroup
+          ? 'Join this group to see who\'s participating and view their profiles.'
+          : 'Mark interest in this event to see who\'s attending and view their profiles.'
+        }
+        buttons={[
+          { title: 'Cancel', variant: 'secondary', onClick: () => setRevealDialogOpen(false) },
+          { title: isGroup ? 'Join Group' : "I'm Interested", variant: 'primary', onClick: () => {
+            addJoinedId(item.id)
+            setRevealDialogOpen(false)
+          }},
+        ]}
+      />
     </div>
   )
 }
 
 // ─── Gender Breakdown ────────────────────────────────────────────
 
-function GenderBreakdown({ total, itemId, men, women, colors }) {
-  let guys, girls
-  if (men !== undefined && women !== undefined) {
-    guys = men; girls = women
-  } else {
-    // Deterministic split based on item id for consistent fake data
-    const ratio = 0.4 + ((itemId * 7) % 20) / 100 // 0.40–0.59
-    guys = Math.round(total * ratio)
-    girls = total - guys
+function getGenderCounts(item) {
+  if (item.men !== undefined && item.women !== undefined) {
+    return { guys: item.men, girls: item.women }
   }
+  const ratio = 0.4 + ((item.id * 7) % 20) / 100 // 0.40–0.59
+  const guys = Math.round(item.going * ratio)
+  return { guys, girls: item.going - guys }
+}
+
+function GenderBreakdown({ total, itemId, men, women, colors }) {
+  const { guys, girls } = getGenderCounts({ id: itemId, going: total, men, women })
   return (
     <span><span style={{ color: colors.brandPrimary, fontWeight: 600 }}>{guys} men</span> · <span style={{ color: colors.brandAccent5, fontWeight: 600 }}>{girls} women</span></span>
   )
