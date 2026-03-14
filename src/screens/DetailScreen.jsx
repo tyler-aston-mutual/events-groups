@@ -442,26 +442,44 @@ export default function DetailScreen() {
                 }}>
                   Details
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {item.details.map((detail, idx) => (
-                    <div key={idx}>
-                      <div style={{
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: colors.grey1000,
-                        fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
-                        marginBottom: 2,
-                      }}>
-                        {detail.label}
-                      </div>
-                      <div style={{
-                        fontSize: 14,
-                        fontWeight: 400,
-                        color: colors.grey600,
-                        lineHeight: '20px',
-                        fontFamily: "'Goldman Sans', sans-serif",
-                      }}>
-                        {detail.value}
+                    <div key={idx} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                      {detail.emoji && (
+                        <div style={{
+                          width: 28,
+                          height: 28,
+                          borderRadius: 14,
+                          backgroundColor: colors.grey100,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                          fontSize: 14,
+                          marginTop: 1,
+                        }}>
+                          {detail.emoji}
+                        </div>
+                      )}
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{
+                          fontSize: 13,
+                          fontWeight: 600,
+                          color: colors.grey1000,
+                          fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+                          marginBottom: 2,
+                        }}>
+                          {detail.label}
+                        </div>
+                        <div style={{
+                          fontSize: 14,
+                          fontWeight: 400,
+                          color: colors.grey600,
+                          lineHeight: '20px',
+                          fontFamily: "'Goldman Sans', sans-serif",
+                        }}>
+                          {detail.value}
+                        </div>
                       </div>
                     </div>
                   ))}
