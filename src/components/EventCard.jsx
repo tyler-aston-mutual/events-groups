@@ -26,7 +26,7 @@ export function EventCard({
       border: 'none',
       position: 'relative',
     }}>
-      {/* Type pill — top-right corner (icon only) */}
+      {/* Type indicator — top-right corner (subtle) */}
       <div style={{
         position: 'absolute',
         top: 10,
@@ -34,15 +34,14 @@ export function EventCard({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 28,
-        height: 28,
-        borderRadius: 20,
-        border: `1.5px solid ${type === 'group' ? colors.brandPrimary : colors.brandAccent5}`,
-        backgroundColor: type === 'group' ? `${colors.brandPrimary}14` : `${colors.brandAccent5}14`,
+        width: 24,
+        height: 24,
+        borderRadius: 12,
+        backgroundColor: colors.grey100,
       }}>
         {type === 'group'
-          ? <GroupBadgeIcon color={colors.brandPrimary} size={14} />
-          : <CalendarIcon color={colors.brandAccent5} size={14} />
+          ? <GroupBadgeIcon color={colors.grey400} size={12} />
+          : <CalendarIcon color={colors.grey400} size={12} />
         }
       </div>
 
