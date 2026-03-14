@@ -115,163 +115,7 @@ export default function CreateScreen({ type }) {
           colors={colors}
         />
 
-        {/* 2. Photo Upload */}
-        <SectionLabel colors={colors} text="Photo" optional />
-        <input
-          type="file"
-          accept="image/*"
-          id="photo-upload"
-          style={{ display: 'none' }}
-          onChange={(e) => {
-            const file = e.target.files?.[0]
-            if (file) {
-              const reader = new FileReader()
-              reader.onload = (ev) => setPhotoPreview(ev.target.result)
-              reader.readAsDataURL(file)
-            }
-          }}
-        />
-        {photoPreview ? (
-          <div>
-            {/* Card preview mockup */}
-            <div style={{
-              backgroundColor: colors.grey0,
-              borderRadius: 16,
-              overflow: 'hidden',
-              boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
-              border: 'none',
-            }}>
-              <div style={{ display: 'flex', padding: 12, gap: 12, alignItems: 'center' }}>
-                <div style={{
-                  width: 80,
-                  height: 80,
-                  borderRadius: 12,
-                  overflow: 'hidden',
-                  flexShrink: 0,
-                  backgroundColor: colors.grey100,
-                }}>
-                  <img
-                    src={photoPreview}
-                    alt="Preview"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      display: 'block',
-                    }}
-                  />
-                </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{
-                    fontSize: 17,
-                    fontWeight: 700,
-                    color: colors.grey1000,
-                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                    lineHeight: '22px',
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                  }}>
-                    {name.trim() || (isEvent ? 'Event Name' : 'Group Name')}
-                  </div>
-                  {isEvent && (
-                    <div style={{
-                      fontSize: 13,
-                      fontWeight: 400,
-                      color: colors.grey400,
-                      fontFamily: "'Goldman Sans', sans-serif",
-                      marginTop: 4,
-                    }}>
-                      {eventDate || 'March 25, 2026'} {eventTime ? `- ${eventTime}` : '- 19:00'}
-                    </div>
-                  )}
-                  <div style={{
-                    fontSize: 13,
-                    fontWeight: 400,
-                    color: colors.grey400,
-                    fontFamily: "'Goldman Sans', sans-serif",
-                    marginTop: 2,
-                  }}>
-                    {locationType === 'ask' ? 'Ask the Creator' : locationType === 'anywhere' ? 'Global' : locationDetail || 'Location'}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Action buttons */}
-            <div style={{
-              display: 'flex',
-              gap: 8,
-              marginTop: 8,
-            }}>
-              <button
-                onClick={() => document.getElementById('photo-upload').click()}
-                style={{
-                  flex: 1,
-                  padding: '10px 0',
-                  borderRadius: 10,
-                  border: `1px solid ${colors.grey200}`,
-                  backgroundColor: '#fff',
-                  cursor: 'pointer',
-                  fontSize: 14,
-                  fontWeight: 500,
-                  color: colors.grey1000,
-                  fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
-                }}
-              >
-                Change Photo
-              </button>
-              <button
-                onClick={() => {
-                  setPhotoPreview(null)
-                  document.getElementById('photo-upload').value = ''
-                }}
-                style={{
-                  flex: 1,
-                  padding: '10px 0',
-                  borderRadius: 10,
-                  border: `1px solid ${colors.grey200}`,
-                  backgroundColor: '#fff',
-                  cursor: 'pointer',
-                  fontSize: 14,
-                  fontWeight: 500,
-                  color: colors.grey400,
-                  fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
-                }}
-              >
-                Remove
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div
-            onClick={() => document.getElementById('photo-upload').click()}
-            style={{
-              height: 160,
-              borderRadius: 14,
-              border: `2px dashed ${colors.grey200}`,
-              backgroundColor: colors.grey50,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-              cursor: 'pointer',
-            }}
-          >
-            <CameraIcon color={colors.grey400} />
-            <div style={{
-              fontSize: 14,
-              fontWeight: 500,
-              color: colors.grey400,
-              fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
-            }}>
-              Add Photo
-            </div>
-          </div>
-        )}
-
-        {/* 3. Date & Time (events only) */}
+        {/* 2. Date & Time (events only) */}
         {isEvent && (
           <>
             <SectionLabel colors={colors} text="Date & Time" />
@@ -486,7 +330,163 @@ export default function CreateScreen({ type }) {
           </div>
         )}
 
-        {/* 5. Description */}
+        {/* 5. Photo Upload */}
+        <SectionLabel colors={colors} text="Photo" optional />
+        <input
+          type="file"
+          accept="image/*"
+          id="photo-upload"
+          style={{ display: 'none' }}
+          onChange={(e) => {
+            const file = e.target.files?.[0]
+            if (file) {
+              const reader = new FileReader()
+              reader.onload = (ev) => setPhotoPreview(ev.target.result)
+              reader.readAsDataURL(file)
+            }
+          }}
+        />
+        {photoPreview ? (
+          <div>
+            {/* Card preview mockup */}
+            <div style={{
+              backgroundColor: colors.grey0,
+              borderRadius: 16,
+              overflow: 'hidden',
+              boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+              border: 'none',
+            }}>
+              <div style={{ display: 'flex', padding: 12, gap: 12, alignItems: 'center' }}>
+                <div style={{
+                  width: 80,
+                  height: 80,
+                  borderRadius: 12,
+                  overflow: 'hidden',
+                  flexShrink: 0,
+                  backgroundColor: colors.grey100,
+                }}>
+                  <img
+                    src={photoPreview}
+                    alt="Preview"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                    }}
+                  />
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{
+                    fontSize: 17,
+                    fontWeight: 700,
+                    color: colors.grey1000,
+                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                    lineHeight: '22px',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}>
+                    {name.trim() || (isEvent ? 'Event Name' : 'Group Name')}
+                  </div>
+                  {isEvent && (
+                    <div style={{
+                      fontSize: 13,
+                      fontWeight: 400,
+                      color: colors.grey400,
+                      fontFamily: "'Goldman Sans', sans-serif",
+                      marginTop: 4,
+                    }}>
+                      {eventDate || 'March 25, 2026'} {eventTime ? `- ${eventTime}` : '- 19:00'}
+                    </div>
+                  )}
+                  <div style={{
+                    fontSize: 13,
+                    fontWeight: 400,
+                    color: colors.grey400,
+                    fontFamily: "'Goldman Sans', sans-serif",
+                    marginTop: 2,
+                  }}>
+                    {locationType === 'ask' ? 'Ask the Creator' : locationType === 'anywhere' ? 'Global' : locationDetail || 'Location'}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div style={{
+              display: 'flex',
+              gap: 8,
+              marginTop: 8,
+            }}>
+              <button
+                onClick={() => document.getElementById('photo-upload').click()}
+                style={{
+                  flex: 1,
+                  padding: '10px 0',
+                  borderRadius: 10,
+                  border: `1px solid ${colors.grey200}`,
+                  backgroundColor: '#fff',
+                  cursor: 'pointer',
+                  fontSize: 14,
+                  fontWeight: 500,
+                  color: colors.grey1000,
+                  fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+                }}
+              >
+                Change Photo
+              </button>
+              <button
+                onClick={() => {
+                  setPhotoPreview(null)
+                  document.getElementById('photo-upload').value = ''
+                }}
+                style={{
+                  flex: 1,
+                  padding: '10px 0',
+                  borderRadius: 10,
+                  border: `1px solid ${colors.grey200}`,
+                  backgroundColor: '#fff',
+                  cursor: 'pointer',
+                  fontSize: 14,
+                  fontWeight: 500,
+                  color: colors.grey400,
+                  fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+                }}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div
+            onClick={() => document.getElementById('photo-upload').click()}
+            style={{
+              height: 160,
+              borderRadius: 14,
+              border: `2px dashed ${colors.grey200}`,
+              backgroundColor: colors.grey50,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              cursor: 'pointer',
+            }}
+          >
+            <CameraIcon color={colors.grey400} />
+            <div style={{
+              fontSize: 14,
+              fontWeight: 500,
+              color: colors.grey400,
+              fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+            }}>
+              Add Photo
+            </div>
+          </div>
+        )}
+
+        {/* 6. Description */}
         <SectionLabel colors={colors} text="Description" />
         <FormTextarea
           placeholder="What should people know about this?"
