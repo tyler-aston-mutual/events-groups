@@ -37,6 +37,18 @@ export default function CreateScreen({ type }) {
   // Photo upload
   const [photoPreview, setPhotoPreview] = useState(null)
 
+  // Details section (events only)
+  const [detailsOpen, setDetailsOpen] = useState(false)
+  const [detailSetting, setDetailSetting] = useState('') // '' | 'indoor' | 'outdoor' | 'both'
+  const [detailCost, setDetailCost] = useState('')
+  const [detailCostFree, setDetailCostFree] = useState(false)
+  const [detailAttire, setDetailAttire] = useState('')
+  const [detailBring, setDetailBring] = useState('')
+  const [detailSchedule, setDetailSchedule] = useState('')
+  const [detailArrival, setDetailArrival] = useState('')
+  const [detailParking, setDetailParking] = useState('')
+  const [detailRsvp, setDetailRsvp] = useState('')
+
   // Confirmation modal
   const [confirmOpen, setConfirmOpen] = useState(false)
 
@@ -495,6 +507,219 @@ export default function CreateScreen({ type }) {
           colors={colors}
         />
 
+        {/* Add Details — collapsible, events only */}
+        {isEvent && (
+          <div style={{ marginTop: 20 }}>
+            <button
+              onClick={() => setDetailsOpen(!detailsOpen)}
+              style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '14px 16px',
+                borderRadius: 14,
+                backgroundColor: colors.grey50,
+                border: 'none',
+                cursor: 'pointer',
+                textAlign: 'left',
+              }}
+            >
+              <span style={{
+                fontSize: 18,
+                fontWeight: 600,
+                color: colors.brandPrimary,
+                lineHeight: 1,
+              }}>
+                {detailsOpen ? '−' : '+'}
+              </span>
+              <div style={{ flex: 1 }}>
+                <div style={{
+                  fontSize: 15,
+                  fontWeight: 700,
+                  color: colors.grey1000,
+                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                }}>
+                  Add Details
+                  <span style={{
+                    fontWeight: 400,
+                    color: colors.grey400,
+                    fontFamily: "'Goldman Sans', sans-serif",
+                    fontSize: 13,
+                  }}>
+                    {' '}(optional)
+                  </span>
+                </div>
+                <div style={{
+                  fontSize: 13,
+                  color: colors.grey400,
+                  fontFamily: "'Goldman Sans', sans-serif",
+                  marginTop: 2,
+                }}>
+                  Cost, attire, parking, and more
+                </div>
+              </div>
+              <svg
+                width="16" height="16" viewBox="0 0 24 24" fill="none"
+                style={{
+                  flexShrink: 0,
+                  transform: detailsOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.2s ease',
+                }}
+              >
+                <polyline points="6 9 12 15 18 9" stroke={colors.grey400} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+
+            {detailsOpen && (
+              <div style={{
+                marginTop: 12,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 16,
+              }}>
+                {/* Setting — pill selector */}
+                <DetailField emoji="🏠" label="Setting" colors={colors}>
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                    {[
+                      { key: 'indoor', label: 'Indoor' },
+                      { key: 'outdoor', label: 'Outdoor' },
+                      { key: 'both', label: 'Both' },
+                    ].map(opt => (
+                      <div
+                        key={opt.key}
+                        onClick={() => setDetailSetting(detailSetting === opt.key ? '' : opt.key)}
+                        style={{
+                          padding: '6px 14px',
+                          borderRadius: 8,
+                          backgroundColor: detailSetting === opt.key ? colors.grey1000 : colors.grey50,
+                          color: detailSetting === opt.key ? colors.grey0 : colors.grey600,
+                          fontSize: 13,
+                          fontWeight: 600,
+                          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                          cursor: 'pointer',
+                          border: detailSetting === opt.key ? 'none' : `1px solid ${colors.grey200}`,
+                        }}
+                      >
+                        {opt.label}
+                      </div>
+                    ))}
+                  </div>
+                </DetailField>
+
+                {/* Cost — Free chip + text input */}
+                <DetailField emoji="💲" label="Cost" colors={colors}>
+                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                    <div
+                      onClick={() => {
+                        setDetailCostFree(!detailCostFree)
+                        if (!detailCostFree) setDetailCost('')
+                      }}
+                      style={{
+                        padding: '6px 14px',
+                        borderRadius: 8,
+                        backgroundColor: detailCostFree ? colors.grey1000 : colors.grey50,
+                        color: detailCostFree ? colors.grey0 : colors.grey600,
+                        fontSize: 13,
+                        fontWeight: 600,
+                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                        cursor: 'pointer',
+                        border: detailCostFree ? 'none' : `1px solid ${colors.grey200}`,
+                        flexShrink: 0,
+                      }}
+                    >
+                      Free
+                    </div>
+                    {!detailCostFree && (
+                      <input
+                        type="text"
+                        placeholder="e.g. $10 per person"
+                        value={detailCost}
+                        onChange={e => setDetailCost(e.target.value)}
+                        style={{
+                          flex: 1,
+                          height: 36,
+                          borderRadius: 8,
+                          border: `1.5px solid ${colors.grey200}`,
+                          backgroundColor: colors.grey0,
+                          padding: '0 12px',
+                          fontSize: 14,
+                          fontWeight: 400,
+                          color: colors.grey1000,
+                          fontFamily: "'Goldman Sans', sans-serif",
+                          outline: 'none',
+                          boxSizing: 'border-box',
+                          minWidth: 0,
+                        }}
+                      />
+                    )}
+                  </div>
+                </DetailField>
+
+                {/* Attire */}
+                <DetailField emoji="👕" label="Attire" colors={colors}>
+                  <DetailInput
+                    placeholder="e.g. Casual, athletic wear, Sunday best"
+                    value={detailAttire}
+                    onChange={setDetailAttire}
+                    colors={colors}
+                  />
+                </DetailField>
+
+                {/* What to Bring */}
+                <DetailField emoji="🎒" label="What to Bring" colors={colors}>
+                  <DetailInput
+                    placeholder="e.g. Water, snacks, comfortable shoes"
+                    value={detailBring}
+                    onChange={setDetailBring}
+                    colors={colors}
+                  />
+                </DetailField>
+
+                {/* Schedule */}
+                <DetailField emoji="📅" label="Schedule" colors={colors}>
+                  <DetailInput
+                    placeholder="e.g. 6pm appetizers, 7pm dinner, 8pm games"
+                    value={detailSchedule}
+                    onChange={setDetailSchedule}
+                    colors={colors}
+                  />
+                </DetailField>
+
+                {/* Arrival Instructions */}
+                <DetailField emoji="📍" label="Arrival Instructions" colors={colors}>
+                  <DetailInput
+                    placeholder="e.g. Meet at the north entrance"
+                    value={detailArrival}
+                    onChange={setDetailArrival}
+                    colors={colors}
+                  />
+                </DetailField>
+
+                {/* Parking / Transportation */}
+                <DetailField emoji="🚗" label="Parking / Transportation" colors={colors}>
+                  <DetailInput
+                    placeholder="e.g. Free lot behind the building"
+                    value={detailParking}
+                    onChange={setDetailParking}
+                    colors={colors}
+                  />
+                </DetailField>
+
+                {/* RSVP */}
+                <DetailField emoji="📋" label="RSVP Instructions" colors={colors}>
+                  <DetailInput
+                    placeholder="e.g. Mark interested to reserve a spot"
+                    value={detailRsvp}
+                    onChange={setDetailRsvp}
+                    colors={colors}
+                  />
+                </DetailField>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* 6. Link for More Info */}
         <SectionLabel colors={colors} text="Link for More Info" optional />
         <FormInput
@@ -898,6 +1123,67 @@ function FormTextarea({ placeholder, value, onChange, colors }) {
         resize: 'none',
         boxSizing: 'border-box',
         lineHeight: '22px',
+      }}
+    />
+  )
+}
+
+function DetailField({ emoji, label, colors, children }) {
+  return (
+    <div>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 8,
+        marginBottom: 8,
+      }}>
+        <div style={{
+          width: 24,
+          height: 24,
+          borderRadius: 12,
+          backgroundColor: colors.grey100,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: 12,
+          flexShrink: 0,
+        }}>
+          {emoji}
+        </div>
+        <span style={{
+          fontSize: 14,
+          fontWeight: 600,
+          color: colors.grey1000,
+          fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+        }}>
+          {label}
+        </span>
+      </div>
+      {children}
+    </div>
+  )
+}
+
+function DetailInput({ placeholder, value, onChange, colors }) {
+  return (
+    <input
+      type="text"
+      placeholder={placeholder}
+      value={value}
+      onChange={e => onChange(e.target.value)}
+      style={{
+        width: '100%',
+        height: 40,
+        borderRadius: 10,
+        border: `1.5px solid ${colors.grey200}`,
+        backgroundColor: colors.grey0,
+        padding: '0 12px',
+        fontSize: 14,
+        fontWeight: 400,
+        color: colors.grey1000,
+        fontFamily: "'Goldman Sans', sans-serif",
+        outline: 'none',
+        boxSizing: 'border-box',
       }}
     />
   )
