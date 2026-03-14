@@ -574,8 +574,8 @@ export default function Home() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 4, paddingBottom: 14 }}>
           {[
             { id: 'all', label: 'All', Icon: ExploreIcon, iconColor: colors.grey1000, inactiveIconColor: colors.grey400 },
-            { id: 'events', label: 'Events', Icon: CalendarToggleIcon, iconColor: colors.brandAccent5, inactiveIconColor: `${colors.brandAccent5}40` },
-            { id: 'groups', label: 'Groups', Icon: GroupToggleIcon, iconColor: colors.brandPrimary, inactiveIconColor: `${colors.brandPrimary}40` },
+            { id: 'events', label: 'Events', Icon: CalendarToggleIcon, iconColor: colors.brandAccent5, inactiveIconColor: `${colors.brandAccent5}BF` },
+            { id: 'groups', label: 'Groups', Icon: GroupToggleIcon, iconColor: colors.brandPrimary, inactiveIconColor: `${colors.brandPrimary}BF` },
             { id: 'mine', label: 'Mine', Icon: HeartTabIcon, iconColor: colors.grey1000, inactiveIconColor: colors.grey400 },
           ].map(tab => {
             const active = activeNav === tab.id
