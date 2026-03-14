@@ -34,6 +34,9 @@ export default function CreateScreen({ type }) {
   const [limitEnabled, setLimitEnabled] = useState(false)
   const [participantLimit, setParticipantLimit] = useState('')
 
+  // Photo upload
+  const [photoPreview, setPhotoPreview] = useState(null)
+
   // Confirmation modal
   const [confirmOpen, setConfirmOpen] = useState(false)
 
@@ -114,28 +117,104 @@ export default function CreateScreen({ type }) {
 
         {/* 2. Photo Upload */}
         <SectionLabel colors={colors} text="Photo" optional />
-        <div style={{
-          height: 160,
-          borderRadius: 14,
-          border: `2px dashed ${colors.grey200}`,
-          backgroundColor: colors.grey50,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 8,
-          cursor: 'pointer',
-        }}>
-          <CameraIcon color={colors.grey400} />
-          <div style={{
-            fontSize: 14,
-            fontWeight: 500,
-            color: colors.grey400,
-            fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
-          }}>
-            Add Photo
+        <input
+          type="file"
+          accept="image/*"
+          id="photo-upload"
+          style={{ display: 'none' }}
+          onChange={(e) => {
+            const file = e.target.files?.[0]
+            if (file) {
+              const reader = new FileReader()
+              reader.onload = (ev) => setPhotoPreview(ev.target.result)
+              reader.readAsDataURL(file)
+            }
+          }}
+        />
+        {photoPreview ? (
+          <div style={{ position: 'relative' }}>
+            <img
+              src={photoPreview}
+              alt="Preview"
+              style={{
+                width: '100%',
+                height: 200,
+                objectFit: 'cover',
+                borderRadius: 14,
+                display: 'block',
+              }}
+            />
+            <div style={{
+              display: 'flex',
+              gap: 8,
+              marginTop: 8,
+            }}>
+              <button
+                onClick={() => document.getElementById('photo-upload').click()}
+                style={{
+                  flex: 1,
+                  padding: '10px 0',
+                  borderRadius: 10,
+                  border: `1px solid ${colors.grey200}`,
+                  backgroundColor: '#fff',
+                  cursor: 'pointer',
+                  fontSize: 14,
+                  fontWeight: 500,
+                  color: colors.grey1000,
+                  fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+                }}
+              >
+                Change Photo
+              </button>
+              <button
+                onClick={() => {
+                  setPhotoPreview(null)
+                  document.getElementById('photo-upload').value = ''
+                }}
+                style={{
+                  flex: 1,
+                  padding: '10px 0',
+                  borderRadius: 10,
+                  border: `1px solid ${colors.grey200}`,
+                  backgroundColor: '#fff',
+                  cursor: 'pointer',
+                  fontSize: 14,
+                  fontWeight: 500,
+                  color: colors.grey400,
+                  fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+                }}
+              >
+                Remove
+              </button>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div
+            onClick={() => document.getElementById('photo-upload').click()}
+            style={{
+              height: 160,
+              borderRadius: 14,
+              border: `2px dashed ${colors.grey200}`,
+              backgroundColor: colors.grey50,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              cursor: 'pointer',
+            }}
+          >
+            <CameraIcon color={colors.grey400} />
+            <div style={{
+              fontSize: 14,
+              fontWeight: 500,
+              color: colors.grey400,
+              fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
+            }}>
+              Add Photo
+            </div>
+          </div>
+        )}
 
         {/* 3. Date & Time (events only) */}
         {isEvent && (
