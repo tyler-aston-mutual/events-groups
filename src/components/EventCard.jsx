@@ -12,6 +12,7 @@ export function EventCard({
   featured = false,
   official = false,
   tag,
+  tagVariant = 'constantPrimary',
   imageBg,
   onGroupClick,
 }) {
@@ -86,7 +87,7 @@ export function EventCard({
           {/* Top row: tag chip */}
           {tag && (
             <div style={{ marginBottom: 6 }}>
-              <Chip text={tag} variant="constantPrimary" size="compact" />
+              <Chip text={tag} variant={tagVariant} size="compact" />
             </div>
           )}
 
