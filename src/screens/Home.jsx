@@ -69,15 +69,6 @@ export const ALL_ITEMS = [
     going: 18,
     featured: true,
     description: 'Join us for a group hike up Y Mountain! We\'ll meet at the trailhead and take the main trail to the Y. All fitness levels welcome — we go at a comfortable pace and take plenty of breaks.',
-    details: [
-      { emoji: '🌳', label: 'Setting', value: 'Outdoor' },
-      { emoji: '⛰️', label: 'Difficulty', value: 'Moderate — about 2.5 miles round trip with 1,100 ft elevation gain' },
-      { emoji: '🎒', label: 'What to Bring', value: 'Water, snacks, sunscreen, and comfortable hiking shoes' },
-      { emoji: '💲', label: 'Cost', value: 'Free' },
-      { emoji: '👥', label: 'Capacity', value: '25 people max' },
-      { emoji: '📍', label: 'Arrival Instructions', value: 'Meet at the main trailhead parking lot — look for the group with the orange flag' },
-      { emoji: '🚗', label: 'Parking', value: 'Free lot at trailhead — fills up fast, arrive 15 min early' },
-    ],
     createdDate: 'February 27, 2026  8:30AM',
     creator: { name: 'Tyler', age: 30, image: tylerImg },
   },
@@ -103,16 +94,6 @@ export const ALL_ITEMS = [
     group: { name: 'Provo Pickleball', membersOnly: false },
     featured: true,
     description: 'Casual doubles tournament for singles! We\'ll mix up partners each round so you get to meet everyone. Beginners and experienced players alike — come have fun and maybe find a doubles partner for life.',
-    details: [
-      { emoji: '🌳', label: 'Setting', value: 'Outdoor' },
-      { emoji: '🎒', label: 'What to Bring', value: 'Paddle (loaners available), water bottle, athletic shoes' },
-      { emoji: '🎯', label: 'Skill Level', value: 'All levels welcome — we\'ll balance the teams' },
-      { emoji: '💲', label: 'Cost', value: '$5 per person (covers court rental)' },
-      { emoji: '👕', label: 'Attire', value: 'Athletic wear' },
-      { emoji: '👥', label: 'Capacity', value: '24 players (12 teams of 2)' },
-      { emoji: '📋', label: 'RSVP', value: 'Mark interested to reserve your spot — we\'ll confirm 48 hours before' },
-      { emoji: '🚗', label: 'Parking', value: 'Free parking at the courts' },
-    ],
     createdDate: 'March 1, 2026  12:00PM',
     creator: { name: 'Tanner', age: 24, image: tannerImg },
   },
@@ -137,14 +118,6 @@ export const ALL_ITEMS = [
     going: 32,
     group: { name: 'SLC Singles', membersOnly: false },
     description: 'Evening stroll around Temple Square to enjoy the lights and good company. We\'ll grab hot chocolate afterward at a nearby cafe. Great way to meet people in a relaxed setting.',
-    details: [
-      { emoji: '🌳', label: 'Setting', value: 'Outdoor' },
-      { emoji: '👕', label: 'Attire', value: 'Dress warm! It\'ll be chilly' },
-      { emoji: '💲', label: 'Cost', value: 'Free (bring money for hot chocolate)' },
-      { emoji: '⏱️', label: 'Duration', value: 'About 2 hours' },
-      { emoji: '📍', label: 'Arrival Instructions', value: 'Meet at the north gate entrance by the Christus statue' },
-      { emoji: '🚗', label: 'Transportation', value: 'TRAX stop nearby or street parking along North Temple' },
-    ],
     createdDate: 'January 30, 2026  3:00PM',
     creator: { name: 'Emily', age: 25, image: emilyImg },
   },
@@ -165,15 +138,6 @@ export const ALL_ITEMS = [
     location: 'Ask the Creator',
     going: 8,
     description: 'Looking for a fun Friday night out? Come join us for a laid-back evening of good music, great people, and the perfect chance to meet someone new. Location shared after approval.',
-    details: [
-      { emoji: '🏠', label: 'Setting', value: 'Indoor — location shared after approval' },
-      { emoji: '✨', label: 'Vibe', value: 'Casual and fun — think good music and easy conversation' },
-      { emoji: '👕', label: 'Attire', value: 'Smart casual' },
-      { emoji: '💲', label: 'Cost', value: 'Cover your own food/drinks' },
-      { emoji: '👥', label: 'Capacity', value: '12 people — keeping it intimate' },
-      { emoji: '📋', label: 'RSVP', value: 'Mark interested and I\'ll reach out to confirm your spot' },
-      { emoji: '🚗', label: 'Transportation', value: 'Arrange your own — address shared once approved' },
-    ],
     createdDate: 'February 12, 2026  5:00PM',
     creator: { name: 'Bri', age: 23, image: briImg },
   },
@@ -195,14 +159,6 @@ export const ALL_ITEMS = [
     location: 'Ask the Creator',
     going: 10,
     description: "Team trivia night! We'll form teams of 4-5 and compete for bragging rights. Topics range from pop culture to church history. No trivia experience required — just bring your brain. Location shared after approval.",
-    details: [
-      { emoji: '🏠', label: 'Setting', value: 'Indoor — location shared after approval' },
-      { emoji: '👥', label: 'Team Size', value: '4–5 per team (we\'ll help you find one)' },
-      { emoji: '🧠', label: 'Topics', value: 'Pop culture, sports, history, church trivia, and more' },
-      { emoji: '💲', label: 'Cost', value: 'Free to play — food/drinks on your own' },
-      { emoji: '📋', label: 'RSVP', value: 'Mark interested so we can plan team assignments' },
-      { emoji: '🚗', label: 'Transportation', value: 'Arrange your own — address shared once approved' },
-    ],
     createdDate: 'February 8, 2026  11:00AM',
     creator: { name: 'Ethan', age: 29, image: ethanImg },
   },
@@ -237,16 +193,6 @@ export const ALL_ITEMS = [
     featured: true,
     official: true,
     description: 'A full-day YSA waterpark event at Splash Summit! Enjoy water slides, wave pools, and lazy rivers with other single adults from across the valley. Group rates and lunch included.',
-    details: [
-      { emoji: '🌳', label: 'Setting', value: 'Outdoor waterpark' },
-      { emoji: '🎒', label: 'What to Bring', value: 'Swimsuit, towel, sunscreen, change of clothes' },
-      { emoji: '💲', label: 'Cost', value: '$15 (group rate — normally $30). Lunch included' },
-      { emoji: '📅', label: 'Schedule', value: '11 AM gates open, 12:30 PM group lunch, 1–5 PM free swim' },
-      { emoji: '👥', label: 'Capacity', value: '100 spots — first come, first served' },
-      { emoji: '📍', label: 'Arrival Instructions', value: 'Enter through the main gate and check in at the YSA table on the left' },
-      { emoji: '🚗', label: 'Parking', value: 'Free parking in Lot B — follow signs for group events' },
-      { emoji: '📋', label: 'RSVP', value: 'Mark interested to reserve your spot. Payment collected at the gate.' },
-    ],
     createdDate: 'January 22, 2026  9:00AM',
     creator: { name: 'Tanner', age: 24, image: tannerImg },
   },
@@ -260,16 +206,6 @@ export const ALL_ITEMS = [
     going: 340,
     featured: true,
     description: 'Together in Christ — the 2026 Utah Area YSA Conference. A day of speakers, workshops, music, and connection. Meet young adults from stakes across Utah in an uplifting, faith-centered setting.',
-    details: [
-      { emoji: '🏠', label: 'Setting', value: 'Indoor convention center' },
-      { emoji: '📅', label: 'Schedule', value: '9 AM check-in, 10 AM keynote, workshops till 4 PM, dance at 7 PM' },
-      { emoji: '💲', label: 'Cost', value: 'Free' },
-      { emoji: '👕', label: 'Attire', value: 'Sunday best for daytime, semi-formal for the evening dance' },
-      { emoji: '👥', label: 'Capacity', value: '500 — open to all YSA in the Utah area' },
-      { emoji: '📍', label: 'Arrival Instructions', value: 'Enter through the east doors. Check-in tables are in the main lobby.' },
-      { emoji: '🚗', label: 'Parking', value: 'Free parking in the convention center garage' },
-      { emoji: '📋', label: 'RSVP', value: 'Mark interested to help us plan — walk-ins welcome too' },
-    ],
     createdDate: 'February 15, 2026  2:00PM',
     creator: { name: 'Emily', age: 25, image: emilyImg },
   },
@@ -297,14 +233,6 @@ export const ALL_ITEMS = [
     men: 29,
     women: 19,
     description: 'An evening of board games, card games, and laughter designed for singles who enjoy friendly competition and easy conversation. Games help break the ice while creating a relaxed environment to meet new neighbors.',
-    details: [
-      { emoji: '🏠', label: 'Setting', value: 'Indoor' },
-      { emoji: '🎮', label: 'Games', value: 'Codenames, Catan, Wavelength, and more — bring your favorites too!' },
-      { emoji: '🎒', label: 'What to Bring', value: 'A snack to share (optional)' },
-      { emoji: '💲', label: 'Cost', value: 'Free' },
-      { emoji: '👥', label: 'Capacity', value: '30 people' },
-      { emoji: '📋', label: 'RSVP', value: 'Just show up! But marking interested helps us plan seating' },
-    ],
     createdDate: 'March 10, 2026  10:15AM',
     creator: { name: 'Tanner', age: 24, image: tannerImg },
   },
@@ -317,13 +245,6 @@ export const ALL_ITEMS = [
     men: 13,
     women: 15,
     description: 'A sweet social gathering where singles bring a favorite dessert or drink to share. Guests sample treats, swap recipes, and enjoy a casual evening meeting others in the neighborhood.',
-    details: [
-      { emoji: '🌳', label: 'Setting', value: 'Indoor / outdoor — backyard weather permitting' },
-      { emoji: '🎒', label: 'What to Bring', value: 'A dessert or drink to share with the group' },
-      { emoji: '💲', label: 'Cost', value: 'Free — just bring something to share' },
-      { emoji: '👕', label: 'Attire', value: 'Casual' },
-      { emoji: '👥', label: 'Capacity', value: '20 people' },
-    ],
     createdDate: 'March 10, 2026  10:30AM',
     creator: { name: 'McKenna', age: 26, image: mckennaImg },
   },
@@ -373,13 +294,6 @@ export const ALL_ITEMS = [
     men: 16,
     women: 6,
     description: 'Singles from the neighborhood form a team to compete at a local trivia night. It\'s a lively evening of questions, teamwork, and laughs while building friendships over shared knowledge.',
-    details: [
-      { emoji: '🏠', label: 'Setting', value: 'Indoor — pub/restaurant' },
-      { emoji: '👥', label: 'Team Size', value: '4–6 per team' },
-      { emoji: '💲', label: 'Cost', value: 'Free to play — food/drinks on your own' },
-      { emoji: '📍', label: 'Arrival Instructions', value: 'Look for the table with the "Neighborhood Trivia" sign' },
-      { emoji: '🚗', label: 'Parking', value: 'Free lot behind the restaurant' },
-    ],
     createdDate: 'March 10, 2026  11:30AM',
     creator: { name: 'Ethan', age: 29, image: ethanImg },
   },
@@ -393,16 +307,6 @@ export const ALL_ITEMS = [
     men: 9,
     women: 17,
     description: 'A hands-on cooking event where singles prepare a meal together and enjoy it afterward. Participants collaborate on recipes, learn new kitchen skills, and share a relaxed dinner experience.',
-    details: [
-      { emoji: '🏠', label: 'Setting', value: 'Indoor — hosted kitchen' },
-      { emoji: '🍝', label: 'Menu', value: 'Homemade pasta from scratch — we\'ll make the dough, sauce, and eat together' },
-      { emoji: '🎯', label: 'Skill Level', value: 'No experience needed — we\'ll teach you!' },
-      { emoji: '💲', label: 'Cost', value: '$8 per person (covers ingredients)' },
-      { emoji: '🎒', label: 'What to Bring', value: 'An apron if you have one' },
-      { emoji: '👥', label: 'Capacity', value: '16 people — space is limited' },
-      { emoji: '📋', label: 'RSVP', value: 'Mark interested to reserve. We\'ll confirm 3 days before.' },
-      { emoji: '🚗', label: 'Parking', value: 'Street parking — arrive a few minutes early' },
-    ],
     createdDate: 'March 10, 2026  11:45AM',
     creator: { name: 'Bri', age: 23, image: briImg },
   },
@@ -416,13 +320,6 @@ export const ALL_ITEMS = [
     men: 24,
     women: 7,
     description: 'A low-key morning meetup where singles gather for breakfast and easy conversation. It\'s an approachable way to meet neighbors, exchange stories, and start the day with meaningful social connection.',
-    details: [
-      { emoji: '🏠', label: 'Setting', value: 'Indoor — coffee shop' },
-      { emoji: '💲', label: 'Cost', value: 'Cover your own breakfast' },
-      { emoji: '👕', label: 'Attire', value: 'Come as you are' },
-      { emoji: '📍', label: 'Arrival Instructions', value: 'Look for the table with the reserved sign — usually in the back corner' },
-      { emoji: '🚗', label: 'Parking', value: 'Free street parking and small lot on the side' },
-    ],
     createdDate: 'March 10, 2026  12:00PM',
     creator: { name: 'Tyler', age: 30, image: tylerImg },
   },
@@ -856,33 +753,38 @@ export default function Home() {
               </div>
               {/* Pending event — submitted but awaiting review */}
               <div style={{ position: 'relative' }}>
-                <div style={{ opacity: 0.55, pointerEvents: 'none', paddingBottom: 28 }}>
+                <div style={{ pointerEvents: 'none', paddingBottom: 24 }}>
                   <EventCard
                     title="Provo Temple Walk & Talk"
+                    image={BASE + 'provo-utah-rock-canyon-temple-45659.png'}
                     date="April 5, 2026 - 6:30 PM"
                     location="Provo City Center Temple"
                     going={0}
-                    tag="Pending Approval"
-                    tagVariant="accent1"
                   />
                 </div>
-                {/* Subtle overlay bar */}
+                {/* Full-card overlay with status text at bottom */}
                 <div style={{
                   position: 'absolute',
+                  top: 0,
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  padding: '8px 14px',
-                  backgroundColor: 'rgba(0,0,0,0.04)',
-                  borderBottomLeftRadius: 16,
-                  borderBottomRightRadius: 16,
-                  textAlign: 'center',
-                  fontSize: 12,
-                  fontWeight: 600,
-                  color: colors.grey400,
-                  fontFamily: "'Goldman Sans', sans-serif",
+                  borderRadius: 16,
+                  backgroundColor: 'rgba(255,255,255,0.55)',
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  justifyContent: 'center',
+                  paddingBottom: 10,
+                  pointerEvents: 'none',
                 }}>
-                  Being reviewed by the Mutual team
+                  <span style={{
+                    fontSize: 12,
+                    fontWeight: 600,
+                    color: colors.grey400,
+                    fontFamily: "'Goldman Sans', sans-serif",
+                  }}>
+                    Being reviewed by the Mutual team
+                  </span>
                 </div>
               </div>
               {/* Create Your Own banner */}
