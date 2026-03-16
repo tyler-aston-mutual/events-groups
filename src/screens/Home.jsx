@@ -753,33 +753,38 @@ export default function Home() {
               </div>
               {/* Pending event — submitted but awaiting review */}
               <div style={{ position: 'relative' }}>
-                <div style={{ opacity: 0.55, pointerEvents: 'none', paddingBottom: 28 }}>
+                <div style={{ pointerEvents: 'none', paddingBottom: 24 }}>
                   <EventCard
                     title="Provo Temple Walk & Talk"
+                    image={BASE + 'provo-utah-rock-canyon-temple-45659.png'}
                     date="April 5, 2026 - 6:30 PM"
                     location="Provo City Center Temple"
                     going={0}
-                    tag="Pending Approval"
-                    tagVariant="accent1"
                   />
                 </div>
-                {/* Subtle overlay bar */}
+                {/* Full-card overlay with status text at bottom */}
                 <div style={{
                   position: 'absolute',
+                  top: 0,
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  padding: '8px 14px',
-                  backgroundColor: 'rgba(0,0,0,0.04)',
-                  borderBottomLeftRadius: 16,
-                  borderBottomRightRadius: 16,
-                  textAlign: 'center',
-                  fontSize: 12,
-                  fontWeight: 600,
-                  color: colors.grey400,
-                  fontFamily: "'Goldman Sans', sans-serif",
+                  borderRadius: 16,
+                  backgroundColor: 'rgba(255,255,255,0.55)',
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  justifyContent: 'center',
+                  paddingBottom: 10,
+                  pointerEvents: 'none',
                 }}>
-                  Being reviewed by the Mutual team
+                  <span style={{
+                    fontSize: 12,
+                    fontWeight: 600,
+                    color: colors.grey400,
+                    fontFamily: "'Goldman Sans', sans-serif",
+                  }}>
+                    Being reviewed by the Mutual team
+                  </span>
                 </div>
               </div>
               {/* Create Your Own banner */}
