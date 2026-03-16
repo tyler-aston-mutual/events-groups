@@ -15,7 +15,6 @@ export default function CreateScreen({ type }) {
   const [locationDetail, setLocationDetail] = useState('')
   const [description, setDescription] = useState('')
   const [link, setLink] = useState('')
-  const [displayCreator, setDisplayCreator] = useState(true)
   const [ageRangeEnabled, setAgeRangeEnabled] = useState(true)
   const [minAge, setMinAge] = useState(18)
   const [maxAge, setMaxAge] = useState(85)
@@ -942,15 +941,6 @@ export default function CreateScreen({ type }) {
             </div>
           )}
         </div>
-
-        {/* 10. Display Creator */}
-        <ToggleRow
-          label="Display Creator"
-          description="Show who created this on the detail page"
-          value={displayCreator}
-          onChange={setDisplayCreator}
-          colors={colors}
-        />
 
         {/* 9. Expiration Date */}
         <div style={{ padding: '14px 0', borderBottom: `1px solid ${colors.grey100}` }}>
