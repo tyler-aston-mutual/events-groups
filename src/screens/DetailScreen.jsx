@@ -743,7 +743,7 @@ export default function DetailScreen() {
                     position: 'absolute',
                     inset: 0,
                     borderRadius: 14,
-                    backgroundColor: 'rgba(255, 255, 255, 0.85)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
                     pointerEvents: 'none',
                   }} />
                   {/* Sticky centered label that stays in view while scrolling */}
