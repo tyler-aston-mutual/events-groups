@@ -854,7 +854,38 @@ export default function Home() {
               }}>
                 Created by you
               </div>
-              {/* Placeholder — Create Your Own banner */}
+              {/* Pending event — submitted but awaiting review */}
+              <div style={{ position: 'relative' }}>
+                <div style={{ opacity: 0.55, pointerEvents: 'none', paddingBottom: 28 }}>
+                  <EventCard
+                    title="Provo Temple Walk & Talk"
+                    date="April 5, 2026 - 6:30 PM"
+                    location="Provo City Center Temple"
+                    going={0}
+                    tag="Pending Approval"
+                    tagVariant="accent1"
+                  />
+                </div>
+                {/* Subtle overlay bar */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  padding: '8px 14px',
+                  backgroundColor: 'rgba(0,0,0,0.04)',
+                  borderBottomLeftRadius: 16,
+                  borderBottomRightRadius: 16,
+                  textAlign: 'center',
+                  fontSize: 12,
+                  fontWeight: 600,
+                  color: colors.grey400,
+                  fontFamily: "'Goldman Sans', sans-serif",
+                }}>
+                  Being reviewed by the Mutual team
+                </div>
+              </div>
+              {/* Create Your Own banner */}
               <CreateBanner
                 colors={colors}
                 activeNav={activeNav}
