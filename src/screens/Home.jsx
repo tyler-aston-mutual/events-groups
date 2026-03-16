@@ -774,7 +774,7 @@ export default function Home() {
                   display: 'flex',
                   alignItems: 'flex-end',
                   justifyContent: 'center',
-                  paddingBottom: 10,
+                  paddingBottom: 12,
                   pointerEvents: 'none',
                 }}>
                   <span style={{
@@ -783,7 +783,7 @@ export default function Home() {
                     color: colors.grey400,
                     fontFamily: "'Goldman Sans', sans-serif",
                   }}>
-                    Being reviewed by the Mutual team
+                    Pending Mutual Review
                   </span>
                 </div>
               </div>
