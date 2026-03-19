@@ -964,7 +964,7 @@ export default function CreateScreen({ type }) {
                 fontFamily: "'Goldman Sans', sans-serif",
                 marginTop: 2,
               }}>
-                When this listing should expire
+                After this date, your listing will no longer be visible in the app
               </div>
             </div>
           </div>
