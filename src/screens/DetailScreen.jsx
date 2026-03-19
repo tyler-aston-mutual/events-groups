@@ -598,63 +598,38 @@ export default function DetailScreen() {
         {/* Participants content */}
         {activeTab === 'Participants' && (
           <div style={{ padding: '20px 20px 0' }}>
-            {/* Search bar */}
+            {/* Compact filter + search row */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 10,
-              height: 40,
-              borderRadius: 12,
-              backgroundColor: colors.grey50,
-              padding: '0 14px',
-              marginBottom: 20,
-            }}>
-              <SearchIcon color={colors.grey400} />
-              <input
-                type="text"
-                placeholder="Search"
-                style={{
-                  flex: 1,
-                  border: 'none',
-                  background: 'none',
-                  outline: 'none',
-                  fontSize: 15,
-                  fontWeight: 400,
-                  color: colors.grey1000,
-                  fontFamily: "'Goldman Sans', sans-serif",
-                }}
-              />
-            </div>
-
-            {/* Gender filter pills */}
-            <div style={{
-              display: 'flex',
-              gap: 8,
+              justifyContent: 'space-between',
               marginBottom: 16,
             }}>
-              {[
-                { key: 'all', label: 'All' },
-                { key: 'sisters', label: 'Sisters' },
-                { key: 'brothers', label: 'Brothers' },
-              ].map(opt => (
-                <div
-                  key={opt.key}
-                  onClick={() => setParticipantFilter(opt.key)}
-                  style={{
-                    padding: '6px 14px',
-                    borderRadius: 8,
-                    backgroundColor: participantFilter === opt.key ? colors.grey1000 : colors.grey50,
-                    color: participantFilter === opt.key ? colors.grey0 : colors.grey600,
-                    fontSize: 13,
-                    fontWeight: 600,
-                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                    cursor: 'pointer',
-                    transition: 'background-color 0.2s ease, color 0.2s ease',
-                  }}
-                >
-                  {opt.label}
-                </div>
-              ))}
+              <div
+                onClick={() => {
+                  const order = ['all', 'sisters', 'brothers']
+                  const next = order[(order.indexOf(participantFilter) + 1) % order.length]
+                  setParticipantFilter(next)
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 4,
+                  cursor: 'pointer',
+                  userSelect: 'none',
+                }}
+              >
+                <span style={{
+                  fontSize: 16,
+                  fontWeight: 600,
+                  color: colors.grey600,
+                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                }}>
+                  Participants{participantFilter !== 'all' ? ` (${participantFilter === 'sisters' ? 'Women' : 'Men'})` : ''}
+                </span>
+                <ChevronDownSmallIcon color={colors.grey600} />
+              </div>
+              <SearchIcon color={colors.grey500} />
             </div>
 
             {/* 2-column photo grid */}
@@ -1644,6 +1619,15 @@ function GroupTypeIcon({ color }) {
       <circle cx="13" cy="6.5" r="2.5" />
       <path d="M1.5 18c0-2.5 2.5-4.5 5.5-4.5 1.5 0 2.8.5 3.7 1.3" />
       <path d="M13 13.5c3 0 5.5 2 5.5 4.5" />
+    </svg>
+  )
+}
+
+function ChevronDownSmallIcon({ color }) {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="6 9 12 15 18 9" />
     </svg>
   )
 }
