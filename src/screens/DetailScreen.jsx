@@ -627,7 +627,9 @@ export default function DetailScreen() {
                 </span>
                 <ChevronDownSmallIcon color={colors.grey600} />
               </div>
-              <SearchIcon color={colors.grey500} />
+              <div style={{ flexShrink: 0, cursor: 'pointer' }}>
+                <ParticipantSearchIcon color={colors.grey600} />
+              </div>
 
               {/* Filter dropdown */}
               {filterDropdownOpen && (
@@ -1659,6 +1661,17 @@ function GroupTypeIcon({ color }) {
       <circle cx="13" cy="6.5" r="2.5" />
       <path d="M1.5 18c0-2.5 2.5-4.5 5.5-4.5 1.5 0 2.8.5 3.7 1.3" />
       <path d="M13 13.5c3 0 5.5 2 5.5 4.5" />
+    </svg>
+  )
+}
+
+function ParticipantSearchIcon({ color }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 18 18" fill="none">
+      <g stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="7.5" cy="7.5" r="5.5" />
+        <line x1="12" y1="12" x2="16" y2="16" />
+      </g>
     </svg>
   )
 }
