@@ -584,7 +584,7 @@ export default function Home() {
           marginBottom: 14,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Heading3>Circles</Heading3>
+            <Heading3>New Feature</Heading3>
             <span style={{
               fontSize: 13,
               fontWeight: 700,
@@ -1295,7 +1295,7 @@ export default function Home() {
             {/* Email Support card */}
             <div
               onClick={() => {
-                window.location.href = 'mailto:support@mutual.app?subject=Circles%20Feedback'
+                window.location.href = 'mailto:support@mutual.app?subject=New%20Feature%20Feedback'
               }}
               style={{
                 display: 'flex',
