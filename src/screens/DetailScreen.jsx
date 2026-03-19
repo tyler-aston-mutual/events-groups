@@ -623,7 +623,7 @@ export default function DetailScreen() {
                   color: colors.grey600,
                   fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                 }}>
-                  Participants{participantFilter !== 'all' ? ` (${participantFilter === 'sisters' ? 'Women' : 'Men'})` : ''}
+                  {participantFilter === 'all' ? 'All' : participantFilter === 'sisters' ? 'Women' : 'Men'}
                 </span>
                 <ChevronDownSmallIcon color={colors.grey600} />
               </div>
@@ -1102,79 +1102,37 @@ export default function DetailScreen() {
         backgroundColor: colors.grey0,
         borderTop: `1px solid ${colors.grey100}`,
       }}>
-        {joined ? (
-          <>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-              padding: '4px 0 12px',
-            }}>
-              <HeartFilledIcon color={colors.brandAccent5} />
-              <span style={{
-                fontSize: 15,
-                fontWeight: 500,
-                color: colors.grey500,
-                fontFamily: "'Goldman Sans', sans-serif",
-              }}>
-                {isGroup ? 'Joined' : 'Interested'} {getJoinDate(item.id) || ''}
-              </span>
-            </div>
-            <button
-              onClick={() => setLeaveDialogOpen(true)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '100%',
-                padding: '14px 0',
-                borderRadius: 100,
-                border: `2px solid ${colors.grey200}`,
-                backgroundColor: colors.grey0,
-                cursor: 'pointer',
-                fontFamily: "'Goldman Sans', sans-serif",
-                fontSize: 16,
-                fontWeight: 600,
-                color: colors.grey500,
-              }}
-            >
-              {isGroup ? 'Leave Group' : 'Not Interested'}
-            </button>
-          </>
-        ) : (
-          <button
-            onClick={() => {
-              addJoinedId(item.id)
-              if (!isGroup) {
-                setSafetyTipsOpen(true)
-              } else {
-                setTimeout(() => {
-                  navigate('/', { state: { switchToYours: true } })
-                }, 300)
-              }
-            }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-              width: '100%',
-              padding: '14px 0',
-              borderRadius: 100,
-              border: `2px solid ${colors.brandAccent5}`,
-              backgroundColor: colors.brandAccent5 + '15',
-              cursor: 'pointer',
-              fontFamily: "'Goldman Sans', sans-serif",
-              fontSize: 16,
-              fontWeight: 600,
-              color: colors.brandAccent5,
-            }}
-          >
-            <StarOutlineIcon color={colors.brandAccent5} />
-            {isGroup ? 'Join Group' : 'Interested'}
-          </button>
-        )}
+        <button
+          onClick={() => {
+            addJoinedId(item.id)
+            if (!isGroup) {
+              setSafetyTipsOpen(true)
+            } else {
+              setTimeout(() => {
+                navigate('/', { state: { switchToYours: true } })
+              }, 300)
+            }
+          }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 8,
+            width: '100%',
+            height: 50,
+            borderRadius: 100,
+            border: `2px solid ${colors.brandAccent5}`,
+            backgroundColor: colors.brandAccent5 + '15',
+            cursor: 'pointer',
+            fontFamily: "'Goldman Sans', sans-serif",
+            fontSize: 16,
+            fontWeight: 600,
+            color: colors.brandAccent5,
+          }}
+        >
+          <StarOutlineIcon color={colors.brandAccent5} />
+          {isGroup ? 'Join Group' : 'Interested'}
+        </button>
         <p style={{
           fontSize: 11,
           fontWeight: 400,
