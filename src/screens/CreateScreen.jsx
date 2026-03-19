@@ -319,7 +319,7 @@ export default function CreateScreen({ type }) {
               Who can discover this event
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
-              {['Global', '100 mi', '50 mi'].map(option => (
+              {['100 mi', '50 mi'].map(option => (
                 <div
                   key={option}
                   onClick={() => setVisibilityRadius(option)}
