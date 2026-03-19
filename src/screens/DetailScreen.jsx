@@ -1126,11 +1126,7 @@ export default function DetailScreen() {
             </button>
           </>
         ) : (
-          <PrimaryButton
-            title={isGroup ? 'Join Group' : 'Interested'}
-            leadingIcon={<HeartButtonIcon />}
-            size="medium"
-            isFullWidth
+          <button
             onClick={() => {
               addJoinedId(item.id)
               if (!isGroup) {
@@ -1141,7 +1137,26 @@ export default function DetailScreen() {
                 }, 300)
               }
             }}
-          />
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              width: '100%',
+              padding: '14px 0',
+              borderRadius: 100,
+              border: `2px solid ${colors.brandAccent5}`,
+              backgroundColor: colors.brandAccent5 + '15',
+              cursor: 'pointer',
+              fontFamily: "'Goldman Sans', sans-serif",
+              fontSize: 16,
+              fontWeight: 600,
+              color: colors.brandAccent5,
+            }}
+          >
+            <StarOutlineIcon color={colors.brandAccent5} />
+            {isGroup ? 'Join Group' : 'Interested'}
+          </button>
         )}
         <p style={{
           fontSize: 11,
@@ -1152,7 +1167,7 @@ export default function DetailScreen() {
           margin: '12px 0 0',
           textAlign: 'center',
         }}>
-          This {isGroup ? 'group' : 'event'} wasn't made by and is not endorsed by Mutual LLC. Please report anything that doesn't meet your expectations for our community.
+          <strong>Please Note:</strong> Unless specified, many {isGroup ? 'groups' : 'events'} were not made by or endorsed by Mutual LLC. Please report anything that doesn't meet your expectations for our community.
         </p>
       </div>
 
@@ -1648,6 +1663,15 @@ function VerifiedBadgeIcon() {
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
       <path d="M8 1l1.8 1.2 2.1-.3.7 2 1.7 1.3-.3 2.1L15.2 8 14 9.8l.3 2.1-2 .7-1.3 1.7-2.1-.3L8 15.2 6.2 14l-2.1.3-.7-2-1.7-1.3.3-2.1L.8 8 2 6.2l-.3-2.1 2-.7L5 1.7l2.1.3L8 1z" fill="white" />
       <path d="M5.5 8.2l1.7 1.7 3.3-3.4" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function StarOutlineIcon({ color }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
     </svg>
   )
 }
