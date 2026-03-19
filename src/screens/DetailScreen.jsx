@@ -141,6 +141,7 @@ export default function DetailScreen() {
   const [safetyTipsOpen, setSafetyTipsOpen] = useState(false)
   const [expandedTip, setExpandedTip] = useState(null)
   const [participantFilter, setParticipantFilter] = useState('all') // 'all' | 'sisters' | 'brothers'
+  const [filterDropdownOpen, setFilterDropdownOpen] = useState(false)
 
   // Reset to About tab when navigating between detail pages
   useEffect(() => {
@@ -604,13 +605,10 @@ export default function DetailScreen() {
               alignItems: 'center',
               justifyContent: 'space-between',
               marginBottom: 16,
+              position: 'relative',
             }}>
               <div
-                onClick={() => {
-                  const order = ['all', 'sisters', 'brothers']
-                  const next = order[(order.indexOf(participantFilter) + 1) % order.length]
-                  setParticipantFilter(next)
-                }}
+                onClick={() => setFilterDropdownOpen(!filterDropdownOpen)}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -630,6 +628,48 @@ export default function DetailScreen() {
                 <ChevronDownSmallIcon color={colors.grey600} />
               </div>
               <SearchIcon color={colors.grey500} />
+
+              {/* Filter dropdown */}
+              {filterDropdownOpen && (
+                <div style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  marginTop: 4,
+                  backgroundColor: colors.grey0,
+                  borderRadius: 12,
+                  boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+                  border: `1px solid ${colors.grey100}`,
+                  overflow: 'hidden',
+                  zIndex: 10,
+                  minWidth: 160,
+                }}>
+                  {[
+                    { key: 'all', label: 'All' },
+                    { key: 'sisters', label: 'Women' },
+                    { key: 'brothers', label: 'Men' },
+                  ].map(opt => (
+                    <div
+                      key={opt.key}
+                      onClick={() => {
+                        setParticipantFilter(opt.key)
+                        setFilterDropdownOpen(false)
+                      }}
+                      style={{
+                        padding: '12px 16px',
+                        fontSize: 15,
+                        fontWeight: participantFilter === opt.key ? 600 : 400,
+                        color: participantFilter === opt.key ? colors.grey1000 : colors.grey600,
+                        fontFamily: "'Goldman Sans', sans-serif",
+                        cursor: 'pointer',
+                        backgroundColor: participantFilter === opt.key ? colors.grey50 : 'transparent',
+                      }}
+                    >
+                      {opt.label}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* 2-column photo grid */}
