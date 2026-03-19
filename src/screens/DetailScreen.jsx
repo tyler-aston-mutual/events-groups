@@ -497,36 +497,24 @@ export default function DetailScreen() {
                 <InfoRow
                   icon={<CalendarClockIcon color={colors.brandPrimary} />}
                   colors={colors}
-                  tappable
-                  onTap={() => {}}
                 >
                   {item.date}
-                </InfoRow>
-              )}
-              {item.createdDate && (
-                <InfoRow
-                  icon={<StopwatchIcon color={colors.grey600} />}
-                  colors={colors}
-                >
-                  Created - {item.createdDate}
                 </InfoRow>
               )}
               <InfoRow
                 icon={<LocationInfoIcon color={colors.brandPrimary} />}
                 colors={colors}
-                tappable
-                onTap={() => {}}
               >
                 {item.location}
               </InfoRow>
-              <InfoRow
-                icon={<LinkInfoIcon color={colors.brandPrimary} />}
-                colors={colors}
-                tappable
-                onTap={() => {}}
-              >
-                More Info
-              </InfoRow>
+              {item.creator && (
+                <InfoRow
+                  icon={<CreatedByIcon color={colors.brandPrimary} />}
+                  colors={colors}
+                >
+                  Created By {item.creator.name}
+                </InfoRow>
+              )}
               <InfoRow
                 icon={<HeartInfoIcon color={colors.grey600} />}
                 colors={colors}
@@ -534,65 +522,6 @@ export default function DetailScreen() {
                 <GenderBreakdown total={item.going} itemId={item.id} men={item.men} women={item.women} colors={colors} />
               </InfoRow>
             </div>
-
-            {/* Created by */}
-            {item.creator && (
-              <div
-                onClick={() => {
-                  // Generate a stable id from the creator name for the profile route
-                  const creatorId = item.creator.name.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0)
-                  navigate(`/profile/${creatorId}`, { state: { participant: { id: creatorId, name: item.creator.name, image: item.creator.image } } })
-                }}
-                style={{
-                  backgroundColor: colors.grey50,
-                  borderRadius: 14,
-                  padding: 16,
-                  marginBottom: 24,
-                  cursor: 'pointer',
-                }}
-              >
-                <div style={{
-                  fontSize: 13,
-                  fontWeight: 400,
-                  color: colors.grey400,
-                  fontFamily: "'Goldman Sans', sans-serif",
-                  marginBottom: 12,
-                }}>
-                  Created by
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <img
-                    src={item.creator.image}
-                    alt={item.creator.name}
-                    style={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: 22,
-                      objectFit: 'cover',
-                    }}
-                  />
-                  <div>
-                    <span style={{
-                      fontSize: 17,
-                      fontWeight: 700,
-                      color: colors.grey1000,
-                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                    }}>
-                      {item.creator.name}
-                    </span>
-                    <span style={{
-                      fontSize: 17,
-                      fontWeight: 400,
-                      color: colors.grey400,
-                      fontFamily: "'Goldman Sans', sans-serif",
-                      marginLeft: 6,
-                    }}>
-                      {item.creator.age}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         )}
 
@@ -1411,7 +1340,7 @@ function getGenderCounts(item) {
 function GenderBreakdown({ total, itemId, men, women, colors }) {
   const { guys, girls } = getGenderCounts({ id: itemId, going: total, men, women })
   return (
-    <span><span style={{ color: colors.brandPrimary, fontWeight: 600 }}>{guys} men</span> · <span style={{ color: colors.brandAccent5, fontWeight: 600 }}>{girls} women</span></span>
+    <span><span style={{ fontWeight: 600 }}>{guys} Men</span> - <span style={{ color: colors.brandAccent5, fontWeight: 600 }}>{girls} Women</span> Interested</span>
   )
 }
 
@@ -1561,6 +1490,21 @@ function HeartInfoIcon({ color }) {
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
       stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+  )
+}
+
+function CreatedByIcon({ color }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+      <g stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 15l-3.5 6L10 17.5 7 17l3.5-6" />
+        <path d="M12 15l3.5 6L14 17.5l3-.5-3.5-6" />
+        <circle cx="12" cy="9" r="6" />
+      </g>
+      <g stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 9l2 2 4-4" />
+      </g>
     </svg>
   )
 }
