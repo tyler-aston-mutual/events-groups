@@ -11,7 +11,7 @@ export default function CreateScreen({ type }) {
 
   // Form state
   const [name, setName] = useState('')
-  const [locationType, setLocationType] = useState('ask') // 'ask' | 'anywhere' | 'virtual' | 'map'
+  const [locationType, setLocationType] = useState('map') // 'anywhere' | 'virtual' | 'map'
   const [locationDetail, setLocationDetail] = useState('')
   const [description, setDescription] = useState('')
   const [link, setLink] = useState('')
@@ -210,7 +210,6 @@ export default function CreateScreen({ type }) {
         <SectionLabel colors={colors} text="Location" />
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
           {[
-            { key: 'ask', label: 'Ask the Creator' },
             { key: 'anywhere', label: 'Global' },
             { key: 'virtual', label: 'Virtual' },
             { key: 'map', label: 'Map Location' },
@@ -418,7 +417,7 @@ export default function CreateScreen({ type }) {
                     fontFamily: "'Goldman Sans', sans-serif",
                     marginTop: 2,
                   }}>
-                    {locationType === 'ask' ? 'Ask the Creator' : locationType === 'anywhere' ? 'Global' : locationDetail || 'Location'}
+                    {locationType === 'anywhere' ? 'Global' : locationDetail || 'Location'}
                   </div>
                 </div>
               </div>
