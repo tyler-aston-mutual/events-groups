@@ -1393,36 +1393,62 @@ function IconButton({ colors, icon, onClick, badge, variant }) {
   )
 }
 
-function CollapsibleHeader({ label, open, onToggle, colors, style = {} }) {
+function CollapsibleHeader({ label, open, onToggle, colors, icon, style = {} }) {
+  const sectionIcons = {
+    'Created by you': '✏️',
+    'Created by Others': '👥',
+    'Past Activity': '🕐',
+  }
+  const emoji = icon || sectionIcons[label] || '📋'
   return (
-    <div
-      onClick={onToggle}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        fontSize: 14,
-        fontWeight: 700,
-        color: colors.grey600,
-        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-        backgroundColor: colors.grey100,
-        borderRadius: 10,
-        padding: '10px 14px',
-        cursor: 'pointer',
-        ...style,
-      }}
-    >
-      {label}
-      <svg
-        width="12" height="12" viewBox="0 0 12 12" fill="none"
-        stroke={colors.grey400} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+    <div style={{ borderTop: `1px solid ${colors.grey100}`, ...style }}>
+      <button
+        onClick={onToggle}
         style={{
-          transition: 'transform 0.2s ease',
-          transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 12,
+          padding: '16px 0',
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          textAlign: 'left',
         }}
       >
-        <path d="M2 4l4 4 4-4" />
-      </svg>
+        <div style={{
+          width: 32,
+          height: 32,
+          borderRadius: 16,
+          backgroundColor: colors.grey100,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+          fontSize: 16,
+        }}>
+          {emoji}
+        </div>
+        <span style={{
+          flex: 1,
+          fontSize: 15,
+          fontWeight: 500,
+          color: colors.grey1000,
+          fontFamily: "'Goldman Sans', sans-serif",
+        }}>
+          {label}
+        </span>
+        <svg
+          width="16" height="16" viewBox="0 0 24 24" fill="none"
+          style={{
+            flexShrink: 0,
+            transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+          }}
+        >
+          <polyline points="6 9 12 15 18 9" stroke={colors.grey400} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
     </div>
   )
 }
