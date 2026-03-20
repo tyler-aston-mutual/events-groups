@@ -853,17 +853,8 @@ export default function Home() {
 
                 {/* Expandable child events section */}
                 {childEvents && childEvents.length > 0 && (
-                  <div style={{ position: 'relative' }}>
-                    {/* Shadow line between parent and child */}
-                    <div style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 16,
-                      right: 16,
-                      height: 0,
-                      boxShadow: '0 -1px 3px rgba(0,0,0,0.12)',
-                    }} />
-                    {/* Chevron toggle on the boundary between cards */}
+                  <div>
+                    {/* Show/Hide Events toggle row inside group card */}
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
@@ -875,29 +866,39 @@ export default function Home() {
                         })
                       }}
                       style={{
-                        position: 'absolute',
-                        top: -12,
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        zIndex: 2,
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center',
-                        width: 28,
-                        height: 28,
-                        borderRadius: 14,
-                        backgroundColor: colors.grey0,
-                        boxShadow: '0 1px 4px rgba(0,0,0,0.12)',
+                        gap: 6,
+                        width: '100%',
+                        padding: '8px 12px 12px',
+                        background: 'none',
                         border: 'none',
                         cursor: 'pointer',
-                        padding: 0,
+                        marginTop: -4,
                       }}
                     >
-                      <ExpandChevron color={colors.brandPrimary} open={isExpanded} />
+                      <ChildEventIcon color={colors.brandAccent5} size={14} />
+                      <span style={{
+                        fontSize: 13,
+                        fontWeight: 700,
+                        color: colors.brandAccent5,
+                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                      }}>
+                        {isExpanded ? 'Hide' : 'Show'} Events
+                      </span>
+                      <svg
+                        width="12" height="12" viewBox="0 0 12 12" fill="none"
+                        style={{
+                          transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                          transition: 'transform 0.2s ease',
+                        }}
+                      >
+                        <path d="M3 4.5L6 7.5L9 4.5" stroke={colors.brandAccent5} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
                     </button>
 
                     {isExpanded && (
-                      <div style={{ paddingTop: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                         {childEvents.map((child, childIdx) => (
                           <div
                             key={child.id}
@@ -907,7 +908,7 @@ export default function Home() {
                               display: 'flex',
                               alignItems: 'center',
                               gap: 10,
-                              padding: childIdx === 0 ? '15px 10px 10px 10px' : 10,
+                              padding: 10,
                               backgroundColor: colors.grey0,
                               borderRadius: 12,
                               cursor: 'pointer',
