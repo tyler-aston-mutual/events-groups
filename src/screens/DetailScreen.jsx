@@ -492,24 +492,24 @@ export default function DetailScreen() {
             )}
 
             {/* Info rows */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 24 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 24 }}>
               {item.date && (
                 <InfoRow
-                  icon={<CalendarClockIcon color={colors.brandPrimary} />}
+                  icon={<CalendarClockIcon color={colors.grey600} />}
                   colors={colors}
                 >
                   {item.date}
                 </InfoRow>
               )}
               <InfoRow
-                icon={<LocationInfoIcon color={colors.brandPrimary} />}
+                icon={<LocationInfoIcon color={colors.grey600} />}
                 colors={colors}
               >
                 {item.location}
               </InfoRow>
               {item.creator && (
                 <InfoRow
-                  icon={<CreatedByIcon color={colors.brandPrimary} />}
+                  icon={<CreatedByIcon color={colors.grey600} />}
                   colors={colors}
                 >
                   Created By {item.creator.name}
@@ -520,6 +520,14 @@ export default function DetailScreen() {
                 colors={colors}
               >
                 <GenderBreakdown total={item.going} itemId={item.id} men={item.men} women={item.women} colors={colors} />
+              </InfoRow>
+              <InfoRow
+                icon={<MoreInfoIcon color={colors.grey600} />}
+                colors={colors}
+                tappable
+                onTap={() => {}}
+              >
+                More Info
               </InfoRow>
             </div>
           </div>
@@ -1377,14 +1385,14 @@ function InfoRow({ icon, colors, children, tappable, onTap }) {
       <div style={{
         flex: 1,
         fontSize: 15,
+        lineHeight: '20px',
         fontWeight: 500,
-        color: tappable ? colors.brandPrimary : colors.grey1000,
+        color: colors.grey1000,
         fontFamily: "'Goldman Sans Medium', 'Goldman Sans', sans-serif",
-        ...(tappable ? {
-          textDecoration: 'underline',
-          textDecorationStyle: 'dotted',
-          textUnderlineOffset: 3,
-        } : {}),
+        textDecoration: 'underline',
+        textDecorationStyle: 'dotted',
+        textUnderlineOffset: 4,
+        textDecorationColor: colors.grey400,
       }}>
         {children}
       </div>
@@ -1449,20 +1457,22 @@ function CalendarInfoIcon({ color }) {
 
 function CalendarClockIcon({ color }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 20 20" fill="none"
-      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      {/* Calendar body — same as our event icon but no curl */}
-      <rect x="2.5" y="3" width="15" height="14" rx="2.5"/>
-      {/* Binding rings */}
-      <rect x="5.5" y="1.5" width="2" height="3.5" rx="1"/>
-      <rect x="11.5" y="1.5" width="2" height="3.5" rx="1"/>
-      {/* Divider */}
-      <line x1="2.5" y1="8" x2="17.5" y2="8"/>
-      {/* Clock circle in body */}
-      <circle cx="10" cy="13" r="3.5"/>
-      {/* Clock hands — hour pointing to ~10 o'clock, minute to 12 */}
-      <line x1="10" y1="13" x2="10" y2="11" strokeWidth="1.5"/>
-      <line x1="10" y1="13" x2="8.5" y2="12" strokeWidth="1.5"/>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+      stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      {/* Calendar body */}
+      <rect x="2" y="3.5" width="16" height="14" rx="2"/>
+      {/* Binding tabs */}
+      <line x1="6.5" y1="1.5" x2="6.5" y2="5.5"/>
+      <line x1="13.5" y1="1.5" x2="13.5" y2="5.5"/>
+      {/* Horizontal divider */}
+      <line x1="2" y1="8" x2="18" y2="8"/>
+      {/* Grid dots — 3x2 */}
+      <circle cx="6.5" cy="11" r="0.8" fill={color} stroke="none"/>
+      <circle cx="10" cy="11" r="0.8" fill={color} stroke="none"/>
+      <circle cx="13.5" cy="11" r="0.8" fill={color} stroke="none"/>
+      <circle cx="6.5" cy="14.5" r="0.8" fill={color} stroke="none"/>
+      <circle cx="10" cy="14.5" r="0.8" fill={color} stroke="none"/>
+      <circle cx="13.5" cy="14.5" r="0.8" fill={color} stroke="none"/>
     </svg>
   )
 }
@@ -1487,23 +1497,24 @@ function StopwatchIcon({ color }) {
 
 function HeartInfoIcon({ color }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"
+      stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 17.5l-1.2-1.1C4.5 12.7 2 10.5 2 7.5 2 5.1 3.9 3.2 6.2 3.2c1.3 0 2.6.6 3.8 1.7 1.2-1.1 2.5-1.7 3.8-1.7C16.1 3.2 18 5.1 18 7.5c0 3-2.5 5.2-6.8 8.9L10 17.5z"/>
     </svg>
   )
 }
 
 function CreatedByIcon({ color }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-      <g stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 15l-3.5 6L10 17.5 7 17l3.5-6" />
-        <path d="M12 15l3.5 6L14 17.5l3-.5-3.5-6" />
-        <circle cx="12" cy="9" r="6" />
-      </g>
-      <g stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M9 9l2 2 4-4" />
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <g stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        {/* Badge circle */}
+        <circle cx="10" cy="8" r="5.5"/>
+        {/* Ribbon tails */}
+        <path d="M6.5 12.5L5 18l2.5-1.5L10 18V13"/>
+        <path d="M13.5 12.5L15 18l-2.5-1.5L10 18V13"/>
+        {/* Checkmark */}
+        <path d="M7.5 8l1.5 1.5 3.5-3.5"/>
       </g>
     </svg>
   )
@@ -1511,10 +1522,21 @@ function CreatedByIcon({ color }) {
 
 function LocationInfoIcon({ color }) {
   return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+      stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="9" cy="7.5" r="2.5"/>
+      <path d="M9 16.5S3.5 11.5 3.5 7.5a5.5 5.5 0 0 1 11 0c0 4-5.5 9-5.5 9z"/>
+    </svg>
+  )
+}
+
+function MoreInfoIcon({ color }) {
+  return (
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
       stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="11" cy="9" r="3" />
-      <path d="M11 20S4.5 14 4.5 9a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z" />
+      <circle cx="11" cy="11" r="8.5" />
+      <line x1="11" y1="10" x2="11" y2="16" />
+      <circle cx="11" cy="7" r="0.75" fill={color} stroke="none" />
     </svg>
   )
 }
