@@ -206,7 +206,15 @@ export default function DetailScreen() {
         >
           <BackArrow color={colors.grey1000} />
         </button>
-        <div style={{ flex: 1 }} />
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <span style={{ fontWeight: 400, fontSize: 16, color: isGroup ? colors.brandPrimary : colors.brandAccent5, fontFamily: "'Goldman Sans', sans-serif" }}>{isGroup ? 'Group' : 'Event'}</span>
+            {isGroup
+              ? <GroupTypeIcon color={colors.brandPrimary} />
+              : <CalendarTypeIcon color={colors.brandAccent5} />
+            }
+          </div>
+        </div>
         <button style={{
           width: 36,
           height: 36,
@@ -376,13 +384,6 @@ export default function DetailScreen() {
             textAlign: item.image ? 'left' : 'center',
           }}>
             {item.title}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
-              <span style={{ fontWeight: 400, fontSize: 18, color: isGroup ? colors.brandPrimary : colors.brandAccent5 }}>{isGroup ? 'Group' : 'Event'}</span>
-              {isGroup
-                ? <GroupTypeIcon color={colors.brandPrimary} />
-                : <CalendarTypeIcon color={colors.brandAccent5} />
-              }
-            </div>
           </div>
         </div>
 
