@@ -99,6 +99,7 @@ export function EventCard({
             lineHeight: '21px',
             marginBottom: 8,
             fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+            paddingRight: 28,
           }}>
             {title}
           </div>
