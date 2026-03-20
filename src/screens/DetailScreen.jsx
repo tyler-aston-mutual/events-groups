@@ -1105,7 +1105,7 @@ export default function DetailScreen() {
             justifyContent: 'center',
             gap: 8,
             width: '100%',
-            height: 50,
+            height: 40,
             borderRadius: 100,
             border: joined ? 'none' : `2px solid ${colors.brandAccent5}`,
             backgroundColor: joined ? colors.brandAccent5 : colors.brandAccent5 + '15',
