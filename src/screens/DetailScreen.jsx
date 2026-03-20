@@ -189,24 +189,39 @@ export default function DetailScreen() {
         <button
           onClick={() => navigate(-1)}
           style={{
-            background: 'none',
-            border: 'none',
+            width: 36,
+            height: 36,
+            borderRadius: '50%',
+            background: 'rgba(255,255,255,0.85)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            border: '1px solid rgba(0,0,0,0.08)',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
             cursor: 'pointer',
-            padding: 8,
             display: 'flex',
             alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
           }}
         >
           <BackArrow color={colors.grey1000} />
         </button>
         <div style={{ flex: 1 }} />
         <button style={{
-          background: 'none',
-          border: 'none',
+          width: 36,
+          height: 36,
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.85)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          border: '1px solid rgba(0,0,0,0.08)',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
           cursor: 'pointer',
-          padding: 8,
           display: 'flex',
           alignItems: 'center',
+          justifyContent: 'center',
+          padding: 0,
+          marginRight: 8,
         }}>
           <ShareIcon color={colors.grey1000} />
         </button>
@@ -214,12 +229,19 @@ export default function DetailScreen() {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             style={{
-              background: 'none',
-              border: 'none',
+              width: 36,
+              height: 36,
+              borderRadius: '50%',
+              background: 'rgba(255,255,255,0.85)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              border: '1px solid rgba(0,0,0,0.08)',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
               cursor: 'pointer',
-              padding: 8,
               display: 'flex',
               alignItems: 'center',
+              justifyContent: 'center',
+              padding: 0,
             }}
           >
             <MoreIcon color={colors.grey1000} />
