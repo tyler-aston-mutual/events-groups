@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { StatusBar } from '../components/StatusBar'
-import { PrimaryButton, ThemedDialog } from '../design-system'
+import { Chip, PrimaryButton, ThemedDialog } from '../design-system'
 import { useTheme } from '../design-system/context/ThemeProvider'
 import { useJoined } from '../context/JoinedContext'
 import { EventCard } from '../components/EventCard'
@@ -13,6 +13,7 @@ const mPhotoModules = import.meta.glob('../assets/people/male/*.jpg', { eager: t
 const fPhotos = Object.values(fPhotoModules).map(m => m.default)
 const mPhotos = Object.values(mPhotoModules).map(m => m.default)
 
+const GATED_TABS = ['Participants', 'Events', 'Chat']
 
 // Pool of 232 unique participants — interleaved female/male for a natural mix per item
 const PARTICIPANT_POOL = (() => {
@@ -131,7 +132,7 @@ export default function DetailScreen() {
   const { isJoined: checkJoined, addJoinedId, removeJoinedId, getJoinDate } = useJoined()
   const { item } = location.state || {}
   const joined = item ? checkJoined(item.id) : false
-  const [expandedSection, setExpandedSection] = useState(null)
+  const [activeTab, setActiveTab] = useState('About')
   const [dialogOpen, setDialogOpen] = useState(false)
   const [blockedSection, setBlockedSection] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
@@ -142,9 +143,9 @@ export default function DetailScreen() {
   const [participantFilter, setParticipantFilter] = useState('all') // 'all' | 'sisters' | 'brothers'
   const [filterDropdownOpen, setFilterDropdownOpen] = useState(false)
 
-  // Reset expanded section when navigating between detail pages
+  // Reset to About tab when navigating between detail pages
   useEffect(() => {
-    setExpandedSection(null)
+    setActiveTab('About')
   }, [item?.id])
 
   if (!item) return null
@@ -153,10 +154,9 @@ export default function DetailScreen() {
   const shouldBlur = !joined && (guys < 10 || girls < 10)
 
   const isGroup = item.type === 'group'
-
-  function toggleSection(section) {
-    setExpandedSection(expandedSection === section ? null : section)
-  }
+  const tabs = isGroup
+    ? ['About', 'Participants', 'Events', 'Chat']
+    : ['About', 'Participants', 'Chat']
 
   function handleGroupClick(groupName) {
     const groupItem = ALL_ITEMS.find(g => g.type === 'group' && g.title === groupName)
@@ -165,6 +165,9 @@ export default function DetailScreen() {
     }
   }
 
+  function handleTabTap(tab) {
+    setActiveTab(tab)
+  }
 
   return (
     <div style={{
@@ -383,7 +386,29 @@ export default function DetailScreen() {
           </div>
         </div>
 
-        {/* About content — always visible */}
+        {/* Tab pills */}
+        <div style={{
+          display: 'flex',
+          gap: 8,
+          padding: '20px 20px 0',
+          overflowX: 'auto',
+          flexShrink: 0,
+          WebkitOverflowScrolling: 'touch',
+        }}>
+          {tabs.map(tab => (
+            <div key={tab} style={{ flexShrink: 0 }}>
+              <Chip
+                text={tab}
+                variant={activeTab === tab ? 'primary' : 'light'}
+                size="regular"
+                onClick={() => handleTabTap(tab)}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* About content */}
+        {activeTab === 'About' && (
           <div style={{ padding: '20px 20px 0' }}>
             {/* About card */}
             <div style={{
@@ -513,52 +538,11 @@ export default function DetailScreen() {
               </InfoRow>
             </div>
           </div>
+        )}
 
-        {/* Participants section */}
-        <div style={{ borderTop: `1px solid ${colors.grey100}`, margin: '0 20px' }} />
-        <button
-          onClick={() => toggleSection('Participants')}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-            width: '100%',
-            padding: '16px 20px',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            textAlign: 'left',
-          }}
-        >
-          <div style={{
-            width: 32,
-            height: 32,
-            borderRadius: 16,
-            backgroundColor: colors.grey100,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
-          }}>
-            <ParticipantsSectionIcon color={colors.grey600} />
-          </div>
-          <span style={{
-            flex: 1,
-            fontSize: 15,
-            fontWeight: 600,
-            color: colors.grey1000,
-            fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-          }}>
-            Participants
-          </span>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-            stroke={colors.grey400} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
-            style={{ transition: 'transform 0.2s ease', transform: expandedSection === 'Participants' ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-            <path d="M2 4l4 4 4-4" />
-          </svg>
-        </button>
-        {expandedSection === 'Participants' && (
-          <div style={{ padding: '0 20px 20px' }}>
+        {/* Participants content */}
+        {activeTab === 'Participants' && (
+          <div style={{ padding: '20px 20px 0' }}>
             {/* Compact filter + search row */}
             <div style={{
               display: 'flex',
@@ -748,57 +732,13 @@ export default function DetailScreen() {
           </div>
         )}
 
-        {/* Events section — groups only */}
-        {isGroup && (
-          <>
-        <div style={{ borderTop: `1px solid ${colors.grey100}`, margin: '0 20px' }} />
-        <button
-          onClick={() => toggleSection('Events')}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-            width: '100%',
-            padding: '16px 20px',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            textAlign: 'left',
-          }}
-        >
-          <div style={{
-            width: 32,
-            height: 32,
-            borderRadius: 16,
-            backgroundColor: colors.grey100,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
-          }}>
-            <EventsSectionIcon color={colors.grey600} />
-          </div>
-          <span style={{
-            flex: 1,
-            fontSize: 15,
-            fontWeight: 600,
-            color: colors.grey1000,
-            fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-          }}>
-            Events
-          </span>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-            stroke={colors.grey400} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
-            style={{ transition: 'transform 0.2s ease', transform: expandedSection === 'Events' ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-            <path d="M2 4l4 4 4-4" />
-          </svg>
-        </button>
-        {expandedSection === 'Events' && (() => {
+        {/* Events content */}
+        {activeTab === 'Events' && (() => {
           const groupEvents = ALL_ITEMS.filter(
             i => i.type !== 'group' && i.group?.name === item.title
           )
           return (
-            <div style={{ padding: '0 20px 20px' }}>
+            <div style={{ padding: '20px 20px 0' }}>
               {groupEvents.length === 0 ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   {/* Create Event banner */}
@@ -925,59 +865,15 @@ export default function DetailScreen() {
             </div>
           )
         })()}
-          </>
-        )}
 
-        {/* Chat section */}
-        <div style={{ borderTop: `1px solid ${colors.grey100}`, margin: '0 20px' }} />
-        <button
-          onClick={() => toggleSection('Chat')}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-            width: '100%',
-            padding: '16px 20px',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            textAlign: 'left',
-          }}
-        >
-          <div style={{
-            width: 32,
-            height: 32,
-            borderRadius: 16,
-            backgroundColor: colors.grey100,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
-          }}>
-            <ChatSectionIcon color={colors.grey600} />
-          </div>
-          <span style={{
-            flex: 1,
-            fontSize: 15,
-            fontWeight: 600,
-            color: colors.grey1000,
-            fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-          }}>
-            Chat
-          </span>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-            stroke={colors.grey400} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
-            style={{ transition: 'transform 0.2s ease', transform: expandedSection === 'Chat' ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-            <path d="M2 4l4 4 4-4" />
-          </svg>
-        </button>
-        {expandedSection === 'Chat' && (() => {
+        {/* Chat content */}
+        {activeTab === 'Chat' && (() => {
           const messages = getChatMessages(item.id)
           return (
             <div style={{
               display: 'flex',
               flexDirection: 'column',
-              padding: '0 16px 0',
+              padding: '16px 16px 0',
               minHeight: '100%',
               position: 'relative',
             }}>
@@ -1761,41 +1657,6 @@ function HeartButtonIcon({ color = 'currentColor' }) {
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
       stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-    </svg>
-  )
-}
-
-function ParticipantsSectionIcon({ color }) {
-  return (
-    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"
-      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="7" cy="6" r="3" />
-      <path d="M1 17v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1" />
-      <circle cx="15" cy="6" r="2.5" />
-      <path d="M15 12h1.5a3.5 3.5 0 0 1 3.5 3.5V17" />
-    </svg>
-  )
-}
-
-function EventsSectionIcon({ color }) {
-  return (
-    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"
-      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="4" width="16" height="14" rx="2" />
-      <path d="M2 8h16" />
-      <path d="M6 2v4" />
-      <path d="M14 2v4" />
-    </svg>
-  )
-}
-
-function ChatSectionIcon({ color }) {
-  return (
-    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"
-      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 4h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7l-4 3V6a2 2 0 0 1 2-2z" />
-      <path d="M7 9h6" />
-      <path d="M7 12h3" />
     </svg>
   )
 }
