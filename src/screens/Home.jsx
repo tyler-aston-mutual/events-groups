@@ -1096,67 +1096,97 @@ export default function Home() {
 
       {/* Create bottom sheet */}
       {createOpen && (
-        <>
-          {/* Scrim */}
-          <div
-            onClick={closeCreate}
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: 'rgba(0,0,0,0.5)',
-              zIndex: 100,
-              opacity: createVisible ? 1 : 0,
-              transition: 'opacity 0.3s ease',
-            }}
-          />
-          {/* Sheet */}
-          <div style={{
+        <div
+          onClick={closeCreate}
+          style={{
             position: 'fixed',
-            bottom: 0,
-            left: '50%',
-            width: '100%',
-            maxWidth: '24rem',
-            backgroundColor: colors.grey50,
-            borderRadius: '20px 20px 0 0',
-            padding: '24px 20px 40px',
-            zIndex: 101,
-            transform: createVisible
-              ? 'translateX(-50%) translateY(0)'
-              : 'translateX(-50%) translateY(100%)',
-            transition: 'transform 0.3s ease',
-          }}>
-            {/* Drag handle */}
-            <div style={{
-              width: 36,
-              height: 4,
-              borderRadius: 2,
-              backgroundColor: colors.grey200,
-              margin: '0 auto 20px',
-            }} />
+            top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.2)',
+            backdropFilter: 'blur(4px)',
+            WebkitBackdropFilter: 'blur(4px)',
+            zIndex: 100,
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+            opacity: createVisible ? 1 : 0,
+            transition: 'opacity 0.3s ease',
+          }}
+        >
+          <div
+            onClick={e => e.stopPropagation()}
+            style={{
+              backgroundColor: '#fff',
+              borderRadius: '24px 24px 0 0',
+              width: '100%',
+              maxWidth: '24rem',
+              padding: '20px 20px 32px',
+              position: 'relative',
+              transform: createVisible
+                ? 'translateY(0)'
+                : 'translateY(100%)',
+              transition: 'transform 0.3s ease',
+            }}
+          >
+            {/* Close button */}
+            <button
+              onClick={closeCreate}
+              style={{
+                position: 'absolute',
+                top: 14,
+                right: 14,
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: 25,
+                fontWeight: 200,
+                color: 'rgb(0,0,0)',
+                lineHeight: 1,
+                padding: 0,
+              }}
+            >
+              ×
+            </button>
 
+            {/* Icon + title row */}
             <div style={{
-              fontSize: 22,
-              fontWeight: 700,
-              color: colors.grey1000,
-              textAlign: 'center',
-              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-              marginBottom: 4,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              marginBottom: 8,
             }}>
-              Create
+              <div style={{
+                width: 40,
+                height: 40,
+                borderRadius: 12,
+                backgroundColor: '#E8F0FE',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+              }}>
+                <PlusIcon />
+              </div>
+              <h2 style={{
+                fontSize: 20,
+                fontWeight: 700,
+                color: colors.grey1000,
+                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                margin: 0,
+              }}>
+                Create
+              </h2>
             </div>
-            <div style={{
-              fontSize: 15,
+
+            <p style={{
+              fontSize: 13,
               fontWeight: 400,
               color: colors.grey400,
-              textAlign: 'center',
               fontFamily: "'Goldman Sans', sans-serif",
-              marginBottom: 24,
+              margin: '0 0 20px',
+              lineHeight: 1.45,
             }}>
               What would you like to create?
-            </div>
+            </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <CreateOption
@@ -1175,7 +1205,7 @@ export default function Home() {
               />
             </div>
           </div>
-        </>
+        </div>
       )}
 
       {/* Help / Contact full-screen overlay */}
