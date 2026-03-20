@@ -1041,13 +1041,21 @@ export default function DetailScreen() {
       }}>
         <button
           onClick={() => {
-            addJoinedId(item.id)
-            if (!isGroup) {
-              setSafetyTipsOpen(true)
+            if (joined) {
+              // Already joined — tapping again still confirms via popup
+              addJoinedId(item.id)
+              if (!isGroup) {
+                setSafetyTipsOpen(true)
+              }
             } else {
-              setTimeout(() => {
-                navigate('/', { state: { switchToYours: true } })
-              }, 300)
+              addJoinedId(item.id)
+              if (!isGroup) {
+                setSafetyTipsOpen(true)
+              } else {
+                setTimeout(() => {
+                  navigate('/', { state: { switchToYours: true } })
+                }, 300)
+              }
             }
           }}
           style={{
@@ -1058,17 +1066,26 @@ export default function DetailScreen() {
             width: '100%',
             height: 50,
             borderRadius: 100,
-            border: `2px solid ${colors.brandAccent5}`,
-            backgroundColor: colors.brandAccent5 + '15',
+            border: joined ? 'none' : `2px solid ${colors.brandAccent5}`,
+            backgroundColor: joined ? colors.brandAccent5 : colors.brandAccent5 + '15',
             cursor: 'pointer',
             fontFamily: "'Goldman Sans', sans-serif",
             fontSize: 16,
             fontWeight: 600,
-            color: colors.brandAccent5,
+            color: joined ? '#FFFFFF' : colors.brandAccent5,
           }}
         >
-          <StarOutlineIcon color={colors.brandAccent5} />
-          {isGroup ? 'Join Group' : 'Interested'}
+          {joined ? (
+            <>
+              <CheckIcon color="#FFFFFF" />
+              {isGroup ? "You've Joined!" : "You're Interested!"}
+            </>
+          ) : (
+            <>
+              <HeartButtonIcon color={colors.brandAccent5} />
+              {isGroup ? 'Join Group' : 'Interested'}
+            </>
+          )}
         </button>
         <p style={{
           fontSize: 11,
@@ -1632,11 +1649,20 @@ function StarOutlineIcon({ color }) {
   )
 }
 
-function HeartButtonIcon() {
+function HeartButtonIcon({ color = 'currentColor' }) {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+    </svg>
+  )
+}
+
+function CheckIcon({ color = 'currentColor' }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+      stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12l5 5L20 7" />
     </svg>
   )
 }
