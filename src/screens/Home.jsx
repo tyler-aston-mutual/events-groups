@@ -656,7 +656,7 @@ export default function Home() {
         }}
         onClick={() => sortOpen && setSortOpen(false)}
       >
-        <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ padding: isYoursTab ? '0 16px 16px' : 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
           {/* Sort dropdown — hidden on Mine tab */}
           {activeNav !== 'mine' && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', position: 'relative', marginBottom: -4, gap: 10 }}>
             {activeNav === 'all' && (
@@ -1393,13 +1393,7 @@ function IconButton({ colors, icon, onClick, badge, variant }) {
   )
 }
 
-function CollapsibleHeader({ label, open, onToggle, colors, icon, style = {} }) {
-  const sectionIcons = {
-    'Created by you': '✏️',
-    'Created by Others': '👥',
-    'Past Activity': '🕐',
-  }
-  const emoji = icon || sectionIcons[label] || '📋'
+function CollapsibleHeader({ label, open, onToggle, colors, style = {} }) {
   return (
     <div style={{ borderTop: `1px solid ${colors.grey100}`, ...style }}>
       <button
@@ -1408,33 +1402,19 @@ function CollapsibleHeader({ label, open, onToggle, colors, icon, style = {} }) 
           width: '100%',
           display: 'flex',
           alignItems: 'center',
-          gap: 12,
-          padding: '16px 0',
+          justifyContent: 'space-between',
+          padding: '14px 0',
           background: 'none',
           border: 'none',
           cursor: 'pointer',
           textAlign: 'left',
         }}
       >
-        <div style={{
-          width: 32,
-          height: 32,
-          borderRadius: 16,
-          backgroundColor: colors.grey100,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0,
-          fontSize: 16,
-        }}>
-          {emoji}
-        </div>
         <span style={{
-          flex: 1,
           fontSize: 15,
-          fontWeight: 500,
-          color: colors.grey1000,
-          fontFamily: "'Goldman Sans', sans-serif",
+          fontWeight: 600,
+          color: colors.grey600,
+          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
         }}>
           {label}
         </span>
