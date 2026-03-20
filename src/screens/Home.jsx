@@ -603,15 +603,15 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Navigation pills */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 4, paddingBottom: 14 }}>
+        {/* Navigation underline tabs */}
+        <div style={{ display: 'flex', borderBottom: `1px solid ${colors.grey100}` }}>
           {[
-            // { id: 'all', label: 'All', Icon: ExploreIcon, iconColor: colors.grey1000, inactiveIconColor: colors.grey400 },
-            { id: 'events', label: 'Events', Icon: CalendarToggleIcon, iconColor: colors.brandAccent5, inactiveIconColor: `${colors.brandAccent5}BF` },
-            { id: 'groups', label: 'Groups', Icon: GroupToggleIcon, iconColor: colors.brandPrimary, inactiveIconColor: `${colors.brandPrimary}BF` },
-            { id: 'mine', label: 'My Stuff', Icon: HeartTabIcon, iconColor: colors.grey1000, inactiveIconColor: colors.grey400 },
+            { id: 'events', label: 'Events', Icon: CalendarToggleIcon, activeColor: colors.brandAccent5, inactiveColor: colors.grey400 },
+            { id: 'groups', label: 'Groups', Icon: GroupToggleIcon, activeColor: colors.brandPrimary, inactiveColor: colors.grey400 },
+            { id: 'mine', label: 'My Stuff', Icon: HeartTabIcon, activeColor: colors.grey1000, inactiveColor: colors.grey400 },
           ].map(tab => {
             const active = activeNav === tab.id
+            const color = active ? tab.activeColor : tab.inactiveColor
             return (
               <button
                 key={tab.id}
@@ -620,22 +620,26 @@ export default function Home() {
                   setActiveSort('recommended')
                 }}
                 style={{
+                  flex: 1,
                   display: 'flex',
                   alignItems: 'center',
-                  gap: 5,
-                  padding: '6px 12px',
-                  borderRadius: 20,
-                  border: `0.5px solid ${active ? tab.iconColor : (tab.inactiveIconColor || colors.grey200)}`,
-                  backgroundColor: active ? `${tab.iconColor}14` : 'transparent',
+                  justifyContent: 'center',
+                  gap: 6,
+                  padding: '10px 0',
+                  background: 'none',
+                  border: 'none',
+                  borderBottom: active ? `2px solid ${tab.activeColor}` : '2px solid transparent',
                   cursor: 'pointer',
                   fontSize: 13,
                   fontWeight: active ? 600 : 400,
-                  color: active ? tab.iconColor : (tab.inactiveIconColor || colors.grey400),
+                  color,
                   fontFamily: active ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif" : "'Goldman Sans', sans-serif",
                   whiteSpace: 'nowrap',
+                  transition: 'all 0.2s ease',
+                  marginBottom: -1,
                 }}
               >
-                <tab.Icon color={active ? tab.iconColor : tab.inactiveIconColor} />
+                <tab.Icon color={color} />
                 {tab.label}
               </button>
             )
