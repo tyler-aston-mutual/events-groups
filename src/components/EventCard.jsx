@@ -157,16 +157,6 @@ export function EventCard({
           )}
         </div>
 
-        {/* Chevron */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          alignSelf: 'stretch',
-          flexShrink: 0,
-          paddingLeft: 4,
-        }}>
-          <ChevronRight color="rgb(0, 0, 0)" />
-        </div>
       </div>
     </div>
   )
