@@ -418,15 +418,6 @@ export default function DetailScreen() {
               marginBottom: 24,
             }}>
               <div style={{
-                fontSize: 16,
-                fontWeight: 700,
-                color: colors.grey1000,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                marginBottom: 8,
-              }}>
-                About
-              </div>
-              <div style={{
                 fontSize: 15,
                 fontWeight: 400,
                 color: colors.grey600,
@@ -505,6 +496,8 @@ export default function DetailScreen() {
                 <InfoRow
                   icon={<CalendarClockIcon color={colors.grey600} />}
                   colors={colors}
+                  tappable
+                  onTap={() => {}}
                 >
                   {item.date}
                 </InfoRow>
@@ -512,6 +505,8 @@ export default function DetailScreen() {
               <InfoRow
                 icon={<LocationInfoIcon color={colors.grey600} />}
                 colors={colors}
+                tappable
+                onTap={() => {}}
               >
                 {item.location}
               </InfoRow>
@@ -519,6 +514,8 @@ export default function DetailScreen() {
                 <InfoRow
                   icon={<CreatedByIcon color={colors.grey600} />}
                   colors={colors}
+                  tappable
+                  onTap={() => {}}
                 >
                   Created By {item.creator.name}
                 </InfoRow>
@@ -526,6 +523,8 @@ export default function DetailScreen() {
               <InfoRow
                 icon={<HeartInfoIcon color={colors.grey600} />}
                 colors={colors}
+                tappable
+                onTap={() => {}}
               >
                 <GenderBreakdown total={item.going} itemId={item.id} men={item.men} women={item.women} colors={colors} />
               </InfoRow>
