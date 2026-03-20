@@ -1115,7 +1115,7 @@ export default function Home() {
           <div
             onClick={e => e.stopPropagation()}
             style={{
-              backgroundColor: '#fff',
+              backgroundColor: 'rgb(245, 245, 245)',
               borderRadius: '24px 24px 0 0',
               width: '100%',
               maxWidth: '24rem',
@@ -1151,21 +1151,10 @@ export default function Home() {
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 12,
+              gap: 6,
               marginBottom: 8,
             }}>
-              <div style={{
-                width: 40,
-                height: 40,
-                borderRadius: 12,
-                backgroundColor: '#E8F0FE',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-              }}>
-                <PlusIcon />
-              </div>
+              <PlusIcon />
               <h2 style={{
                 fontSize: 20,
                 fontWeight: 700,
