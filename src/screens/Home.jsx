@@ -897,7 +897,7 @@ export default function Home() {
                     </button>
 
                     {isExpanded && (
-                      <div style={{ paddingTop: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ paddingTop: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
                         {childEvents.map(child => (
                           <div
                             key={child.id}
