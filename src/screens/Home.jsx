@@ -573,7 +573,7 @@ export default function Home() {
         paddingLeft: 20,
         paddingRight: 16,
         paddingTop: 10,
-        backgroundColor: 'rgb(245, 245, 245)',
+        backgroundColor: 'rgb(255, 255, 255)',
         flexShrink: 0,
       }}>
         {/* Title row */}
@@ -652,7 +652,7 @@ export default function Home() {
         style={{
           flex: 1,
           overflowY: 'auto',
-          backgroundColor: colors.grey50,
+          backgroundColor: 'rgb(245, 245, 245)',
         }}
         onClick={() => sortOpen && setSortOpen(false)}
       >
