@@ -338,7 +338,7 @@ export default function DetailScreen() {
       </div>
 
       {/* Scrollable content */}
-      <div style={{ flex: 1, overflowY: 'auto' }}>
+      <div style={{ flex: 1, overflowY: 'auto', backgroundColor: 'rgb(245, 245, 245)' }}>
         {/* Compact card header: photo + title + icons */}
         <div style={{
           display: 'flex',
