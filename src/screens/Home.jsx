@@ -897,8 +897,8 @@ export default function Home() {
                     </button>
 
                     {isExpanded && (
-                      <div style={{ paddingTop: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                        {childEvents.map(child => (
+                      <div style={{ paddingTop: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                        {childEvents.map((child, childIdx) => (
                           <div
                             key={child.id}
                             onClick={() => navigate(`/detail/${child.id}`, { state: { item: child, joined: joinedIds.has(child.id) } })}
@@ -907,7 +907,7 @@ export default function Home() {
                               display: 'flex',
                               alignItems: 'center',
                               gap: 10,
-                              padding: 10,
+                              padding: childIdx === 0 ? '15px 10px 10px 10px' : 10,
                               backgroundColor: colors.grey0,
                               borderRadius: 12,
                               cursor: 'pointer',
