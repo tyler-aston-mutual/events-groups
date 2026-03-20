@@ -386,25 +386,67 @@ export default function DetailScreen() {
           </div>
         </div>
 
-        {/* Tab pills */}
+        {/* Underline icon tabs */}
         <div style={{
           display: 'flex',
-          gap: 8,
-          padding: '20px 20px 0',
-          overflowX: 'auto',
+          padding: '4px 20px 0',
           flexShrink: 0,
-          WebkitOverflowScrolling: 'touch',
+          borderBottom: `1px solid ${colors.grey100}`,
         }}>
-          {tabs.map(tab => (
-            <div key={tab} style={{ flexShrink: 0 }}>
-              <Chip
-                text={tab}
-                variant={activeTab === tab ? 'primary' : 'light'}
-                size="regular"
+          {tabs.map(tab => {
+            const iconColor = activeTab === tab ? colors.grey1000 : colors.grey400
+            const groupEventCount = isGroup ? ALL_ITEMS.filter(i => i.type !== 'group' && i.group?.name === item.title).length : 0
+            const tabIcons = {
+              About: <TabAboutIcon color={iconColor} />,
+              Participants: <TabParticipantsIcon color={iconColor} />,
+              Events: <span style={{ position: 'relative', display: 'inline-flex' }}>
+                <TabEventsIcon color={iconColor} />
+                {groupEventCount > 0 && (
+                  <span style={{
+                    position: 'absolute',
+                    top: -6,
+                    right: -8,
+                    minWidth: 16,
+                    height: 16,
+                    borderRadius: 8,
+                    backgroundColor: colors.brandAccent5,
+                    color: '#FFFFFF',
+                    fontSize: 10,
+                    fontWeight: 700,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '0 4px',
+                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                  }}>
+                    {groupEventCount}
+                  </span>
+                )}
+              </span>,
+              Chat: <TabChatIcon color={iconColor} />,
+            }
+            return (
+              <button
+                key={tab}
                 onClick={() => handleTabTap(tab)}
-              />
-            </div>
-          ))}
+                style={{
+                  flex: 1,
+                  padding: '8px 0 10px',
+                  background: 'none',
+                  border: 'none',
+                  borderBottom: activeTab === tab ? `2px solid ${colors.grey1000}` : '2px solid transparent',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'all 0.2s ease',
+                  marginBottom: -1,
+                }}
+              >
+                {tabIcons[tab]}
+              </button>
+            )
+          })}
         </div>
 
         {/* About content */}
@@ -1657,6 +1699,50 @@ function HeartButtonIcon({ color = 'currentColor' }) {
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
       stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+    </svg>
+  )
+}
+
+function TabAboutIcon({ color }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="11" r="9" />
+      <path d="M11 15V11" />
+      <circle cx="11" cy="7.5" r="0.5" fill={color} stroke="none" />
+    </svg>
+  )
+}
+
+function TabParticipantsIcon({ color }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="7" r="3.5" />
+      <path d="M4 20v-1.5C4 15.46 6.69 13 11 13s7 2.46 7 5.5V20" />
+    </svg>
+  )
+}
+
+function TabEventsIcon({ color }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="5" width="16" height="14" rx="2" />
+      <path d="M3 9h16" />
+      <path d="M7 3v4" />
+      <path d="M15 3v4" />
+    </svg>
+  )
+}
+
+function TabChatIcon({ color }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 5h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H8l-4 3V7a2 2 0 0 1 2-2z" />
+      <path d="M8 10h6" />
+      <path d="M8 13h3" />
     </svg>
   )
 }
