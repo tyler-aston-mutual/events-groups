@@ -865,7 +865,7 @@ export default function Home() {
                           alignItems: 'center',
                           gap: 6,
                           width: '100%',
-                          padding: '4px 12px 12px',
+                          padding: '4px 0 0',
                           background: 'none',
                           border: 'none',
                           cursor: 'pointer',
@@ -899,7 +899,7 @@ export default function Home() {
                   <div>
 
                     {isExpanded && (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ paddingTop: 6, display: 'flex', flexDirection: 'column', gap: 8 }}>
                         {childEvents.map((child, childIdx) => (
                           <div
                             key={child.id}

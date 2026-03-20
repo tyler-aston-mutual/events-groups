@@ -157,10 +157,10 @@ export function EventCard({
               )}
             </div>
           )}
+          {children}
         </div>
 
       </div>
-      {children}
     </div>
   )
 }
