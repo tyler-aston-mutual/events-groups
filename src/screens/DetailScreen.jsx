@@ -337,129 +337,128 @@ export default function DetailScreen() {
         </div>
       </div>
 
-      {/* Compact card header: photo + title + icons */}
-      <div style={{
-        display: 'flex',
-        alignItems: item.image ? 'center' : 'center',
-        justifyContent: item.image ? 'flex-start' : 'center',
-        padding: '0 20px 8px',
-        gap: 16,
-        position: 'relative',
-        flexShrink: 0,
-      }}>
-        {/* Photo */}
-        {item.image && (
+      {/* Scrollable content */}
+      <div style={{ flex: 1, overflowY: 'auto', backgroundColor: 'rgb(245, 245, 245)' }}>
+        {/* Compact card header: photo + title + icons */}
+        <div style={{ backgroundColor: '#fff' }}>
           <div style={{
-            width: 120,
-            height: 120,
-            borderRadius: 14,
-            overflow: 'hidden',
-            flexShrink: 0,
-            position: 'relative',
-            backgroundColor: item.imageBg || colors.grey100,
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            alignItems: item.image ? 'center' : 'center',
+            justifyContent: item.image ? 'flex-start' : 'center',
+            padding: '0 20px 8px',
+            gap: 16,
+            position: 'relative',
           }}>
-            <img
-              src={item.image}
-              alt={item.title}
-              style={item.imageBg ? {
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '80%',
-                height: '80%',
-                objectFit: 'contain',
-              } : {
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-              }}
-            />
-          </div>
-        )}
-
-        {/* Title */}
-        <div style={{
-          flex: item.image ? 1 : undefined,
-          fontSize: 22,
-          fontWeight: 700,
-          color: colors.grey1000,
-          lineHeight: '26px',
-          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-          textAlign: item.image ? 'left' : 'center',
-        }}>
-          {item.title}
-        </div>
-      </div>
-
-      {/* Underline icon tabs */}
-      <div style={{
-        display: 'flex',
-        padding: '4px 20px 0',
-        flexShrink: 0,
-        borderBottom: `1px solid ${colors.grey100}`,
-      }}>
-          {tabs.map(tab => {
-            const iconColor = activeTab === tab ? colors.grey1000 : colors.grey400
-            const groupEventCount = isGroup ? ALL_ITEMS.filter(i => i.type !== 'group' && i.group?.name === item.title).length : 0
-            const tabIcons = {
-              About: <TabAboutIcon color={iconColor} />,
-              Participants: <TabParticipantsIcon color={iconColor} />,
-              Events: <span style={{ position: 'relative', display: 'inline-flex' }}>
-                <TabEventsIcon color={iconColor} />
-                {groupEventCount > 0 && (
-                  <span style={{
+            {/* Photo */}
+            {item.image && (
+              <div style={{
+                width: 120,
+                height: 120,
+                borderRadius: 14,
+                overflow: 'hidden',
+                flexShrink: 0,
+                position: 'relative',
+                backgroundColor: item.imageBg || colors.grey100,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  style={item.imageBg ? {
                     position: 'absolute',
-                    top: -6,
-                    right: -8,
-                    minWidth: 16,
-                    height: 16,
-                    borderRadius: 8,
-                    backgroundColor: colors.brandAccent5,
-                    color: '#FFFFFF',
-                    fontSize: 10,
-                    fontWeight: 700,
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '80%',
+                    height: '80%',
+                    objectFit: 'contain',
+                  } : {
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Title */}
+            <div style={{
+              flex: item.image ? 1 : undefined,
+              fontSize: 22,
+              fontWeight: 700,
+              color: colors.grey1000,
+              lineHeight: '26px',
+              fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+              textAlign: item.image ? 'left' : 'center',
+            }}>
+              {item.title}
+            </div>
+          </div>
+
+          {/* Underline icon tabs */}
+          <div style={{
+            display: 'flex',
+            padding: '4px 20px 0',
+            borderBottom: `1px solid ${colors.grey100}`,
+          }}>
+            {tabs.map(tab => {
+              const iconColor = activeTab === tab ? colors.grey1000 : colors.grey400
+              const groupEventCount = isGroup ? ALL_ITEMS.filter(i => i.type !== 'group' && i.group?.name === item.title).length : 0
+              const tabIcons = {
+                About: <TabAboutIcon color={iconColor} />,
+                Participants: <TabParticipantsIcon color={iconColor} />,
+                Events: <span style={{ position: 'relative', display: 'inline-flex' }}>
+                  <TabEventsIcon color={iconColor} />
+                  {groupEventCount > 0 && (
+                    <span style={{
+                      position: 'absolute',
+                      top: -6,
+                      right: -8,
+                      minWidth: 16,
+                      height: 16,
+                      borderRadius: 8,
+                      backgroundColor: colors.brandAccent5,
+                      color: '#FFFFFF',
+                      fontSize: 10,
+                      fontWeight: 700,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '0 4px',
+                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                    }}>
+                      {groupEventCount}
+                    </span>
+                  )}
+                </span>,
+                Chat: <TabChatIcon color={iconColor} />,
+              }
+              return (
+                <button
+                  key={tab}
+                  onClick={() => handleTabTap(tab)}
+                  style={{
+                    flex: 1,
+                    padding: '8px 0 10px',
+                    background: 'none',
+                    border: 'none',
+                    borderBottom: activeTab === tab ? `2px solid ${colors.grey1000}` : '2px solid transparent',
+                    cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: '0 4px',
-                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                  }}>
-                    {groupEventCount}
-                  </span>
-                )}
-              </span>,
-              Chat: <TabChatIcon color={iconColor} />,
-            }
-            return (
-              <button
-                key={tab}
-                onClick={() => handleTabTap(tab)}
-                style={{
-                  flex: 1,
-                  padding: '8px 0 10px',
-                  background: 'none',
-                  border: 'none',
-                  borderBottom: activeTab === tab ? `2px solid ${colors.grey1000}` : '2px solid transparent',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: 'all 0.2s ease',
-                  marginBottom: -1,
-                }}
-              >
-                {tabIcons[tab]}
-              </button>
-            )
-          })}
-      </div>
-
-      {/* Scrollable content */}
-      <div style={{ flex: 1, overflowY: 'auto', backgroundColor: 'rgb(245, 245, 245)' }}>
+                    transition: 'all 0.2s ease',
+                    marginBottom: -1,
+                  }}
+                >
+                  {tabIcons[tab]}
+                </button>
+              )
+            })}
+          </div>
+        </div>
         {/* About content */}
         {activeTab === 'About' && (
           <div style={{ padding: '20px 20px 0' }}>
