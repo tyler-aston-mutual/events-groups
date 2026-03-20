@@ -1161,7 +1161,7 @@ export default function Home() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <CreateOption
                 colors={colors}
-                icon={<CalendarCreateIcon color={colors.brandPrimary} />}
+                icon={<CalendarCreateIcon color={colors.brandAccent5} />}
                 title="Create an Event"
                 description="Got plans? Make it an event and invite people to join."
                 onClick={() => { closeCreate(); navigate('/create/event') }}
@@ -1560,16 +1560,16 @@ function CreateOption({ colors, icon, title, description, onClick }) {
       boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
     }}>
       <div style={{
-        width: 44,
-        height: 44,
-        borderRadius: 12,
-        backgroundColor: colors.grey50,
+        width: 56,
+        height: 56,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
       }}>
-        {icon}
+        <div style={{ transform: 'scale(1.8)' }}>
+          {icon}
+        </div>
       </div>
       <div style={{ flex: 1 }}>
         <div style={{
