@@ -1049,11 +1049,7 @@ export default function DetailScreen() {
         <button
           onClick={() => {
             if (joined) {
-              // Already joined — tapping again still confirms via popup
-              addJoinedId(item.id)
-              if (!isGroup) {
-                setSafetyTipsOpen(true)
-              }
+              setLeaveDialogOpen(true)
             } else {
               addJoinedId(item.id)
               if (!isGroup) {
