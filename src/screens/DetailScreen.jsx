@@ -1348,7 +1348,7 @@ function getGenderCounts(item) {
 function GenderBreakdown({ total, itemId, men, women, colors }) {
   const { guys, girls } = getGenderCounts({ id: itemId, going: total, men, women })
   return (
-    <span><span style={{ fontWeight: 600 }}>{guys} Men</span> - <span style={{ color: colors.brandAccent5, fontWeight: 600 }}>{girls} Women</span> Interested</span>
+    <span><span style={{ color: colors.brandPrimary, fontWeight: 600 }}>{guys}</span> Men - <span style={{ color: colors.brandAccent5, fontWeight: 600 }}>{girls}</span> Women Interested</span>
   )
 }
 
@@ -1396,7 +1396,6 @@ function InfoRow({ icon, colors, children, tappable, onTap }) {
       }}>
         {children}
       </div>
-      {tappable && <ChevronRight color={colors.brandPrimary} />}
     </Wrapper>
   )
 }
@@ -1459,14 +1458,10 @@ function CalendarClockIcon({ color }) {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
       stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-      {/* Calendar body */}
       <rect x="2" y="3.5" width="16" height="14" rx="2"/>
-      {/* Binding tabs */}
       <line x1="6.5" y1="1.5" x2="6.5" y2="5.5"/>
       <line x1="13.5" y1="1.5" x2="13.5" y2="5.5"/>
-      {/* Horizontal divider */}
       <line x1="2" y1="8" x2="18" y2="8"/>
-      {/* Grid dots — 3x2 */}
       <circle cx="6.5" cy="11" r="0.8" fill={color} stroke="none"/>
       <circle cx="10" cy="11" r="0.8" fill={color} stroke="none"/>
       <circle cx="13.5" cy="11" r="0.8" fill={color} stroke="none"/>
@@ -1497,7 +1492,7 @@ function StopwatchIcon({ color }) {
 
 function HeartInfoIcon({ color }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 20 20" fill="none"
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
       stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
       <path d="M10 17.5l-1.2-1.1C4.5 12.7 2 10.5 2 7.5 2 5.1 3.9 3.2 6.2 3.2c1.3 0 2.6.6 3.8 1.7 1.2-1.1 2.5-1.7 3.8-1.7C16.1 3.2 18 5.1 18 7.5c0 3-2.5 5.2-6.8 8.9L10 17.5z"/>
     </svg>
@@ -1522,7 +1517,7 @@ function CreatedByIcon({ color }) {
 
 function LocationInfoIcon({ color }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+    <svg width="20" height="20" viewBox="0 0 18 18" fill="none"
       stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="9" cy="7.5" r="2.5"/>
       <path d="M9 16.5S3.5 11.5 3.5 7.5a5.5 5.5 0 0 1 11 0c0 4-5.5 9-5.5 9z"/>
@@ -1532,7 +1527,7 @@ function LocationInfoIcon({ color }) {
 
 function MoreInfoIcon({ color }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+    <svg width="20" height="20" viewBox="0 0 22 22" fill="none"
       stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="11" cy="11" r="8.5" />
       <line x1="11" y1="10" x2="11" y2="16" />
