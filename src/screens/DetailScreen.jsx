@@ -1717,9 +1717,16 @@ function TabAboutIcon({ color }) {
 function TabParticipantsIcon({ color }) {
   return (
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
-      stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="11" cy="7" r="3.5" />
-      <path d="M4 20v-1.5C4 15.46 6.69 13 11 13s7 2.46 7 5.5V20" />
+      stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      {/* Back card */}
+      <rect x="7" y="1" width="14" height="17" rx="1.5" opacity="0.3" />
+      {/* Middle card */}
+      <rect x="4" y="3" width="14" height="17" rx="1.5" opacity="0.5" />
+      {/* Front card */}
+      <rect x="1" y="5" width="14" height="17" rx="1.5" fill="none" />
+      {/* Person silhouette on front card */}
+      <circle cx="8" cy="11.5" r="2.5" fill={color} stroke="none" />
+      <path d="M3.5 19.5c0-2.5 1.8-4 4.5-4s4.5 1.5 4.5 4" fill={color} stroke="none" />
     </svg>
   )
 }
