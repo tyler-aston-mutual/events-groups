@@ -1230,7 +1230,7 @@ export default function DetailScreen() {
             <div style={{
               flex: 1,
               overflowY: 'auto',
-              padding: '28px 24px 0',
+              padding: '20px 20px 0',
             }}>
               {/* Close button */}
               <button
@@ -1241,8 +1241,8 @@ export default function DetailScreen() {
                 }}
                 style={{
                   position: 'absolute',
-                  top: 16,
-                  right: 16,
+                  top: 14,
+                  right: 14,
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
@@ -1256,53 +1256,58 @@ export default function DetailScreen() {
                 ×
               </button>
 
-              {/* Shield icon */}
+              {/* Shield icon + title row */}
               <div style={{
-                width: 56,
-                height: 56,
-                borderRadius: 16,
-                backgroundColor: '#E8F0FE',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: 20,
+                gap: 12,
+                marginBottom: 8,
               }}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2L4 6v5c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V6l-8-4z" fill="#4285F4"/>
-                  <path d="M10.5 14.5l-2-2 1.41-1.41L10.5 11.67l3.59-3.59L15.5 9.5l-5 5z" fill="#fff"/>
-                </svg>
+                <div style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 12,
+                  backgroundColor: '#E8F0FE',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L4 6v5c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V6l-8-4z" fill="#4285F4"/>
+                    <path d="M10.5 14.5l-2-2 1.41-1.41L10.5 11.67l3.59-3.59L15.5 9.5l-5 5z" fill="#fff"/>
+                  </svg>
+                </div>
+                <h2 style={{
+                  fontSize: 20,
+                  fontWeight: 700,
+                  color: colors.grey1000,
+                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                  margin: 0,
+                }}>
+                  Safety Tips
+                </h2>
               </div>
-
-              {/* Title */}
-              <h2 style={{
-                fontSize: 24,
-                fontWeight: 700,
-                color: colors.grey1000,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                margin: '0 0 8px',
-              }}>
-                Safety Tips
-              </h2>
 
               {/* Intro */}
               <p style={{
-                fontSize: 15,
+                fontSize: 13,
                 fontWeight: 400,
                 color: colors.grey400,
                 fontFamily: "'Goldman Sans', sans-serif",
-                margin: '0 0 24px',
-                lineHeight: 1.5,
+                margin: '0 0 12px',
+                lineHeight: 1.45,
               }}>
                 Meeting new people should be fun and safe. Here are some tips to help you stay safe when attending events.
               </p>
 
               {/* Accordion items */}
               {[
-                { emoji: '🔔', title: 'Always Tell Someone Where You\'re Going', body: 'Let a friend or family member know the event details, including the location, time, and who you\'re meeting. Share your expected return time so someone knows to check in.' },
-                { emoji: '👥', title: 'Bring a Friend', body: 'There\'s safety in numbers. Consider attending with someone you trust, especially if it\'s your first time meeting this group. You\'ll have more fun too!' },
-                { emoji: '📍', title: 'Stay in Public Places', body: 'Meet in well-lit, populated areas. Avoid going to private locations with people you\'ve just met. Coffee shops, parks, and restaurants are great first meeting spots.' },
-                { emoji: '🚗', title: 'Arrange Your Own Transportation', body: 'Drive yourself or use your own rideshare. Don\'t depend on someone you just met for a ride. Having your own transportation means you can leave whenever you want.' },
-                { emoji: '🚨', title: 'Report Anything Suspicious', body: 'If something doesn\'t feel right, trust your instincts. You can report concerns to Mutual at support@mutual.app. We take every report seriously.' },
+                { emoji: '🔔', title: 'Tell Someone Where You\'re Going', body: 'Let a friend or family member know the event details, including the location, time, and who you\'re meeting.' },
+                { emoji: '👥', title: 'Bring a Friend', body: 'There\'s safety in numbers. Consider attending with someone you trust, especially if it\'s your first time meeting this group.' },
+                { emoji: '📍', title: 'Stay in Public Places', body: 'Meet in well-lit, populated areas. Avoid going to private locations with people you\'ve just met.' },
+                { emoji: '🚗', title: 'Arrange Your Own Transportation', body: 'Drive yourself or use your own rideshare. Having your own transportation means you can leave whenever you want.' },
+                { emoji: '🚨', title: 'Report Anything Suspicious', body: 'If something doesn\'t feel right, trust your instincts. Report concerns to Mutual at support@mutual.app.' },
               ].map((tip, i) => (
                 <div key={i} style={{ borderTop: `1px solid ${colors.grey100}` }}>
                   <button
@@ -1311,8 +1316,8 @@ export default function DetailScreen() {
                       width: '100%',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: 12,
-                      padding: '16px 0',
+                      gap: 10,
+                      padding: '10px 0',
                       background: 'none',
                       border: 'none',
                       cursor: 'pointer',
@@ -1320,21 +1325,21 @@ export default function DetailScreen() {
                     }}
                   >
                     <div style={{
-                      width: 32,
-                      height: 32,
-                      borderRadius: 16,
+                      width: 28,
+                      height: 28,
+                      borderRadius: 14,
                       backgroundColor: colors.grey50,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
-                      fontSize: 16,
+                      fontSize: 14,
                     }}>
                       {tip.emoji}
                     </div>
                     <span style={{
                       flex: 1,
-                      fontSize: 15,
+                      fontSize: 14,
                       fontWeight: 500,
                       color: colors.grey1000,
                       fontFamily: "'Goldman Sans', sans-serif",
@@ -1342,7 +1347,7 @@ export default function DetailScreen() {
                       {tip.title}
                     </span>
                     <svg
-                      width="16" height="16" viewBox="0 0 24 24" fill="none"
+                      width="14" height="14" viewBox="0 0 24 24" fill="none"
                       style={{
                         flexShrink: 0,
                         transform: expandedTip === i ? 'rotate(180deg)' : 'rotate(0deg)',
@@ -1354,13 +1359,13 @@ export default function DetailScreen() {
                   </button>
                   {expandedTip === i && (
                     <p style={{
-                      fontSize: 14,
+                      fontSize: 13,
                       fontWeight: 400,
                       color: colors.grey400,
                       fontFamily: "'Goldman Sans', sans-serif",
-                      margin: '0 0 16px',
-                      paddingLeft: 44,
-                      lineHeight: 1.5,
+                      margin: '0 0 10px',
+                      paddingLeft: 38,
+                      lineHeight: 1.4,
                     }}>
                       {tip.body}
                     </p>
@@ -1371,7 +1376,7 @@ export default function DetailScreen() {
 
             {/* Fixed bottom button */}
             <div style={{
-              padding: '16px 24px 28px',
+              padding: '12px 20px 24px',
               borderTop: `1px solid ${colors.grey100}`,
             }}>
               <PrimaryButton
