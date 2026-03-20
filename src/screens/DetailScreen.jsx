@@ -185,6 +185,7 @@ export default function DetailScreen() {
         alignItems: 'center',
         padding: '12px 16px',
         flexShrink: 0,
+        position: 'relative',
       }}>
         <button
           onClick={() => navigate(-1)}
@@ -206,14 +207,22 @@ export default function DetailScreen() {
         >
           <BackArrow color={colors.grey1000} />
         </button>
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <span style={{ fontWeight: 400, fontSize: 16, color: isGroup ? colors.brandPrimary : colors.brandAccent5, fontFamily: "'Goldman Sans', sans-serif" }}>{isGroup ? 'Group' : 'Event'}</span>
-            {isGroup
-              ? <GroupTypeIcon color={colors.brandPrimary} />
-              : <CalendarTypeIcon color={colors.brandAccent5} />
-            }
-          </div>
+        <div style={{ flex: 1 }} />
+        <div style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 4,
+          pointerEvents: 'none',
+        }}>
+          <span style={{ fontWeight: 400, fontSize: 16, color: isGroup ? colors.brandPrimary : colors.brandAccent5, fontFamily: "'Goldman Sans', sans-serif" }}>{isGroup ? 'Group' : 'Event'}</span>
+          {isGroup
+            ? <GroupTypeIcon color={colors.brandPrimary} />
+            : <CalendarTypeIcon color={colors.brandAccent5} />
+          }
         </div>
         <button style={{
           width: 36,
