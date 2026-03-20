@@ -1103,7 +1103,7 @@ export default function DetailScreen() {
           margin: '12px 0 0',
           textAlign: 'center',
         }}>
-          <strong>Please Note:</strong> Unless specified, many {isGroup ? 'groups' : 'events'} were not made by or endorsed by Mutual LLC. Please report anything that doesn't meet your expectations for our community.
+          <strong>Please Note</strong> that this {isGroup ? 'group' : 'event'} is not endorsed by Mutual LLC. Help us to keep our community safe by reporting anything suspicious.
         </p>
       </div>
 
