@@ -452,22 +452,18 @@ export default function DetailScreen() {
         {/* About content */}
         {activeTab === 'About' && (
           <div style={{ padding: '20px 20px 0' }}>
-            {/* About card */}
+            {/* About description */}
             <div style={{
-              backgroundColor: colors.grey50,
-              borderRadius: 14,
-              padding: 16,
-              marginBottom: 24,
+              fontSize: 15,
+              fontWeight: 400,
+              color: colors.grey600,
+              lineHeight: '22px',
+              fontFamily: "'Goldman Sans', sans-serif",
+              paddingBottom: 16,
+              marginBottom: 16,
+              borderBottom: `1px solid ${colors.grey100}`,
             }}>
-              <div style={{
-                fontSize: 15,
-                fontWeight: 400,
-                color: colors.grey600,
-                lineHeight: '22px',
-                fontFamily: "'Goldman Sans', sans-serif",
-              }}>
-                {item.description || 'No description available.'}
-              </div>
+              {item.description || 'No description available.'}
             </div>
 
             {/* Details section */}
