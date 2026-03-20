@@ -352,29 +352,15 @@ export default function DetailScreen() {
             lineHeight: '26px',
             fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
             textAlign: item.image ? 'left' : 'center',
-            paddingRight: 40,
           }}>
-            {item.title} <span style={{ fontWeight: 400, fontSize: 18, color: isGroup ? colors.brandPrimary : colors.brandAccent5 }}>{isGroup ? 'Group' : 'Event'}</span>
-          </div>
-
-          {/* Type icon pill — top right */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            right: 20,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 32,
-            height: 32,
-            borderRadius: 20,
-            border: 'none',
-            backgroundColor: 'transparent',
-          }}>
-            {isGroup
-              ? <GroupTypeIcon color={colors.brandPrimary} />
-              : <CalendarTypeIcon color={colors.brandAccent5} />
-            }
+            {item.title}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
+              <span style={{ fontWeight: 400, fontSize: 18, color: isGroup ? colors.brandPrimary : colors.brandAccent5 }}>{isGroup ? 'Group' : 'Event'}</span>
+              {isGroup
+                ? <GroupTypeIcon color={colors.brandPrimary} />
+                : <CalendarTypeIcon color={colors.brandAccent5} />
+              }
+            </div>
           </div>
         </div>
 
