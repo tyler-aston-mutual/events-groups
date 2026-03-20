@@ -848,54 +848,55 @@ export default function Home() {
                   onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
                   style={{ cursor: 'pointer' }}
                 >
-                  <EventCard {...item} onGroupClick={handleGroupClick} />
+                  <EventCard {...item} onGroupClick={handleGroupClick}>
+                    {childEvents && childEvents.length > 0 && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setExpandedGroups(prev => {
+                            const next = new Set(prev)
+                            if (next.has(item.id)) next.delete(item.id)
+                            else next.add(item.id)
+                            return next
+                          })
+                        }}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 6,
+                          width: '100%',
+                          padding: '4px 12px 12px',
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        <ChildEventIcon color={colors.brandAccent5} size={14} />
+                        <span style={{
+                          fontSize: 13,
+                          fontWeight: 700,
+                          color: colors.brandAccent5,
+                          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                        }}>
+                          {isExpanded ? 'Hide' : 'Show'} Events
+                        </span>
+                        <svg
+                          width="12" height="12" viewBox="0 0 12 12" fill="none"
+                          style={{
+                            transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                            transition: 'transform 0.2s ease',
+                          }}
+                        >
+                          <path d="M3 4.5L6 7.5L9 4.5" stroke={colors.brandAccent5} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </button>
+                    )}
+                  </EventCard>
                 </div>
 
                 {/* Expandable child events section */}
                 {childEvents && childEvents.length > 0 && (
                   <div>
-                    {/* Show/Hide Events toggle row inside group card */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        setExpandedGroups(prev => {
-                          const next = new Set(prev)
-                          if (next.has(item.id)) next.delete(item.id)
-                          else next.add(item.id)
-                          return next
-                        })
-                      }}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 6,
-                        width: '100%',
-                        padding: '8px 12px 12px',
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        marginTop: -4,
-                      }}
-                    >
-                      <ChildEventIcon color={colors.brandAccent5} size={14} />
-                      <span style={{
-                        fontSize: 13,
-                        fontWeight: 700,
-                        color: colors.brandAccent5,
-                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                      }}>
-                        {isExpanded ? 'Hide' : 'Show'} Events
-                      </span>
-                      <svg
-                        width="12" height="12" viewBox="0 0 12 12" fill="none"
-                        style={{
-                          transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
-                          transition: 'transform 0.2s ease',
-                        }}
-                      >
-                        <path d="M3 4.5L6 7.5L9 4.5" stroke={colors.brandAccent5} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </button>
 
                     {isExpanded && (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

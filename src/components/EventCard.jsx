@@ -15,6 +15,7 @@ export function EventCard({
   tagVariant = 'constantPrimary',
   imageBg,
   onGroupClick,
+  children,
 }) {
   const { colors } = useTheme()
 
@@ -159,6 +160,7 @@ export function EventCard({
         </div>
 
       </div>
+      {children}
     </div>
   )
 }
