@@ -771,9 +771,9 @@ export default function Home() {
           {isYoursTab && (
             <div style={{ display: 'flex', gap: 8, paddingBottom: 4 }}>
               {[
-                { id: 'events', label: 'Events' },
-                { id: 'groups', label: 'Groups' },
-                { id: 'created', label: 'Created by Me' },
+                { id: 'events', label: 'Events', activeColor: colors.brandAccent5 },
+                { id: 'groups', label: 'Groups', activeColor: colors.brandAccent6 },
+                { id: 'created', label: 'Created by Me', activeColor: colors.grey1000 },
               ].map(pill => {
                 const active = myStuffPill === pill.id
                 return (
@@ -791,8 +791,8 @@ export default function Home() {
                       fontFamily: active
                         ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif"
                         : "'Goldman Sans', sans-serif",
-                      backgroundColor: active ? colors.grey1000 : colors.grey50,
-                      color: active ? colors.grey0 : colors.grey600,
+                      backgroundColor: active ? pill.activeColor : colors.grey50,
+                      color: active ? '#FFFFFF' : colors.grey600,
                       transition: 'all 0.15s ease',
                       whiteSpace: 'nowrap',
                     }}
