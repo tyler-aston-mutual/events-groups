@@ -138,7 +138,16 @@ export default function DetailScreen() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [leaveDialogOpen, setLeaveDialogOpen] = useState(false)
   const [revealDialogOpen, setRevealDialogOpen] = useState(false)
-  const [safetyTipsOpen, setSafetyTipsOpen] = useState(false)
+  const [safetyTipsOpen, setSafetyTipsOpenRaw] = useState(false)
+  const setSafetyTipsOpen = (open) => {
+    if (open && sessionStorage.getItem('safetyTipsSeen')) {
+      // Already shown this session — skip to My Stuff
+      setTimeout(() => navigate('/', { state: { switchToYours: true, joinedType: 'events' } }), 300)
+      return
+    }
+    if (open) sessionStorage.setItem('safetyTipsSeen', '1')
+    setSafetyTipsOpenRaw(open)
+  }
   const [expandedTip, setExpandedTip] = useState(null)
   const [participantFilter, setParticipantFilter] = useState('all') // 'all' | 'sisters' | 'brothers'
   const [filterDropdownOpen, setFilterDropdownOpen] = useState(false)
