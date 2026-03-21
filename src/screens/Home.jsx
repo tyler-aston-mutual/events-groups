@@ -461,9 +461,7 @@ export default function Home() {
   const [createOpen, setCreateOpen] = useState(false)
   const [createVisible, setCreateVisible] = useState(false)
   const [helpOpen, setHelpOpen] = useState(false)
-  const [createdByYouOpen, setCreatedByYouOpen] = useState(true)
-  const [createdByOthersOpen, setCreatedByOthersOpen] = useState(true)
-  const [pastActivityOpen, setPastActivityOpen] = useState(false)
+  const [myStuffPill, setMyStuffPill] = useState('events') // 'events' | 'groups' | 'created'
   const [expandedGroups, setExpandedGroups] = useState(() => {
     // Default all groups with child events to expanded
     const ids = new Set()
@@ -557,6 +555,11 @@ export default function Home() {
   const pastItems = isYoursTab
     ? topLevelItems.filter(i => { const d = parseItemDate(i); return d && d < now })
     : []
+
+  // My Stuff pill — filtered subsets
+  const myStuffEventsCurrent = isYoursTab ? currentItems.filter(i => i.type !== 'group') : []
+  const myStuffEventsPast    = isYoursTab ? pastItems.filter(i => i.type !== 'group') : []
+  const myStuffGroups        = isYoursTab ? currentItems.filter(i => i.type === 'group') : []
 
   return (
     <div style={{
@@ -656,7 +659,7 @@ export default function Home() {
         }}
         onClick={() => sortOpen && setSortOpen(false)}
       >
-        <div style={{ padding: isYoursTab ? '0 16px 16px' : 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ padding: isYoursTab ? '8px 16px 16px' : 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
           {/* Sort dropdown — hidden on Mine tab */}
           {activeNav !== 'mine' && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', position: 'relative', marginBottom: -4, gap: 10 }}>
             {activeNav === 'all' && (
@@ -764,75 +767,194 @@ export default function Home() {
             </div>
           )}
 
-          {/* "You Created" section — Yours tab only */}
+          {/* My Stuff — pill sub-navigation */}
           {isYoursTab && (
+            <div style={{ display: 'flex', gap: 8, paddingBottom: 4 }}>
+              {[
+                { id: 'events', label: 'Events' },
+                { id: 'groups', label: 'Groups' },
+                { id: 'created', label: 'Created by Me' },
+              ].map(pill => {
+                const active = myStuffPill === pill.id
+                return (
+                  <button
+                    key={pill.id}
+                    onClick={() => setMyStuffPill(pill.id)}
+                    style={{
+                      height: 32,
+                      padding: '0 14px',
+                      borderRadius: 20,
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontSize: 13,
+                      fontWeight: active ? 600 : 400,
+                      fontFamily: active
+                        ? "'Goldman Sans Bold', 'Goldman Sans', sans-serif"
+                        : "'Goldman Sans', sans-serif",
+                      backgroundColor: active ? colors.grey1000 : colors.grey50,
+                      color: active ? colors.grey0 : colors.grey600,
+                      transition: 'all 0.15s ease',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {pill.label}
+                  </button>
+                )
+              })}
+            </div>
+          )}
+
+          {/* My Stuff — Events pill content */}
+          {isYoursTab && myStuffPill === 'events' && (
             <>
-              <CollapsibleHeader
-                label="Created by you"
-                open={createdByYouOpen}
-                onToggle={() => setCreatedByYouOpen(v => !v)}
-                colors={colors}
-              />
-              {createdByYouOpen && (
+              {myStuffEventsCurrent.map(item => (
+                <div
+                  key={item.id}
+                  onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
+                  style={{
+                    cursor: 'pointer',
+                    ...(item.id === newlyJoinedId ? { animation: 'cardSlideIn 0.4s ease-out both' } : {}),
+                  }}
+                >
+                  <EventCard {...item} onGroupClick={handleGroupClick} />
+                </div>
+              ))}
+              {myStuffEventsPast.length > 0 && (
                 <>
-                  {/* Pending event — submitted but awaiting review */}
-                  <div style={{ position: 'relative' }}>
-                    <div style={{ pointerEvents: 'none', paddingBottom: 24 }}>
-                      <EventCard
-                        title="Provo Temple Walk & Talk"
-                        image={BASE + 'provo-utah-rock-canyon-temple-45659.png'}
-                        date="April 5, 2026 - 6:30 PM"
-                        location="Provo City Center Temple"
-                        going={0}
-                      />
-                    </div>
-                    {/* Full-card overlay with status text at bottom */}
-                    <div style={{
-                      position: 'absolute',
-                      top: 0,
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      borderRadius: 16,
-                      backgroundColor: 'rgba(255,255,255,0.55)',
-                      display: 'flex',
-                      alignItems: 'flex-end',
-                      justifyContent: 'center',
-                      paddingBottom: 2,
-                      pointerEvents: 'none',
-                    }}>
-                      <span style={{
-                        fontSize: 12,
-                        fontWeight: 600,
-                        color: colors.grey400,
-                        fontFamily: "'Goldman Sans', sans-serif",
-                      }}>
-                        Pending Mutual Review
-                      </span>
-                    </div>
+                  <div style={{
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: colors.grey400,
+                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                    paddingTop: 4,
+                  }}>
+                    Past Activity
                   </div>
-                  {/* Create Your Own banner */}
-                  <CreateBanner
-                    colors={colors}
-                    activeNav={activeNav}
-                    onTap={openCreate}
-                    navigate={navigate}
-                  />
+                  {myStuffEventsPast.map(item => (
+                    <div
+                      key={item.id}
+                      onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
+                      style={{ cursor: 'pointer', opacity: 0.55 }}
+                    >
+                      <EventCard {...item} onGroupClick={handleGroupClick} />
+                    </div>
+                  ))}
                 </>
               )}
-
-              {/* "Created by Others" section header */}
-              <CollapsibleHeader
-                label="Created by Others"
-                open={createdByOthersOpen}
-                onToggle={() => setCreatedByOthersOpen(v => !v)}
-                colors={colors}
-                style={{ marginTop: 8 }}
-              />
             </>
           )}
 
-          {(!isYoursTab || createdByOthersOpen) && currentItems.map((item, index) => {
+          {/* My Stuff — Groups pill content */}
+          {isYoursTab && myStuffPill === 'groups' && (
+            <>
+              {myStuffGroups.map(item => {
+                const childEvents = groupChildrenMap[item.id]
+                const isExpanded = expandedGroups.has(item.id)
+                return (
+                  <Fragment key={item.id}>
+                    <div
+                      style={{
+                        ...(item.id === newlyJoinedId ? { animation: 'cardSlideIn 0.4s ease-out both' } : {}),
+                      }}
+                    >
+                      <div
+                        onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        <EventCard {...item} onGroupClick={handleGroupClick}>
+                          {childEvents && childEvents.length > 0 && (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                setExpandedGroups(prev => {
+                                  const next = new Set(prev)
+                                  if (next.has(item.id)) next.delete(item.id)
+                                  else next.add(item.id)
+                                  return next
+                                })
+                              }}
+                              style={{
+                                display: 'flex', alignItems: 'center', gap: 6,
+                                width: '100%', padding: '4px 0 0',
+                                background: 'none', border: 'none', cursor: 'pointer',
+                              }}
+                            >
+                              <ChildEventIcon color={colors.brandAccent5} size={14} />
+                              <span style={{
+                                fontSize: 13, fontWeight: 700, color: colors.brandAccent5,
+                                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                              }}>
+                                {isExpanded ? 'Hide' : 'Show'} Events
+                              </span>
+                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }}>
+                                <path d="M3 4.5L6 7.5L9 4.5" stroke={colors.brandAccent5} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
+                            </button>
+                          )}
+                        </EventCard>
+                      </div>
+                      {childEvents && childEvents.length > 0 && isExpanded && (
+                        <div style={{ paddingTop: 3, paddingLeft: 10, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                          {childEvents.map(child => (
+                            <div
+                              key={child.id}
+                              onClick={() => navigate(`/detail/${child.id}`, { state: { item: child, joined: joinedIds.has(child.id) } })}
+                              style={{
+                                position: 'relative', display: 'flex', alignItems: 'center', gap: 10,
+                                padding: 10, backgroundColor: colors.grey0, borderRadius: 12,
+                                cursor: 'pointer', boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+                              }}
+                            >
+                              <div style={{ position: 'absolute', top: 8, right: 8 }}>
+                                <ChildEventIcon color={colors.brandAccent5} size={12} />
+                              </div>
+                              <img src={child.image} alt={child.title} style={{ width: 56, height: 56, borderRadius: 10, objectFit: 'cover', flexShrink: 0 }} />
+                              <div style={{ flex: 1, minWidth: 0 }}>
+                                <div style={{ fontSize: 14, fontWeight: 700, color: colors.grey1000, fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif", lineHeight: '18px', marginBottom: 3 }}>{child.title}</div>
+                                {child.date && <div style={{ fontSize: 12, color: colors.grey600, fontFamily: "'Goldman Sans', sans-serif" }}>{child.date}</div>}
+                                <div style={{ fontSize: 12, color: colors.grey400, fontFamily: "'Goldman Sans', sans-serif" }}>{child.going} interested</div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </Fragment>
+                )
+              })}
+            </>
+          )}
+
+          {/* My Stuff — Created by Me pill content */}
+          {isYoursTab && myStuffPill === 'created' && (
+            <>
+              <div style={{ position: 'relative' }}>
+                <div style={{ pointerEvents: 'none', paddingBottom: 24 }}>
+                  <EventCard
+                    title="Provo Temple Walk & Talk"
+                    image={BASE + 'provo-utah-rock-canyon-temple-45659.png'}
+                    date="April 5, 2026 - 6:30 PM"
+                    location="Provo City Center Temple"
+                    going={0}
+                  />
+                </div>
+                <div style={{
+                  position: 'absolute', top: 0, bottom: 0, left: 0, right: 0,
+                  borderRadius: 16, backgroundColor: 'rgba(255,255,255,0.55)',
+                  display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+                  paddingBottom: 2, pointerEvents: 'none',
+                }}>
+                  <span style={{ fontSize: 12, fontWeight: 600, color: colors.grey400, fontFamily: "'Goldman Sans', sans-serif" }}>
+                    Pending Mutual Review
+                  </span>
+                </div>
+              </div>
+              <CreateBanner colors={colors} activeNav={activeNav} onTap={openCreate} navigate={navigate} />
+            </>
+          )}
+
+          {!isYoursTab && currentItems.map((item, index) => {
             const childEvents = groupChildrenMap[item.id]
             const isExpanded = expandedGroups.has(item.id)
             return (
@@ -1017,27 +1139,6 @@ export default function Home() {
             )
           })}
 
-          {/* Past Activity section — My Stuff tab only */}
-          {isYoursTab && pastItems.length > 0 && (
-            <>
-              <CollapsibleHeader
-                label="Past Activity"
-                open={pastActivityOpen}
-                onToggle={() => setPastActivityOpen(v => !v)}
-                colors={colors}
-                style={{ marginTop: 8 }}
-              />
-              {pastActivityOpen && pastItems.map(item => (
-                <div
-                  key={item.id}
-                  onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
-                  style={{ cursor: 'pointer', opacity: 0.55 }}
-                >
-                  <EventCard {...item} onGroupClick={handleGroupClick} />
-                </div>
-              ))}
-            </>
-          )}
 
           {/* Help / Contact banner — My Stuff tab only, at the very bottom */}
           {isYoursTab && (
