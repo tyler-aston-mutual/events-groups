@@ -1574,16 +1574,10 @@ function HeartInfoIcon({ color }) {
 
 function CreatedByIcon({ color }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <g stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-        {/* Badge circle */}
-        <circle cx="10" cy="8" r="5.5"/>
-        {/* Ribbon tails */}
-        <path d="M6.5 12.5L5 18l2.5-1.5L10 18V13"/>
-        <path d="M13.5 12.5L15 18l-2.5-1.5L10 18V13"/>
-        {/* Checkmark */}
-        <path d="M7.5 8l1.5 1.5 3.5-3.5"/>
-      </g>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+      stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="10" cy="7" r="3.5" />
+      <path d="M3.5 18c0-3.3 2.9-6 6.5-6s6.5 2.7 6.5 6" />
     </svg>
   )
 }
