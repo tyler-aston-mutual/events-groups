@@ -772,7 +772,7 @@ export default function Home() {
             <div style={{ display: 'flex', gap: 8, paddingBottom: 4 }}>
               {[
                 { id: 'events', label: 'Events', activeColor: colors.brandAccent5 },
-                { id: 'groups', label: 'Groups', activeColor: colors.brandAccent6 },
+                { id: 'groups', label: 'Groups', activeColor: colors.brandPrimary },
                 { id: 'created', label: 'Created by Me', activeColor: colors.grey1000 },
               ].map(pill => {
                 const active = myStuffPill === pill.id
