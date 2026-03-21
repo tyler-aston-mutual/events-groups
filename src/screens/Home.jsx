@@ -808,6 +808,21 @@ export default function Home() {
           {/* My Stuff — Events pill content */}
           {isYoursTab && myStuffPill === 'events' && (
             <>
+              {myStuffEventsCurrent.length === 0 && myStuffEventsPast.length === 0 && (
+                <div style={{
+                  backgroundColor: colors.grey50,
+                  borderRadius: 16,
+                  border: `1px solid ${colors.grey100}`,
+                  padding: '16px 16px',
+                }}>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: colors.grey900, fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif", lineHeight: '20px', marginBottom: 4 }}>
+                    Find an Event!
+                  </div>
+                  <div style={{ fontSize: 13, color: colors.grey400, fontFamily: "'Goldman Sans', sans-serif", lineHeight: '17px' }}>
+                    All of your events will show here
+                  </div>
+                </div>
+              )}
               {myStuffEventsCurrent.map(item => (
                 <div
                   key={item.id}
@@ -866,6 +881,21 @@ export default function Home() {
           {/* My Stuff — Groups pill content */}
           {isYoursTab && myStuffPill === 'groups' && (
             <>
+              {myStuffGroups.length === 0 && (
+                <div style={{
+                  backgroundColor: colors.grey50,
+                  borderRadius: 16,
+                  border: `1px solid ${colors.grey100}`,
+                  padding: '16px 16px',
+                }}>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: colors.grey900, fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif", lineHeight: '20px', marginBottom: 4 }}>
+                    Join a Group!
+                  </div>
+                  <div style={{ fontSize: 13, color: colors.grey400, fontFamily: "'Goldman Sans', sans-serif", lineHeight: '17px' }}>
+                    All of your joined groups will show here
+                  </div>
+                </div>
+              )}
               {myStuffGroups.map(item => (
                 <div
                   key={item.id}
