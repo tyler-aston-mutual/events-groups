@@ -1076,62 +1076,37 @@ export default function Home() {
           })}
 
 
-          {/* Help / Contact banner — My Stuff tab only, at the very bottom */}
-          {isYoursTab && (
-            <div
-              onClick={() => setHelpOpen(true)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 12,
-                backgroundColor: colors.grey0,
-                borderRadius: 16,
-                border: `1px solid ${colors.grey100}`,
-                padding: '12px 16px',
-                cursor: 'pointer',
-                marginTop: 8,
-              }}
-            >
-              <div style={{
-                width: 80,
-                height: 80,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-              }}>
-                <div style={{ transform: 'scale(2.2)' }}>
-                  <HelpIcon color={colors.grey600} />
-                </div>
-              </div>
-              <div style={{ flex: 1 }}>
-                <div style={{
-                  fontSize: 15,
-                  fontWeight: 700,
-                  color: colors.grey900,
-                  fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                  lineHeight: '20px',
-                  marginBottom: 4,
-                }}>
-                  Questions or Feedback?
-                </div>
-                <div style={{
-                  fontSize: 13,
-                  fontWeight: 400,
-                  color: colors.grey400,
-                  fontFamily: "'Goldman Sans', sans-serif",
-                  lineHeight: '17px',
-                }}>
-                  Reach out to the Mutual team
-                </div>
-              </div>
-            </div>
-          )}
 
         </div>
       </div>
 
       <TabBar activeTab="circles" />
+
+      {/* Feedback FAB — bottom-right floating button */}
+      <button
+        onClick={() => setHelpOpen(true)}
+        style={{
+          position: 'fixed',
+          bottom: 84,
+          right: 20,
+          width: 52,
+          height: 52,
+          borderRadius: '50%',
+          backgroundColor: '#000000',
+          border: 'none',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+          zIndex: 50,
+        }}
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            fill="white" />
+        </svg>
+      </button>
 
       {/* Create bottom sheet */}
       {createOpen && (
