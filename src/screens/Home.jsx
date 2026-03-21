@@ -461,6 +461,7 @@ export default function Home() {
   const [createOpen, setCreateOpen] = useState(false)
   const [createVisible, setCreateVisible] = useState(false)
   const [helpOpen, setHelpOpen] = useState(false)
+  const [pastEventsOpen, setPastEventsOpen] = useState(false)
   const [myStuffPill, setMyStuffPill] = useState('events') // 'events' | 'groups' | 'created'
   const [expandedGroups, setExpandedGroups] = useState(() => {
     // Default all groups with child events to expanded
@@ -821,16 +822,34 @@ export default function Home() {
               ))}
               {myStuffEventsPast.length > 0 && (
                 <>
-                  <div style={{
-                    fontSize: 13,
-                    fontWeight: 600,
-                    color: colors.grey400,
-                    fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                    paddingTop: 4,
-                  }}>
-                    Past Activity
-                  </div>
-                  {myStuffEventsPast.map(item => (
+                  <button
+                    onClick={() => setPastEventsOpen(prev => !prev)}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      width: '100%',
+                      padding: '14px 16px',
+                      background: 'none',
+                      border: 'none',
+                      borderTop: `1px solid ${colors.grey100}`,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <span style={{
+                      fontSize: 15,
+                      fontWeight: 700,
+                      color: colors.grey600,
+                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                    }}>
+                      Past Events
+                    </span>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                      style={{ transform: pastEventsOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }}>
+                      <path d="M3 5.5L7 9.5L11 5.5" stroke={colors.grey400} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                  {pastEventsOpen && myStuffEventsPast.map(item => (
                     <div
                       key={item.id}
                       onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
