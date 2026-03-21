@@ -17,6 +17,7 @@ interface DialogButtonConfig {
   title: string;
   variant: 'primary' | 'secondary' | 'destructive';
   onClick: () => void;
+  bgOverride?: string;
 }
 
 interface ThemedDialogProps {
@@ -168,11 +169,13 @@ export function ThemedDialog({
               {buttons.map((btn, i) => {
                 const isPrimary = btn.variant === 'primary';
                 const isDestructive = btn.variant === 'destructive';
-                const bg = isDestructive
-                  ? colors.indicatorError
-                  : isPrimary
-                    ? colors.brandAccent5
-                    : colors.brandSecondary;
+                const bg = btn.bgOverride
+                  ? btn.bgOverride
+                  : isDestructive
+                    ? colors.indicatorError
+                    : isPrimary
+                      ? colors.brandAccent5
+                      : colors.brandSecondary;
                 const fg = isDestructive || isPrimary
                   ? colors.constantWhite
                   : colors.isDarkMode ? colors.constantWhite : colors.grey900;
