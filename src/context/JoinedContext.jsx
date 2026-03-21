@@ -1,9 +1,8 @@
 import { createContext, useContext, useState, useCallback } from 'react'
 
-const INITIAL_JOINED = new Set([5, 13])
+const INITIAL_JOINED = new Set([13])
 
 const INITIAL_JOIN_DATES = new Map([
-  [5, '01/08/2026'],
   [13, '07/20/2025'],
 ])
 
