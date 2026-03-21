@@ -1649,16 +1649,12 @@ function SplitCreateIllustration({ colors }) {
         <line x1="2.5" y1="8" x2="17.5" y2="8"
           stroke={colors.brandAccent5} strokeWidth="1.5"/>
       </g>
-      {/* Group icon — right side, blue */}
-      <g transform="translate(38, 8) scale(1.6)">
-        <circle cx="7" cy="6.5" r="2.5" fill="none"
-          stroke={colors.brandPrimary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="16" cy="6.5" r="2.5" fill="none"
-          stroke={colors.brandPrimary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M1.5 18c0-2.5 2.5-4.5 5.5-4.5 1.5 0 2.8.5 3.7 1.3" fill="none"
-          stroke={colors.brandPrimary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M16 13.5c3 0 5.5 2 5.5 4.5" fill="none"
-          stroke={colors.brandPrimary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      {/* Group icon — right side, blue, two-person solid */}
+      <g transform="translate(38, 10) scale(1.6)">
+        <circle cx="14.5" cy="5" r="3" fill={colors.brandPrimary} />
+        <path d="M14.5 9.5c-2.8 0-5 1.8-5 4.5h10c0-2.7-2.2-4.5-5-4.5z" fill={colors.brandPrimary} />
+        <circle cx="8" cy="4.5" r="3.2" fill={colors.brandPrimary} />
+        <path d="M8 9c-3 0-5.5 2-5.5 5h11c0-3-2.5-5-5.5-5z" fill={colors.brandPrimary} />
       </g>
       {/* Black plus circle — bottom center */}
       <circle cx="48" cy="62" r="10" fill={colors.grey1000} />
