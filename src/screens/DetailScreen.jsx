@@ -1647,17 +1647,11 @@ function CalendarTypeIcon({ color }) {
 
 function GroupTypeIcon({ color }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 20" fill="none"
-      strokeLinecap="round" strokeLinejoin="round">
-      {/* Left person (outline) */}
-      <circle cx="4.5" cy="6.5" r="2" stroke={color} strokeWidth="1.4" />
-      <path d="M1 16c0-2.2 1.5-4 3.5-4s3.5 1.8 3.5 4" stroke={color} strokeWidth="1.4" />
-      {/* Right person (outline) */}
-      <circle cx="19.5" cy="6.5" r="2" stroke={color} strokeWidth="1.4" />
-      <path d="M16 16c0-2.2 1.5-4 3.5-4s3.5 1.8 3.5 4" stroke={color} strokeWidth="1.4" />
-      {/* Center person (filled, in front) */}
-      <circle cx="12" cy="5" r="2.8" fill={color} />
-      <path d="M7.5 17c0-2.8 2-5 4.5-5s4.5 2.2 4.5 5" fill={color} />
+    <svg width="20" height="20" viewBox="0 0 22 18" fill="none">
+      <circle cx="14.5" cy="5" r="3" fill={color} />
+      <path d="M14.5 9.5c-2.8 0-5 1.8-5 4.5h10c0-2.7-2.2-4.5-5-4.5z" fill={color} />
+      <circle cx="8" cy="4.5" r="3.2" fill={color} />
+      <path d="M8 9c-3 0-5.5 2-5.5 5h11c0-3-2.5-5-5.5-5z" fill={color} />
     </svg>
   )
 }

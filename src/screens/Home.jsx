@@ -1547,17 +1547,13 @@ function CalendarToggleIcon({ color }) {
 
 function GroupToggleIcon({ color }) {
   return (
-    <svg width="15" height="13" viewBox="0 0 24 20" fill="none"
-      strokeLinecap="round" strokeLinejoin="round">
-      {/* Left person (outline) */}
-      <circle cx="4.5" cy="6.5" r="2" stroke={color} strokeWidth="1.4" />
-      <path d="M1 16c0-2.2 1.5-4 3.5-4s3.5 1.8 3.5 4" stroke={color} strokeWidth="1.4" />
-      {/* Right person (outline) */}
-      <circle cx="19.5" cy="6.5" r="2" stroke={color} strokeWidth="1.4" />
-      <path d="M16 16c0-2.2 1.5-4 3.5-4s3.5 1.8 3.5 4" stroke={color} strokeWidth="1.4" />
-      {/* Center person (filled, in front) */}
-      <circle cx="12" cy="5" r="2.8" fill={color} />
-      <path d="M7.5 17c0-2.8 2-5 4.5-5s4.5 2.2 4.5 5" fill={color} />
+    <svg width="15" height="13" viewBox="0 0 22 18" fill="none">
+      {/* Right person (behind) */}
+      <circle cx="14.5" cy="5" r="3" fill={color} />
+      <path d="M14.5 9.5c-2.8 0-5 1.8-5 4.5h10c0-2.7-2.2-4.5-5-4.5z" fill={color} />
+      {/* Left person (in front, slightly larger) */}
+      <circle cx="8" cy="4.5" r="3.2" fill={color} />
+      <path d="M8 9c-3 0-5.5 2-5.5 5h11c0-3-2.5-5-5.5-5z" fill={color} />
     </svg>
   )
 }
@@ -1798,21 +1794,17 @@ function CalendarCreateIcon({ color }) {
 
 function GroupCreateIcon({ color }) {
   return (
-    <svg width="26" height="26" viewBox="0 0 28 24" fill="none"
-      strokeLinecap="round" strokeLinejoin="round">
-      {/* Left person (outline) */}
-      <circle cx="5.5" cy="7" r="2.2" stroke={color} strokeWidth="1.5" />
-      <path d="M2 17c0-2.2 1.5-4 3.5-4s3.5 1.8 3.5 4" stroke={color} strokeWidth="1.5" />
-      {/* Right person (outline) */}
-      <circle cx="20.5" cy="7" r="2.2" stroke={color} strokeWidth="1.5" />
-      <path d="M17 17c0-2.2 1.5-4 3.5-4s3.5 1.8 3.5 4" stroke={color} strokeWidth="1.5" />
-      {/* Center person (filled, in front) */}
-      <circle cx="13" cy="5.5" r="3" fill={color} />
-      <path d="M8.5 18c0-3 2-5.5 4.5-5.5s4.5 2.5 4.5 5.5" fill={color} />
+    <svg width="26" height="26" viewBox="0 0 26 22" fill="none">
+      {/* Right person (behind) */}
+      <circle cx="16" cy="5.5" r="3" fill={color} />
+      <path d="M16 10c-2.8 0-5 1.8-5 4.5h10c0-2.7-2.2-4.5-5-4.5z" fill={color} />
+      {/* Left person (in front) */}
+      <circle cx="9.5" cy="5" r="3.2" fill={color} />
+      <path d="M9.5 9.5c-3 0-5.5 2-5.5 5h11c0-3-2.5-5-5.5-5z" fill={color} />
       {/* Plus badge */}
-      <circle cx="22" cy="19" r="4.5" fill={color} stroke={color} />
-      <line x1="22" y1="16.8" x2="22" y2="21.2" stroke="white" strokeWidth="1.75"/>
-      <line x1="19.8" y1="19" x2="24.2" y2="19" stroke="white" strokeWidth="1.75"/>
+      <circle cx="21" cy="17" r="4.5" fill={color} stroke={color} />
+      <line x1="21" y1="14.8" x2="21" y2="19.2" stroke="white" strokeWidth="1.75" strokeLinecap="round"/>
+      <line x1="18.8" y1="17" x2="23.2" y2="17" stroke="white" strokeWidth="1.75" strokeLinecap="round"/>
     </svg>
   )
 }
