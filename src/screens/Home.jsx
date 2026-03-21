@@ -1082,13 +1082,13 @@ export default function Home() {
 
       <TabBar activeTab="circles" />
 
-      {/* Feedback FAB — bottom-right floating button */}
+      {/* Feedback FAB — stays inside app container on all screen sizes */}
       <button
+        className="feedback-fab"
         onClick={() => setHelpOpen(true)}
         style={{
           position: 'fixed',
           bottom: 84,
-          right: 20,
           width: 52,
           height: 52,
           borderRadius: '50%',

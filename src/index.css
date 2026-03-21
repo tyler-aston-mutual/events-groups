@@ -10,6 +10,11 @@ body {
   overscroll-behavior: none;
 }
 
+/* Feedback FAB — stays 20px inside the app container on all screen sizes */
+.feedback-fab {
+  right: max(20px, calc((100vw - 24rem) / 2 + 20px));
+}
+
 @keyframes cardSlideIn {
   0% {
     opacity: 0;
