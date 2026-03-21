@@ -24,12 +24,13 @@ export function EventCard({
       backgroundColor: colors.grey0,
       borderRadius: 16,
       overflow: 'hidden',
-      boxShadow: type === 'group'
-        ? '0 1px 6px rgba(56, 69, 231, 0.15)'
-        : '0 1px 6px rgba(246, 0, 99, 0.12)',
-      borderLeft: type === 'group'
-        ? `3px solid ${colors.brandPrimary}`
-        : `3px solid ${colors.brandAccent5}`,
+      boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+      borderRight: type === 'group'
+        ? `2px solid ${colors.brandPrimary}`
+        : `2px solid ${colors.brandAccent5}`,
+      borderBottom: type === 'group'
+        ? `2px solid ${colors.brandPrimary}`
+        : `2px solid ${colors.brandAccent5}`,
       position: 'relative',
     }}>
       {/* Type pill — top-right corner (icon only) */}
