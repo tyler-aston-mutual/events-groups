@@ -847,82 +847,18 @@ export default function Home() {
           {/* My Stuff — Groups pill content */}
           {isYoursTab && myStuffPill === 'groups' && (
             <>
-              {myStuffGroups.map(item => {
-                const childEvents = groupChildrenMap[item.id]
-                const isExpanded = expandedGroups.has(item.id)
-                return (
-                  <Fragment key={item.id}>
-                    <div
-                      style={{
-                        ...(item.id === newlyJoinedId ? { animation: 'cardSlideIn 0.4s ease-out both' } : {}),
-                      }}
-                    >
-                      <div
-                        onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        <EventCard {...item} onGroupClick={handleGroupClick}>
-                          {childEvents && childEvents.length > 0 && (
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                setExpandedGroups(prev => {
-                                  const next = new Set(prev)
-                                  if (next.has(item.id)) next.delete(item.id)
-                                  else next.add(item.id)
-                                  return next
-                                })
-                              }}
-                              style={{
-                                display: 'flex', alignItems: 'center', gap: 6,
-                                width: '100%', padding: '4px 0 0',
-                                background: 'none', border: 'none', cursor: 'pointer',
-                              }}
-                            >
-                              <ChildEventIcon color={colors.brandAccent5} size={14} />
-                              <span style={{
-                                fontSize: 13, fontWeight: 700, color: colors.brandAccent5,
-                                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                              }}>
-                                {isExpanded ? 'Hide' : 'Show'} Events
-                              </span>
-                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-                                style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }}>
-                                <path d="M3 4.5L6 7.5L9 4.5" stroke={colors.brandAccent5} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                              </svg>
-                            </button>
-                          )}
-                        </EventCard>
-                      </div>
-                      {childEvents && childEvents.length > 0 && isExpanded && (
-                        <div style={{ paddingTop: 3, paddingLeft: 10, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                          {childEvents.map(child => (
-                            <div
-                              key={child.id}
-                              onClick={() => navigate(`/detail/${child.id}`, { state: { item: child, joined: joinedIds.has(child.id) } })}
-                              style={{
-                                position: 'relative', display: 'flex', alignItems: 'center', gap: 10,
-                                padding: 10, backgroundColor: colors.grey0, borderRadius: 12,
-                                cursor: 'pointer', boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
-                              }}
-                            >
-                              <div style={{ position: 'absolute', top: 8, right: 8 }}>
-                                <ChildEventIcon color={colors.brandAccent5} size={12} />
-                              </div>
-                              <img src={child.image} alt={child.title} style={{ width: 56, height: 56, borderRadius: 10, objectFit: 'cover', flexShrink: 0 }} />
-                              <div style={{ flex: 1, minWidth: 0 }}>
-                                <div style={{ fontSize: 14, fontWeight: 700, color: colors.grey1000, fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif", lineHeight: '18px', marginBottom: 3 }}>{child.title}</div>
-                                {child.date && <div style={{ fontSize: 12, color: colors.grey600, fontFamily: "'Goldman Sans', sans-serif" }}>{child.date}</div>}
-                                <div style={{ fontSize: 12, color: colors.grey400, fontFamily: "'Goldman Sans', sans-serif" }}>{child.going} interested</div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </Fragment>
-                )
-              })}
+              {myStuffGroups.map(item => (
+                <div
+                  key={item.id}
+                  onClick={() => navigate(`/detail/${item.id}`, { state: { item, joined: joinedIds.has(item.id) } })}
+                  style={{
+                    cursor: 'pointer',
+                    ...(item.id === newlyJoinedId ? { animation: 'cardSlideIn 0.4s ease-out both' } : {}),
+                  }}
+                >
+                  <EventCard {...item} onGroupClick={handleGroupClick} />
+                </div>
+              ))}
             </>
           )}
 
