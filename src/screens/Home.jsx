@@ -1754,7 +1754,7 @@ function CreateChevron({ color }) {
 
 function CalendarCreateIcon({ color }) {
   return (
-    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+    <svg width="20" height="20" viewBox="0 0 26 26" fill="none"
       stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M5,3.5 H16 Q20,3.5 20,7 V15.5 L16,20 H5 Q3,20 3,17 V7 Q3,3.5 5,3.5Z"/>
       <path d="M16,20 L16,16.5 L20,15.5" fill="none"/>
@@ -1771,7 +1771,7 @@ function CalendarCreateIcon({ color }) {
 
 function GroupCreateIcon({ color }) {
   return (
-    <svg width="26" height="26" viewBox="0 0 26 22" fill="none">
+    <svg width="20" height="20" viewBox="0 0 26 22" fill="none">
       {/* Right person (behind) */}
       <circle cx="16" cy="5.5" r="3" fill={color} />
       <path d="M16 10c-2.8 0-5 1.8-5 4.5h10c0-2.7-2.2-4.5-5-4.5z" fill={color} />
