@@ -1649,8 +1649,8 @@ function SplitCreateIllustration({ colors }) {
         <line x1="2.5" y1="8" x2="17.5" y2="8"
           stroke={colors.brandAccent5} strokeWidth="1.5"/>
       </g>
-      {/* Group icon — right side, blue, two-person solid */}
-      <g transform="translate(40, 14) scale(1.35)">
+      {/* Group icon — right side, blue, two-person solid — sized to match calendar height */}
+      <g transform="translate(34, 14) scale(1.55)">
         <circle cx="14.5" cy="5" r="3" fill={colors.brandPrimary} />
         <path d="M14.5 9.5c-2.8 0-5 1.8-5 4.5h10c0-2.7-2.2-4.5-5-4.5z" fill={colors.brandPrimary} />
         <circle cx="8" cy="4.5" r="3.2" fill={colors.brandPrimary} />
