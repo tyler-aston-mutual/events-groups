@@ -1096,13 +1096,13 @@ export default function DetailScreen() {
             width: '100%',
             height: 40,
             borderRadius: 100,
-            border: joined ? 'none' : `2px solid ${colors.brandAccent5}`,
-            backgroundColor: joined ? colors.brandAccent5 : colors.brandAccent5 + '15',
+            border: joined ? 'none' : `2px solid ${isGroup ? colors.brandPrimary : colors.brandAccent5}`,
+            backgroundColor: joined ? (isGroup ? colors.brandPrimary : colors.brandAccent5) : (isGroup ? colors.brandPrimary : colors.brandAccent5) + '15',
             cursor: 'pointer',
             fontFamily: "'Goldman Sans', sans-serif",
             fontSize: 16,
             fontWeight: 600,
-            color: joined ? '#FFFFFF' : colors.brandAccent5,
+            color: joined ? '#FFFFFF' : (isGroup ? colors.brandPrimary : colors.brandAccent5),
           }}
         >
           {joined ? (
@@ -1112,7 +1112,7 @@ export default function DetailScreen() {
             </>
           ) : (
             <>
-              <HeartButtonIcon color={colors.brandAccent5} />
+              <HeartButtonIcon color={isGroup ? colors.brandPrimary : colors.brandAccent5} />
               {isGroup ? 'Join Group' : 'Interested'}
             </>
           )}
