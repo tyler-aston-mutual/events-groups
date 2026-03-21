@@ -871,8 +871,7 @@ export default function DetailScreen() {
                       fontWeight: 700,
                       fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
                     }}>
-                        + Create Event
-                      </div>
+                      + Create Event
                     </div>
                   </div>
                 </div>
