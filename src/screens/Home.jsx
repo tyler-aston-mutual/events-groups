@@ -1696,67 +1696,48 @@ function CreateBanner({ colors, activeNav, onTap, navigate }) {
     <div
       onClick={handleClick}
       style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 12,
-        backgroundColor: colors.grey0,
+        backgroundColor: colors.grey50,
         borderRadius: 16,
         border: `1px solid ${colors.grey100}`,
-        padding: '12px 16px',
+        padding: '16px 16px',
         cursor: 'pointer',
       }}
     >
-      {isEvents || isGroups ? (
+      <div style={{
+        fontSize: 15,
+        fontWeight: 700,
+        color: colors.grey900,
+        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+        lineHeight: '20px',
+        marginBottom: subtitle ? 4 : 10,
+      }}>
+        {prompt}
+      </div>
+      {subtitle && (
         <div style={{
-          width: 80,
-          height: 80,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0,
-        }}>
-          <div style={{ transform: 'scale(2.2)' }}>
-            {illustration}
-          </div>
-        </div>
-      ) : illustration}
-      <div style={{ flex: 1 }}>
-        <div style={{
-          fontSize: 15,
-          fontWeight: 700,
-          color: colors.grey900,
-          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-          lineHeight: '20px',
-          marginBottom: subtitle ? 4 : 10,
-        }}>
-          {prompt}
-        </div>
-        {subtitle && (
-          <div style={{
-            fontSize: 13,
-            fontWeight: 400,
-            color: colors.grey600,
-            fontFamily: "'Goldman Sans', sans-serif",
-            lineHeight: '17px',
-            marginBottom: 10,
-          }}>
-            {subtitle}
-          </div>
-        )}
-        <div style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 4,
-          backgroundColor: accentColor,
-          color: '#FFFFFF',
-          borderRadius: 20,
-          padding: '8px 16px',
           fontSize: 13,
-          fontWeight: 700,
-          fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+          fontWeight: 400,
+          color: colors.grey600,
+          fontFamily: "'Goldman Sans', sans-serif",
+          lineHeight: '17px',
+          marginBottom: 10,
         }}>
-          {label}
+          {subtitle}
         </div>
+      )}
+      <div style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 4,
+        backgroundColor: accentColor,
+        color: '#FFFFFF',
+        borderRadius: 20,
+        padding: '8px 16px',
+        fontSize: 13,
+        fontWeight: 700,
+        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+      }}>
+        {label}
       </div>
     </div>
   )
