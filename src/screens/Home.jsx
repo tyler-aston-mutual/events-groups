@@ -1082,7 +1082,7 @@ export default function Home() {
 
       <TabBar activeTab="circles" />
 
-      {/* Feedback FAB — stays inside app container on all screen sizes */}
+      {/* Feedback FAB — liquid glass style */}
       <button
         className="feedback-fab"
         onClick={() => setHelpOpen(true)}
@@ -1092,19 +1092,21 @@ export default function Home() {
           width: 52,
           height: 52,
           borderRadius: '50%',
-          backgroundColor: '#000000',
-          border: 'none',
+          background: 'rgba(255,255,255,0.72)',
+          backdropFilter: 'blur(24px) saturate(200%)',
+          WebkitBackdropFilter: 'blur(24px) saturate(200%)',
+          border: '1px solid rgba(255,255,255,0.9)',
           cursor: 'pointer',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+          boxShadow: '0 6px 28px rgba(0,0,0,0.22), 0 2px 6px rgba(0,0,0,0.12), inset 0 1.5px 0 rgba(255,255,255,1), inset 0 -1px 0 rgba(0,0,0,0.07)',
           zIndex: 50,
         }}
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-            fill="white" />
+            fill="rgba(0,0,0,0.75)" />
         </svg>
       </button>
 
