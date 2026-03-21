@@ -124,39 +124,6 @@ export function EventCard({
             </InfoRow>
           )}
 
-          {/* Group tag */}
-          {group && (
-            <div
-              onClick={onGroupClick ? (e) => { e.stopPropagation(); onGroupClick(group.name) } : undefined}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 6,
-                marginTop: 4,
-                cursor: onGroupClick ? 'pointer' : undefined,
-              }}
-            >
-              <GroupIcon color={colors.brandPrimary} />
-              <span style={{
-                fontSize: 13,
-                fontWeight: 700,
-                color: colors.brandPrimary,
-                fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-              }}>
-                {group.name}
-              </span>
-              {group.membersOnly && (
-                <span style={{
-                  fontSize: 13,
-                  fontWeight: 400,
-                  color: colors.grey400,
-                  fontFamily: "'Goldman Sans', sans-serif",
-                }}>
-                  · Members Only
-                </span>
-              )}
-            </div>
-          )}
           {children}
         </div>
 

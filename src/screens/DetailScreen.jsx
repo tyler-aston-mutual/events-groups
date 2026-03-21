@@ -558,6 +558,19 @@ export default function DetailScreen() {
               >
                 {item.location}
               </InfoRow>
+              {item.group && (
+                <InfoRow
+                  icon={<GroupTypeIcon color={colors.grey600} />}
+                  colors={colors}
+                  tappable
+                  onTap={() => {
+                    const groupItem = ALL_ITEMS.find(g => g.type === 'group' && g.title === item.group.name)
+                    if (groupItem) navigate(`/detail/${groupItem.id}`, { state: { item: groupItem } })
+                  }}
+                >
+                  {item.group.name}
+                </InfoRow>
+              )}
               {item.creator && (
                 <InfoRow
                   icon={<CreatedByIcon color={colors.grey600} />}
