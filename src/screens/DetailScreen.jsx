@@ -793,53 +793,36 @@ export default function DetailScreen() {
                   <div
                     onClick={() => navigate('/create/event')}
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 12,
-                      backgroundColor: colors.grey0,
+                      backgroundColor: colors.grey50,
                       borderRadius: 16,
                       border: `1px solid ${colors.grey100}`,
-                      padding: '12px 16px',
+                      padding: '16px 16px',
                       cursor: 'pointer',
                     }}
                   >
                     <div style={{
-                      width: 80,
-                      height: 80,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
+                      fontSize: 15,
+                      fontWeight: 700,
+                      color: colors.grey900,
+                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                      lineHeight: '20px',
+                      marginBottom: 10,
                     }}>
-                      <div style={{ transform: 'scale(2.2)' }}>
-                        <DetailCalendarCreateIcon color={colors.brandAccent5} />
-                      </div>
+                      Have an idea for an event?
                     </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{
-                        fontSize: 15,
-                        fontWeight: 700,
-                        color: colors.grey900,
-                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                        lineHeight: '20px',
-                        marginBottom: 10,
-                      }}>
-                        Have an idea for an event?
-                      </div>
-                      <div style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: 4,
-                        backgroundColor: colors.brandAccent5,
-                        color: '#FFFFFF',
-                        borderRadius: 20,
-                        padding: '8px 16px',
-                        fontSize: 13,
-                        fontWeight: 700,
-                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                      }}>
-                        + Create Event
-                      </div>
+                    <div style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 4,
+                      backgroundColor: colors.brandAccent5,
+                      color: '#FFFFFF',
+                      borderRadius: 20,
+                      padding: '8px 16px',
+                      fontSize: 13,
+                      fontWeight: 700,
+                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                    }}>
+                      + Create Event
                     </div>
                   </div>
                 </div>
@@ -858,52 +841,36 @@ export default function DetailScreen() {
                   <div
                     onClick={() => navigate('/create/event')}
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 12,
-                      backgroundColor: colors.grey0,
+                      backgroundColor: colors.grey50,
                       borderRadius: 16,
                       border: `1px solid ${colors.grey100}`,
-                      padding: '12px 16px',
+                      padding: '16px 16px',
                       cursor: 'pointer',
                       marginTop: 4,
                     }}
                   >
                     <div style={{
-                      width: 80,
-                      height: 80,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
+                      fontSize: 15,
+                      fontWeight: 700,
+                      color: colors.grey900,
+                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                      lineHeight: '20px',
+                      marginBottom: 10,
                     }}>
-                      <div style={{ transform: 'scale(2.2)' }}>
-                        <DetailCalendarCreateIcon color={colors.brandAccent5} />
-                      </div>
+                      Have an idea for an event?
                     </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{
-                        fontSize: 15,
-                        fontWeight: 700,
-                        color: colors.grey900,
-                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                        lineHeight: '20px',
-                        marginBottom: 10,
-                      }}>
-                        Have an idea for an event?
-                      </div>
-                      <div style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: 4,
-                        backgroundColor: colors.brandAccent5,
-                        color: '#FFFFFF',
-                        borderRadius: 20,
-                        padding: '8px 16px',
-                        fontSize: 13,
-                        fontWeight: 700,
-                        fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
-                      }}>
+                    <div style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 4,
+                      backgroundColor: colors.brandAccent5,
+                      color: '#FFFFFF',
+                      borderRadius: 20,
+                      padding: '8px 16px',
+                      fontSize: 13,
+                      fontWeight: 700,
+                      fontFamily: "'Goldman Sans Bold', 'Goldman Sans', sans-serif",
+                    }}>
                         + Create Event
                       </div>
                     </div>
