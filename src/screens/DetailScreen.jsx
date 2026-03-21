@@ -358,11 +358,11 @@ export default function DetailScreen() {
             gap: 16,
             position: 'relative',
           }}>
-            {/* Photo */}
+            {/* Photo — same size as card thumbnail */}
             {item.image && (
               <div style={{
-                width: 120,
-                height: 120,
+                width: 100,
+                height: 100,
                 borderRadius: 14,
                 overflow: 'hidden',
                 flexShrink: 0,
