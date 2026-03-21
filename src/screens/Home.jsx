@@ -1039,7 +1039,7 @@ export default function Home() {
 
               {/* Create banner — after 5th card */}
               {index === 3 && !createBannerDismissed && !isYoursTab && (
-                <div style={{ position: 'relative', marginTop: 12 }}>
+                <div style={{ position: 'relative' }}>
                   {/* Dismiss X */}
                   <button
                     onClick={(e) => { e.stopPropagation(); setCreateBannerDismissed(true) }}
