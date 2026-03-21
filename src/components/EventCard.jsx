@@ -241,27 +241,37 @@ function PeopleIcon({ color }) {
   )
 }
 
-// Two-person silhouette — stroke-based, matches CalendarIcon style
+// Three-person group icon — center person filled, flanking people outlined
 function GroupBadgeIcon({ color, size = 20 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 20 20" fill="none"
-      stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="7" cy="6.5" r="2.5" />
-      <circle cx="13" cy="6.5" r="2.5" />
-      <path d="M1.5 18c0-2.5 2.5-4.5 5.5-4.5 1.5 0 2.8.5 3.7 1.3" />
-      <path d="M13 13.5c3 0 5.5 2 5.5 4.5" />
+    <svg width={size} height={size} viewBox="0 0 24 20" fill="none"
+      strokeLinecap="round" strokeLinejoin="round">
+      {/* Left person (outline) */}
+      <circle cx="4.5" cy="6.5" r="2" stroke={color} strokeWidth="1.4" />
+      <path d="M1 16c0-2.2 1.5-4 3.5-4s3.5 1.8 3.5 4" stroke={color} strokeWidth="1.4" />
+      {/* Right person (outline) */}
+      <circle cx="19.5" cy="6.5" r="2" stroke={color} strokeWidth="1.4" />
+      <path d="M16 16c0-2.2 1.5-4 3.5-4s3.5 1.8 3.5 4" stroke={color} strokeWidth="1.4" />
+      {/* Center person (filled, in front) */}
+      <circle cx="12" cy="5" r="2.8" fill={color} />
+      <path d="M7.5 17c0-2.8 2-5 4.5-5s4.5 2.2 4.5 5" fill={color} />
     </svg>
   )
 }
 
 function GroupIcon({ color }) {
   return (
-    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"
-      stroke={color} strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="7" cy="6.5" r="2.5" />
-      <circle cx="13" cy="6.5" r="2.5" />
-      <path d="M1.5 18c0-2.5 2.5-4.5 5.5-4.5 1.5 0 2.8.5 3.7 1.3" />
-      <path d="M13 13.5c3 0 5.5 2 5.5 4.5" />
+    <svg width="16" height="16" viewBox="0 0 24 20" fill="none"
+      strokeLinecap="round" strokeLinejoin="round">
+      {/* Left person (outline) */}
+      <circle cx="4.5" cy="6.5" r="2" stroke={color} strokeWidth="1.4" />
+      <path d="M1 16c0-2.2 1.5-4 3.5-4s3.5 1.8 3.5 4" stroke={color} strokeWidth="1.4" />
+      {/* Right person (outline) */}
+      <circle cx="19.5" cy="6.5" r="2" stroke={color} strokeWidth="1.4" />
+      <path d="M16 16c0-2.2 1.5-4 3.5-4s3.5 1.8 3.5 4" stroke={color} strokeWidth="1.4" />
+      {/* Center person (filled, in front) */}
+      <circle cx="12" cy="5" r="2.8" fill={color} />
+      <path d="M7.5 17c0-2.8 2-5 4.5-5s4.5 2.2 4.5 5" fill={color} />
     </svg>
   )
 }
