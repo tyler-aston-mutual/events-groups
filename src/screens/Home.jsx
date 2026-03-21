@@ -483,6 +483,9 @@ export default function Home() {
   useEffect(() => {
     if (location.state?.switchToYours) {
       setActiveNav('mine')
+      if (location.state?.joinedType) {
+        setMyStuffPill(location.state.joinedType)
+      }
       window.history.replaceState({}, '')
     }
   }, [location.state?.switchToYours])

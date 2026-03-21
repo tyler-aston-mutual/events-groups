@@ -1083,7 +1083,7 @@ export default function DetailScreen() {
                 setSafetyTipsOpen(true)
               } else {
                 setTimeout(() => {
-                  navigate('/', { state: { switchToYours: true } })
+                  navigate('/', { state: { switchToYours: true, joinedType: isGroup ? 'groups' : 'events' } })
                 }, 300)
               }
             }
@@ -1188,7 +1188,7 @@ export default function DetailScreen() {
           onClick={() => {
             setSafetyTipsOpen(false)
             setExpandedTip(null)
-            setTimeout(() => navigate('/', { state: { switchToYours: true } }), 300)
+            setTimeout(() => navigate('/', { state: { switchToYours: true, joinedType: isGroup ? 'groups' : 'events' } }), 300)
           }}
           style={{
             position: 'fixed',
@@ -1226,7 +1226,7 @@ export default function DetailScreen() {
                 onClick={() => {
                   setSafetyTipsOpen(false)
                   setExpandedTip(null)
-                  setTimeout(() => navigate('/', { state: { switchToYours: true } }), 300)
+                  setTimeout(() => navigate('/', { state: { switchToYours: true, joinedType: isGroup ? 'groups' : 'events' } }), 300)
                 }}
                 style={{
                   position: 'absolute',
@@ -1375,7 +1375,7 @@ export default function DetailScreen() {
                 onClick={() => {
                   setSafetyTipsOpen(false)
                   setExpandedTip(null)
-                  setTimeout(() => navigate('/', { state: { switchToYours: true } }), 300)
+                  setTimeout(() => navigate('/', { state: { switchToYours: true, joinedType: isGroup ? 'groups' : 'events' } }), 300)
                 }}
               />
             </div>
