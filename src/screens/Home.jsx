@@ -808,7 +808,7 @@ export default function Home() {
           {/* My Stuff — Events pill content */}
           {isYoursTab && myStuffPill === 'events' && (
             <>
-              {myStuffEventsCurrent.length === 0 && myStuffEventsPast.length === 0 && (
+              {myStuffEventsCurrent.length === 0 && (
                 <div style={{
                   backgroundColor: colors.grey50,
                   borderRadius: 16,
