@@ -71,7 +71,7 @@ const PARTICIPANT_POOL = (() => {
     if (i < fNames.length) {
       pool.push({
         id: pool.length + 1, name: fNames[i],
-        age: 20 + ((i * 3 + 2) % 13),
+        age: 18 + ((i * 3 + 2) % 8),
         location: locs[(i * 2) % locs.length],
         image: fPhotos[i % fPhotos.length],
         gender: 'f',
@@ -80,7 +80,7 @@ const PARTICIPANT_POOL = (() => {
     if (i < mNames.length) {
       pool.push({
         id: pool.length + 1, name: mNames[i],
-        age: 21 + ((i * 3 + 5) % 12),
+        age: 18 + ((i * 3 + 5) % 8),
         location: locs[(i * 2 + 1) % locs.length],
         image: mPhotos[i % mPhotos.length],
         gender: 'm',
