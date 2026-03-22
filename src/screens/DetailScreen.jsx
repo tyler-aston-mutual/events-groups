@@ -585,7 +585,10 @@ export default function DetailScreen() {
                   icon={<CreatedByIcon color={colors.grey600} />}
                   colors={colors}
                   tappable
-                  onTap={() => {}}
+                  onTap={() => {
+                    const c = item.creator
+                    navigate(`/profile/${c.name}`, { state: { participant: { id: c.name.length * 1000, name: c.name, age: c.age, image: c.image } } })
+                  }}
                 >
                   Created By {item.creator.name}
                 </InfoRow>
